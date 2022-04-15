@@ -1,13 +1,7 @@
-
-
-// ignore_for_file: unused_local_variable
 import 'package:flutter/material.dart';
 import 'ShopBottomNavigator.dart';
 import 'descriptionpage.dart';
-import 'MyApp.dart';
-
-
-
+import 'loginpage.dart';
 
 void main() => runApp(MyApp());
 class MyApp extends StatelessWidget {
@@ -75,7 +69,7 @@ class _StoreState extends State<Store> {
            icon: const Icon(Icons.person_outline,color:Color.fromARGB(115, 16, 29, 39)), onPressed: () {
              Navigator.push(
     context,
-    MaterialPageRoute(builder: (context) => const LoginWidget()),
+    MaterialPageRoute(builder: (context) => const LoginPage()),
   );
              },
            
