@@ -17,8 +17,6 @@ class MyApp extends StatelessWidget {
       );
     }
   }
-
-// ignore: must_be_immutable
 class Store extends StatefulWidget {
    Store({Key? key}) : super(key: key);
   @override
@@ -90,20 +88,12 @@ class _StoreState extends State<Store> {
          }),
          ),
        ),
-      // ignore: prefer_const_constructors
       bottomNavigationBar: ShopBottomNavigator(),
-      // ignore: prefer_const_constructors
       floatingActionButton:  FloatingActionButton (backgroundColor: Color.fromARGB(255, 7, 205, 255), onPressed: () {  },
       child: Icon(Icons.search)),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked, 
-     
-   
-     );
-  
-}
-
-
-
+     ); 
+  }
 }
 Card generateItem(context){
  return Card(
@@ -124,8 +114,7 @@ Card generateItem(context){
             Container(
               width: 50,
               height: 100,
-              child: Image.network("https://wall.patoghu.com/file/56/1600x1200/stretch/%D9%BE%D8%B3-%D8%B2%D9%85%DB%8C%D9%86%D9%87-%D9%85%D8%A7%D8%B4%DB%8C%D9%86-%D9%BE%D9%88%D8%B1%D8%B4%D9%87-%D9%85%D8%B4%DA%A9%DB%8C.jpg"),
-   
+              child: Image.network("https://wall.patoghu.com/file/56/1600x1200/stretch/%D9%BE%D8%B3-%D8%B2%D9%85%DB%8C%D9%86%D9%87-%D9%85%D8%A7%D8%B4%DB%8C%D9%86-%D9%BE%D9%88%D8%B1%D8%B4%D9%87-%D9%85%D8%B4%DA%A9%DB%8C.jpg"),   
             ),
             Text(
               "قیمت ",
@@ -139,8 +128,6 @@ Card generateItem(context){
                 color: Color.fromARGB(255, 3, 14, 117),
                 fontSize: 14.0,
               ),) 
-          
-   
           ],)
      ),
    ),

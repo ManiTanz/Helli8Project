@@ -1,6 +1,5 @@
-// ignore_for_file: file_names
-
 import 'package:flutter/material.dart';
+
 class ShopBottomNavigator extends StatelessWidget {
   const ShopBottomNavigator({Key? key}) : super(key: key);
 
@@ -33,6 +32,4 @@ class ShopBottomNavigator extends StatelessWidget {
     );
   }
 }
-
-               // ignore: prefer_const_literals_to_create_immutables
                
