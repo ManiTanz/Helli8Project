@@ -3,14 +3,12 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
-
 class LoginPage extends StatefulWidget {
   const LoginPage({ Key? key }) : super(key: key);
 
   @override
   _LoginPageState createState() => _LoginPageState();
 }
-
 class _LoginPageState extends State<LoginPage> {
 Future<int> loginRequest() async {
   final response = await http.post(
@@ -33,7 +31,6 @@ Future<int> loginRequest() async {
     throw Exception('Failed to create album.');
   }
 }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -48,13 +45,11 @@ Future<int> loginRequest() async {
         leading: Icon(
           Icons.arrow_back ,
           color: Color.fromARGB(115, 16, 29, 39),
-
         ),
         backgroundColor: (Color.fromARGB(255, 7, 205, 255)),
         elevation: 5,
       ),
       body: loginUI(),
-      
     );
   }
   Widget loginUI(){
