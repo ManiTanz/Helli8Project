@@ -91,12 +91,10 @@ Future<int> loginRequest() async {
                       Icons.perm_identity , color:Color.fromARGB(255, 7, 205, 255) ,
                     ),
                     ),
-                
                 ),
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 20,
-
                 ),
               ),
               elevation: 20,
@@ -118,13 +116,11 @@ Future<int> loginRequest() async {
                       Icons.lock_outline , color:Color.fromARGB(255, 7, 205, 255) ,
                     ),
                     ),
-                
                 ),
                 obscureText: true,
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 20,
-
                 ),
               ),
               elevation: 20,
@@ -152,12 +148,9 @@ Future<int> loginRequest() async {
                             fontSize: 20 ,
                           ),
                         ),
-                      ),
-                      
+                      ),                      
                     ),
-                    
                   ),
-
                 ),
               ),
               Padding(
@@ -165,7 +158,7 @@ Future<int> loginRequest() async {
                 child: TextButton(
     onPressed: () {},
     child: const Text('Simple Button'),
-),
+    ),
               ),
           ],
         ),
