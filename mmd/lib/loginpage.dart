@@ -5,7 +5,6 @@ import 'package:http/http.dart' as http;
 
 class LoginPage extends StatefulWidget {
   const LoginPage({ Key? key }) : super(key: key);
-
   @override
   _LoginPageState createState() => _LoginPageState();
 }
@@ -20,7 +19,6 @@ Future<int> loginRequest() async {
       'title': title,
     }),
   );
-
   if (response.statusCode == 201) {
     // If the server did return a 201 CREATED response,
     // then parse the JSON.

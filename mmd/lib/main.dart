@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import 'ShopBottomNavigator.dart';
 import 'descriptionpage.dart';
 import 'loginpage.dart';
@@ -6,14 +7,11 @@ import 'loginpage.dart';
 void main() => runApp(MyApp());
 class MyApp extends StatelessWidget {
     const MyApp({ Key? key }) : super(key: key);
-  
     @override
     Widget build(BuildContext context) {
       return MaterialApp(
     debugShowCheckedModeBanner: false,
-     home: Store(), 
-     
-        
+     home: Store(),      
       );
     }
   }
@@ -21,47 +19,25 @@ class Store extends StatefulWidget {
    Store({Key? key}) : super(key: key);
   @override
    _StoreState createState() => _StoreState();
-   
   }
-  
-
-
-
 class _StoreState extends State<Store> {
-  
-
   @override
   Widget build(BuildContext context){
-     
      return  Scaffold(
        appBar: AppBar(
          title: const Text(
-        
-         "HLS",
-         
+         "HLS",         
          style: TextStyle(color: Color.fromARGB(255, 231, 238, 240),
          fontSize: 70.0
          ),
-         
           ),
         centerTitle:true,
        leading: const Icon(
        Icons.home,
        color: Color.fromARGB(115, 139, 140, 141),
-       
-       
-      ),
-      
-      
-       
-      
-        
-        
-        
+      ),  
         backgroundColor: (Color.fromARGB(255, 7, 205, 255)),
-        
-        elevation: 5,
-        
+        elevation: 5,    
         actions: <Widget> [
            IconButton(
            icon: const Icon(Icons.person_outline,color:Color.fromARGB(115, 16, 29, 39)), onPressed: () {
@@ -70,12 +46,8 @@ class _StoreState extends State<Store> {
     MaterialPageRoute(builder: (context) => const LoginPage()),
   );
              },
-           
-           
-          
            )
         ],
-        
        ),
        body: Padding(
        padding: EdgeInsets.all(24),
@@ -123,7 +95,7 @@ Card generateItem(context){
                 fontSize: 14.0,
               ),),
              Text(
-              "عنوان ",
+              " عنوان درس ",
               style: TextStyle(
                 color: Color.fromARGB(255, 3, 14, 117),
                 fontSize: 14.0,

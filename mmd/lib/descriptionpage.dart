@@ -1,21 +1,16 @@
 import 'package:flutter/material.dart';
 
-
 class Descriptionpage extends StatelessWidget {
   const Descriptionpage({ Key? key }) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
     appBar: AppBar(
          title: const Text(
-        
          "HLS",
-         
          style: TextStyle(color: Color.fromARGB(255, 231, 238, 240),
          fontSize: 70.0
          ),
-         
           ),
         centerTitle:true,
        leading: const Icon(
