@@ -1,29 +1,46 @@
 import 'package:flutter/material.dart';
 
+
 class Descriptionpage extends StatelessWidget {
   const Descriptionpage({ Key? key }) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
     appBar: AppBar(
          title: const Text(
+        
          "HLS",
+         
          style: TextStyle(color: Color.fromARGB(255, 231, 238, 240),
          fontSize: 70.0
          ),
+         
           ),
         centerTitle:true,
        leading: const Icon(
        Icons.arrow_back,
        color: Color.fromARGB(115, 16, 29, 39),
+       
       ),
       actions: <Widget> [
            IconButton(
            icon: const Icon(Icons.favorite,color:Color.fromARGB(115, 16, 29, 39)), onPressed: () {  },
+          
            )
         ],
+      
+      
+       
+      
+        
+        
+        
         backgroundColor: (Color.fromARGB(255, 7, 205, 255)),
-        elevation: 5, 
+        
+        elevation: 5,
+        
+        
        ),
        body: Column(
          children:  <Widget>[
@@ -52,6 +69,7 @@ class Descriptionpage extends StatelessWidget {
            width: 250,
            fit: BoxFit.contain,
            ),
+
            ),
            Text(
           "عنوان درس",
@@ -63,7 +81,8 @@ class Descriptionpage extends StatelessWidget {
            Text(
           "محل توضیحات و.. هر درس",
           style: TextStyle(
-            color: Colors.grey[800], 
+            color: Colors.grey[800],
+            
             fontSize: 20
           ),
            ),
@@ -95,9 +114,12 @@ class Descriptionpage extends StatelessWidget {
                  child: Text("افزودن به علاقه مندی ها" , 
                  style: TextStyle(
                  fontSize: 18 ,
+                 
                  ),
+                 
                  ),
                ),
+             
                 width: MediaQuery.of(context).size.width-50 ,
                 height: 70,
                 ), 
@@ -108,5 +130,7 @@ class Descriptionpage extends StatelessWidget {
          ],
        ),
     );
+  
+
   }
 }

@@ -1,34 +1,16 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
+import 'main.dart';
 
-class LoginPage extends StatefulWidget {
-  const LoginPage({ Key? key }) : super(key: key);
+
+
+class LoginWidget extends StatefulWidget {
+  const LoginWidget({ Key? key }) : super(key: key);
+
   @override
-  _LoginPageState createState() => _LoginPageState();
+  _LoginWidgetState createState() => _LoginWidgetState();
 }
-class _LoginPageState extends State<LoginPage> {
-Future<int> loginRequest() async {
-  final response = await http.post(
-    Uri.parse('https://jsonplaceholder.typicode.com/albums'),
-    headers: <String, String>{
-      'Content-Type': 'application/json; charset=UTF-8',
-    },
-    body: jsonEncode(<String, String>{
-      'title': title,
-    }),
-  );
-  if (response.statusCode == 201) {
-    // If the server did return a 201 CREATED response,
-    // then parse the JSON.
-    return Album.fromJson(jsonDecode(response.body));
-  } else {
-    // If the server did not return a 201 CREATED response,
-    // then throw an exception.
-    throw Exception('Failed to create album.');
-  }
-}
+
+class _LoginWidgetState extends State<LoginWidget> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -43,11 +25,13 @@ Future<int> loginRequest() async {
         leading: Icon(
           Icons.arrow_back ,
           color: Color.fromARGB(115, 16, 29, 39),
+
         ),
         backgroundColor: (Color.fromARGB(255, 7, 205, 255)),
         elevation: 5,
       ),
       body: loginUI(),
+      
     );
   }
   Widget loginUI(){
@@ -65,6 +49,7 @@ Future<int> loginRequest() async {
     ),
     
     ),
+    
     Center(
       child: Padding(
         padding: EdgeInsets.only(left: 70 , right: 70),
@@ -84,10 +69,12 @@ Future<int> loginRequest() async {
                       Icons.perm_identity , color:Color.fromARGB(255, 7, 205, 255) ,
                     ),
                     ),
+                
                 ),
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 20,
+
                 ),
               ),
               elevation: 20,
@@ -109,11 +96,13 @@ Future<int> loginRequest() async {
                       Icons.lock_outline , color:Color.fromARGB(255, 7, 205, 255) ,
                     ),
                     ),
+                
                 ),
                 obscureText: true,
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 20,
+
                 ),
               ),
               elevation: 20,
@@ -124,13 +113,19 @@ Future<int> loginRequest() async {
               height: 30,
               ),
                 Padding(
+                  
                   padding: EdgeInsets.symmetric(horizontal: 50),
                 child: Material(
                   elevation: 20,
                   borderRadius: BorderRadius.circular(40),
                   color:Color.fromARGB(255, 7, 205, 255) ,
                   child: InkWell(
-                    onTap: (){} ,
+                    onTap: (){
+                       Navigator.of(context).push(MaterialPageRoute(
+         builder: (context) => const MyApp()
+         ));
+    
+                    } ,
                     child: Container(
                       height: 70,
                       child: Center(
@@ -139,11 +134,16 @@ Future<int> loginRequest() async {
                           style: TextStyle(
                             color: Colors.white , 
                             fontSize: 20 ,
+                          
+
                           ),
                         ),
-                      ),                      
+                      ),
+                      
                     ),
+                    
                   ),
+
                 ),
               ),
               Padding(
@@ -151,8 +151,22 @@ Future<int> loginRequest() async {
                 child: TextButton(
     onPressed: () {},
     child: const Text('Simple Button'),
-    ),
+),
               ),
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 50),
+                
+              ),
+              
+               const Text(
+        
+         " سلام دوست عزیز به سایت خودت خوش اومدی😊 قراره که کلی محتوا مفید درسی و غیر درسی و با هم یاد بگیریم پس وارد سایت شو و لذت ببر😍",
+         
+         style: TextStyle(color: Color.fromARGB(255, 92, 102, 105),
+         fontSize: 15
+         ),
+         
+          ),
           ],
         ),
       ),

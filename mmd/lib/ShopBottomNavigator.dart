@@ -1,3 +1,5 @@
+
+
 import 'package:flutter/material.dart';
 
 class ShopBottomNavigator extends StatelessWidget {
@@ -32,4 +34,6 @@ class ShopBottomNavigator extends StatelessWidget {
     );
   }
 }
+
+               // ignore: prefer_const_literals_to_create_immutables
                
