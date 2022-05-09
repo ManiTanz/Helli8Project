@@ -5,18 +5,25 @@ import 'package:flutter/material.dart';
 import 'ShopBottomNavigator.dart';
 import 'descriptionpage.dart';
 import 'loginpage.dart';
+import 'serch.dart';
+
+
+
 
 void main() => runApp(MainMaterial());
-
 class MainMaterial extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return const MaterialApp(
-      debugShowCheckedModeBanner: false ,
-      home:const LoginWidget(),
-    );
+    const MainMaterial({ Key? key }) : super(key: key);
+  
+    @override
+    Widget build(BuildContext context) {
+      return MaterialApp(
+    debugShowCheckedModeBanner: false,
+     home: LoginWidget(), 
+      );
+    }
   }
-}
+
+// ignore: must_be_immutable
 void Main() => runApp(const MyApp());
 class MyApp extends StatelessWidget {
     const MyApp({ Key? key }) : super(key: key);
@@ -26,13 +33,9 @@ class MyApp extends StatelessWidget {
       return MaterialApp(
     debugShowCheckedModeBanner: false,
      home: Store(), 
-     
-        
       );
     }
-  }
-
-// ignore: must_be_immutable
+}
 class Store extends StatefulWidget {
    Store({Key? key}) : super(key: key);
   @override
@@ -51,7 +54,7 @@ class _StoreState extends State<Store> {
      
      return  Scaffold(
        appBar: AppBar(
-         title: const Text(
+         title:  Text(
         
          "HLS",
          
@@ -61,12 +64,13 @@ class _StoreState extends State<Store> {
          
           ),
         centerTitle:true,
-       leading: const Icon(
-       Icons.home,
-       color: Color.fromARGB(115, 139, 140, 141),
-       
-       
-      ),
+       leading:  IconButton(
+       icon: Icon(Icons.favorite ,
+       color: Color.fromARGB(115, 16, 29, 39)
+       ),
+         onPressed: () {},
+         
+       ),
       
       
        
@@ -74,27 +78,29 @@ class _StoreState extends State<Store> {
         
         
         
-        backgroundColor: (const Color.fromARGB(255, 7, 205, 255)),
+        backgroundColor: (Color.fromARGB(255, 7, 205, 255)),
         
         elevation: 5,
         
         actions: <Widget> [
            IconButton(
            icon: const Icon(Icons.person_outline,color:Color.fromARGB(115, 16, 29, 39)), onPressed: () {
-             Navigator.of(context).push(
+             
+   Navigator.of(context).push(
     PageRouteBuilder(
-    transitionDuration: Duration(seconds: 2),
+    transitionDuration: Duration(milliseconds: 950),
     pageBuilder: (BuildContext context,Animation<double> animation,Animation<double> secondAnimation ){
       return LoginWidget();
     },
     transitionsBuilder: (BuildContext context,Animation<double> animation,Animation<double> secondAnimation , Widget child){
       return SlideTransition(
       child: child,
-      position: Tween<Offset>(begin: Offset(1 , 0) , end: Offset(0,0)).animate(animation),
+      position: Tween<Offset>(begin: Offset(1 , 0) , end: Offset(0,0)).animate(CurvedAnimation(parent: animation , curve: Curves.easeOutQuad)),
       );
     }
     ),
 
+  
   
   );
              },
@@ -106,11 +112,11 @@ class _StoreState extends State<Store> {
         
        ),
        body: Padding(
-       padding: const EdgeInsets.all(24),
+       padding: EdgeInsets.all(24),
        child: GridView.count(
-         crossAxisCount:2,
+         crossAxisCount:1,
          crossAxisSpacing: 10,
-         mainAxisSpacing: 15,
+         mainAxisSpacing: 10,
          children: List.generate(10 , (int position){
            return generateItem(context);
          }),
@@ -119,8 +125,10 @@ class _StoreState extends State<Store> {
       // ignore: prefer_const_constructors
       bottomNavigationBar: ShopBottomNavigator(),
       // ignore: prefer_const_constructors
-      floatingActionButton:  FloatingActionButton (backgroundColor: Color.fromARGB(255, 7, 205, 255), onPressed: () {  },
-      child: const Icon(Icons.message_sharp)),
+      floatingActionButton:  FloatingActionButton (backgroundColor: Color.fromARGB(255, 7, 205, 255), onPressed: () {
+        Navigator.of(context).push(MaterialPageRoute(builder:(context) => const search ( ) ));
+        },
+      child: Icon(Icons.search)),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked, 
      
    
@@ -133,8 +141,8 @@ class _StoreState extends State<Store> {
 }
 Card generateItem(context){
  return Card(
-   shape: const RoundedRectangleBorder(
-     borderRadius: const BorderRadius.all(const Radius.circular(40))
+   shape: RoundedRectangleBorder(
+     borderRadius: BorderRadius.all(Radius.circular(40))
    ),
    elevation: 5,
    child: InkWell(
@@ -148,21 +156,21 @@ Card generateItem(context){
          mainAxisAlignment: MainAxisAlignment.center ,
           children: <Widget> [
             Container(
-              width: 50,
-              height: 100,
+              width: 840,
+              height: 470,
               child: Image.network("https://wall.patoghu.com/file/56/1600x1200/stretch/%D9%BE%D8%B3-%D8%B2%D9%85%DB%8C%D9%86%D9%87-%D9%85%D8%A7%D8%B4%DB%8C%D9%86-%D9%BE%D9%88%D8%B1%D8%B4%D9%87-%D9%85%D8%B4%DA%A9%DB%8C.jpg"),
    
             ),
-            const Text(
+            Text(
               "قیمت ",
-              style: const TextStyle(
+              style: TextStyle(
                 color: Color.fromARGB(255, 2, 82, 2),
                 fontSize: 14.0,
               ),),
-             const Text(
+             Text(
               "عنوان ",
-              style: const TextStyle(
-                color: const Color.fromARGB(255, 3, 14, 117),
+              style: TextStyle(
+                color: Color.fromARGB(255, 3, 14, 117),
                 fontSize: 14.0,
               ),) 
           

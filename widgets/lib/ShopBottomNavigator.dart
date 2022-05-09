@@ -1,7 +1,6 @@
-
+// ignre_for_file: file_names
 
 import 'package:flutter/material.dart';
-
 class ShopBottomNavigator extends StatelessWidget {
   const ShopBottomNavigator({Key? key}) : super(key: key);
 

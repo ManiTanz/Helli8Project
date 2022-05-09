@@ -1,55 +1,74 @@
+//صفحه فراموشی رمز عبور 
 import 'package:flutter/material.dart';
-import 'main.dart';
-
-
-
-class LoginWidget extends StatefulWidget {
-  const LoginWidget({ Key? key }) : super(key: key);
+import 'loginpage.dart';
+class forget extends StatefulWidget {
+  const forget({ Key? key }) : super(key: key);
 
   @override
-  _LoginWidgetState createState() => _LoginWidgetState();
+  _forgetState createState() => _forgetState();
 }
 
-class _LoginWidgetState extends State<LoginWidget> {
+class _forgetState extends State<forget> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
+    return Scaffold( 
+       appBar: AppBar(
         title: Text(
-          "ورود",
+          "فراموشی رمز عبور",
           style: TextStyle(
             color: Colors.white
           ),
         ),
         centerTitle: true,
-        leading: Icon(
-          Icons.arrow_back ,
-          color: Color.fromARGB(115, 16, 29, 39),
+        leading: IconButton(
+         icon: Icon(
+           Icons.arrow_back ,
+           color: Color.fromARGB(115, 16, 29 , 39),
+         ),
+         onPressed: () {
+           Navigator.of(context).push(
+    PageRouteBuilder(
+    transitionDuration: Duration(milliseconds: 950),
+    pageBuilder: (BuildContext context,Animation<double> animation,Animation<double> secondAnimation ){
+      return LoginWidget();
+    },
+    transitionsBuilder: (BuildContext context,Animation<double> animation,Animation<double> secondAnimation , Widget child){
+      return SlideTransition(
+      child: child,
+      position: Tween<Offset>(begin: Offset(1 , 0) , end: Offset(0,0)).animate(CurvedAnimation(parent: animation , curve: Curves.easeOutQuad)),
+      );
+    }
+    ),
 
-        ),
+  
+  
+  );
+         },
+           
+         
+       ),
         backgroundColor: (Color.fromARGB(255, 7, 205, 255)),
         elevation: 5,
       ),
-      body: loginUI(),
+      body: forgetUI(),
       
     );
   }
-  Widget loginUI(){
+  Widget forgetUI(){
     return Stack(
     children: <Widget>[
     Padding(
-    padding: EdgeInsets.only(left: 20 , top: 50 ),
+    padding: EdgeInsets.only(right: 20 , top: 50 ),
     child: Text(
-      "Sign In",
+      "فراموشی رمز عبور",
       style: TextStyle(
-        fontSize: 55 ,
+        fontSize: 30 ,
         color: Color.fromARGB(255, 7, 205, 255),
         
       ),
     ),
     
     ),
-    
     Center(
       child: Padding(
         padding: EdgeInsets.only(left: 70 , right: 70),
@@ -89,16 +108,16 @@ class _LoginWidgetState extends State<LoginWidget> {
                 decoration: InputDecoration(
                   border: InputBorder.none ,
                   contentPadding : EdgeInsets.fromLTRB(10, 15, 10, 15),
-                  hintText: "رمز عبور",
+                  hintText: "شماره تلفن",
                   icon: Padding(
                     padding: EdgeInsets.only(left: 20),
                     child: Icon(
-                      Icons.lock_outline , color:Color.fromARGB(255, 7, 205, 255) ,
+                      Icons.phone_android , color:Color.fromARGB(255, 7, 205, 255) ,
                     ),
                     ),
                 
                 ),
-                obscureText: true,
+                obscureText: false,
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 20,
@@ -109,11 +128,38 @@ class _LoginWidgetState extends State<LoginWidget> {
               borderRadius: BorderRadius.circular(40),
               shadowColor: Colors.grey[300],
             ),
+            // ignore: prefer_const_constructors
             SizedBox(
-              height: 30,
+              height: 30,) ,
+              Material(
+              child: TextField(
+                decoration: InputDecoration(
+                  border: InputBorder.none ,
+                  contentPadding : EdgeInsets.fromLTRB(10, 15, 10, 15),
+                  hintText: "جیمیل",
+                  icon: Padding(
+                    padding: EdgeInsets.only(left: 20),
+                    child: Icon(
+                      Icons.mail , color:Color.fromARGB(255, 7, 205, 255) ,
+                    ),
+                    ),
+                
+                ),
+                obscureText: false,
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontSize: 20,
+
+                ),
               ),
-                Padding(
-                  
+              elevation: 20,
+              borderRadius: BorderRadius.circular(40),
+              shadowColor: Colors.grey[300],
+            ),
+            // ignore: prefer_const_constructors
+            SizedBox(
+              height: 30,) , 
+              Padding(
                   padding: EdgeInsets.symmetric(horizontal: 50),
                 child: Material(
                   elevation: 20,
@@ -121,21 +167,19 @@ class _LoginWidgetState extends State<LoginWidget> {
                   color:Color.fromARGB(255, 7, 205, 255) ,
                   child: InkWell(
                     onTap: (){
-                       Navigator.of(context).push(MaterialPageRoute(
-         builder: (context) => const MyApp()
+                      Navigator.of(context).push(MaterialPageRoute(
+         builder: (context) => const LoginWidget()
+         
          ));
-    
                     } ,
                     child: Container(
                       height: 70,
                       child: Center(
                         child:  Text(
-                          "ورود" , 
+                          "ثبت" , 
                           style: TextStyle(
                             color: Colors.white , 
                             fontSize: 20 ,
-                          
-
                           ),
                         ),
                       ),
@@ -146,32 +190,31 @@ class _LoginWidgetState extends State<LoginWidget> {
 
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: TextButton(
-    onPressed: () {},
-    child: const Text('Simple Button'),
-),
-              ),
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: 50),
+               Padding(
+                padding: EdgeInsets.only(top: 10 , right: 50 , left: 50)
                 
               ),
               
                const Text(
         
-         " سلام دوست عزیز به سایت خودت خوش اومدی😊 قراره که کلی محتوا مفید درسی و غیر درسی و با هم یاد بگیریم پس وارد سایت شو و لذت ببر😍",
+         "رمز عبور جدید برای ایمیل شما ارسال شد سعی  کنید بعد از آن اقدام به تغییر رمز عبور کنید",
          
          style: TextStyle(color: Color.fromARGB(255, 92, 102, 105),
          fontSize: 15
          ),
          
           ),
+        
           ],
         ),
-      ),
+        ),
     ),
     ],
-    );
+
+
+    );  
   }
 }
+        
+        
+            

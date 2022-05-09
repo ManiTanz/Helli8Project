@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'main.dart';
 
 class Descriptionpage extends StatelessWidget {
   const Descriptionpage({ Key? key }) : super(key: key);
@@ -18,11 +18,34 @@ class Descriptionpage extends StatelessWidget {
          
           ),
         centerTitle:true,
-       leading: const Icon(
-       Icons.arrow_back,
-       color: Color.fromARGB(115, 16, 29, 39),
-       
-      ),
+       leading:  IconButton(
+         icon: Icon(
+           Icons.arrow_back ,
+           color: Color.fromARGB(115, 16, 29 , 39),
+         ),
+         onPressed: () {
+           Navigator.of(context).push(
+    PageRouteBuilder(
+    transitionDuration: Duration(milliseconds: 950),
+    pageBuilder: (BuildContext context,Animation<double> animation,Animation<double> secondAnimation ){
+      return MyApp();
+    },
+    transitionsBuilder: (BuildContext context,Animation<double> animation,Animation<double> secondAnimation , Widget child){
+      return SlideTransition(
+      child: child,
+      position: Tween<Offset>(begin: Offset(1 , 0) , end: Offset(0,0)).animate(CurvedAnimation(parent: animation , curve: Curves.easeOutQuad)),
+      );
+    }
+    ),
+
+  
+  
+  );
+         },
+           
+         
+       ),
+           
       actions: <Widget> [
            IconButton(
            icon: const Icon(Icons.favorite,color:Color.fromARGB(115, 16, 29, 39)), onPressed: () {  },
@@ -36,7 +59,7 @@ class Descriptionpage extends StatelessWidget {
         
         
         
-        backgroundColor: (Color.fromARGB(255, 7, 205, 255)),
+        backgroundColor: (const Color.fromARGB(255, 7, 205, 255)),
         
         elevation: 5,
         
@@ -44,15 +67,15 @@ class Descriptionpage extends StatelessWidget {
        ),
        body: Column(
          children:  <Widget>[
-           SizedBox(
+           const SizedBox(
             height: 20,
            ),
-           Align(
-             child: Padding(
+           const Align(
+             child: const Padding(
                padding: EdgeInsets.only(right: 50 , left: 50),
                child: Text(
                "نام درس",
-               style: TextStyle(
+               style: const TextStyle(
                  color: Color.fromARGB(255, 13, 241, 203),
                  fontSize: 35
                ),
@@ -60,7 +83,7 @@ class Descriptionpage extends StatelessWidget {
              ),
              alignment: Alignment.topCenter,
            ),
-           SizedBox(
+           const SizedBox(
            height: 80,
            ),
            Center(
@@ -71,9 +94,9 @@ class Descriptionpage extends StatelessWidget {
            ),
 
            ),
-           Text(
+           const Text(
           "عنوان درس",
-          style: TextStyle(
+          style: const TextStyle(
             color: Color.fromARGB(255, 13, 241, 203) ,
             fontSize: 30
           ),
@@ -86,11 +109,11 @@ class Descriptionpage extends StatelessWidget {
             fontSize: 20
           ),
            ),
-           SizedBox(
+           const SizedBox(
             height: 80, 
            ),
            Padding(
-             padding: EdgeInsets.only(left: 45 , right: 45),
+             padding: const EdgeInsets.only(left: 45 , right: 45),
              child: Text(
            "توضیحات مربوط به آیتم مثل ویژگی فیلم زمان فیلم و..",
             style: TextStyle(
@@ -103,16 +126,16 @@ class Descriptionpage extends StatelessWidget {
            ),
            Expanded(
              child: Padding(
-               padding: EdgeInsets.only(bottom: 20),
+               padding: const EdgeInsets.only(bottom: 20),
                child: Align(
                 child: Container(
-                  decoration: BoxDecoration(
+                  decoration: const BoxDecoration(
                      color:  Color.fromARGB(255, 7, 205, 255),
-                    borderRadius: BorderRadius.all(Radius.circular(10))
+                    borderRadius: BorderRadius.all(const Radius.circular(10))
                   ) ,
-               child: Center(
+               child: const Center(
                  child: Text("افزودن به علاقه مندی ها" , 
-                 style: TextStyle(
+                 style: const TextStyle(
                  fontSize: 18 ,
                  
                  ),
