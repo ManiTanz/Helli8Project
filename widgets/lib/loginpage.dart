@@ -153,20 +153,20 @@ class _LoginWidgetState extends State<LoginWidget> {
 
 ),
  ),
-             Padding(
-                padding: EdgeInsets.symmetric(horizontal: 50),
-                
-              ),
-              
-               const Text(
+//           Padding(
+  //              padding: EdgeInsets.symmetric(horizontal: 50),
+    //            
+      //        ),
+        //      
+          //     const Text(
         
-         " 😍سلام دوست عزیز به سایت خودت خوش اومدی😊 قراره که کلی محتوا مفید درسی و غیر درسی و با هم یاد بگیریم پس وارد سایت شو و لذت ببر",
+        // " 😍سلام دوست عزیز به سایت خودت خوش اومدی😊 قراره که کلی محتوا مفید درسی و غیر درسی و با هم یاد بگیریم پس وارد سایت شو و لذت ببر",
          
-         style: TextStyle(color: Color.fromARGB(255, 92, 102, 105),
-         fontSize: 15
-         ),
+         //style: TextStyle(color: Color.fromARGB(255, 92, 102, 105),
+         //fontSize: 15
+         //),
          
-          ),
+         // ),
               
           ],
         ),
