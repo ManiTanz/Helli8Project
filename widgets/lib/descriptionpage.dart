@@ -70,7 +70,7 @@ class Descriptionpage extends StatelessWidget {
           height: 80,
           ),
           Center(
-          child: Image.network("",
+          child: Image.asset("assets/images/background.jpg",
           height: 250,
           width: 250,
           fit: BoxFit.contain,

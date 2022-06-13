@@ -88,9 +88,7 @@ class _StoreState extends State<Store> {
          }),
          ),
        ),
-      // ignore: prefer_const_constructors
       bottomNavigationBar: ShopBottomNavigator(),
-      // ignore: prefer_const_constructors
       floatingActionButton:  FloatingActionButton (backgroundColor: Color.fromARGB(255, 7, 205, 255), onPressed: () {
         Navigator.of(context).push(MaterialPageRoute(builder:(context) => const search ( ) ));
         },
