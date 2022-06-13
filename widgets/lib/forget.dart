@@ -1,4 +1,3 @@
-//صفحه فراموشی رمز عبور 
 import 'package:flutter/material.dart';
 import 'loginpage.dart';
 class forget extends StatefulWidget {
@@ -16,7 +15,9 @@ class _forgetState extends State<forget> {
         title: Text(
           "فراموشی رمز عبور",
           style: TextStyle(
-            color: Colors.white
+            color: Colors.white,
+            fontFamily: 'Vazirmatn',
+            fontSize: 20,
           ),
         ),
         centerTitle: true,
@@ -39,19 +40,13 @@ class _forgetState extends State<forget> {
       );
     }
     ),
-
-  
-  
   );
-         },
-           
-         
+         },         
        ),
         backgroundColor: (Color.fromARGB(255, 7, 205, 255)),
         elevation: 5,
       ),
-      body: forgetUI(),
-      
+      body: forgetUI(),  
     );
   }
   Widget forgetUI(){
@@ -64,10 +59,9 @@ class _forgetState extends State<forget> {
       style: TextStyle(
         fontSize: 30 ,
         color: Color.fromARGB(255, 7, 205, 255),
-        
+        fontFamily: 'Vazirmatn',
       ),
     ),
-    
     ),
     Center(
       child: Padding(
@@ -82,18 +76,17 @@ class _forgetState extends State<forget> {
                   border: InputBorder.none ,
                   contentPadding : EdgeInsets.fromLTRB(10, 15, 10, 15),
                   hintText: "نام کاربری",
+                  hintStyle: TextStyle(fontFamily: 'Vazirmatn'),
                   icon: Padding(
                     padding: EdgeInsets.only(left: 20),
                     child: Icon(
                       Icons.perm_identity , color:Color.fromARGB(255, 7, 205, 255) ,
                     ),
                     ),
-                
                 ),
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 20,
-
                 ),
               ),
               elevation: 20,
@@ -109,26 +102,24 @@ class _forgetState extends State<forget> {
                   border: InputBorder.none ,
                   contentPadding : EdgeInsets.fromLTRB(10, 15, 10, 15),
                   hintText: "شماره تلفن",
+                  hintStyle: TextStyle(fontFamily: 'Vazirmatn'),
                   icon: Padding(
                     padding: EdgeInsets.only(left: 20),
                     child: Icon(
                       Icons.phone_android , color:Color.fromARGB(255, 7, 205, 255) ,
                     ),
                     ),
-                
                 ),
                 obscureText: false,
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 20,
-
                 ),
               ),
               elevation: 20,
               borderRadius: BorderRadius.circular(40),
               shadowColor: Colors.grey[300],
             ),
-            // ignore: prefer_const_constructors
             SizedBox(
               height: 30,) ,
               Material(
@@ -136,7 +127,8 @@ class _forgetState extends State<forget> {
                 decoration: InputDecoration(
                   border: InputBorder.none ,
                   contentPadding : EdgeInsets.fromLTRB(10, 15, 10, 15),
-                  hintText: "جیمیل",
+                  hintText: "ایمیل",
+                  hintStyle: TextStyle(fontFamily: 'Vazirmatn'),
                   icon: Padding(
                     padding: EdgeInsets.only(left: 20),
                     child: Icon(
@@ -149,7 +141,6 @@ class _forgetState extends State<forget> {
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 20,
-
                 ),
               ),
               elevation: 20,
@@ -169,7 +160,6 @@ class _forgetState extends State<forget> {
                     onTap: (){
                       Navigator.of(context).push(MaterialPageRoute(
          builder: (context) => const LoginWidget()
-         
          ));
                     } ,
                     child: Container(
@@ -179,42 +169,30 @@ class _forgetState extends State<forget> {
                           "ثبت" , 
                           style: TextStyle(
                             color: Colors.white , 
-                            fontSize: 20 ,
+                            fontSize: 20,
+                            fontFamily: 'Vazirnmatn'
                           ),
                         ),
                       ),
-                      
                     ),
-                    
                   ),
-
                 ),
               ),
                Padding(
                 padding: EdgeInsets.only(top: 10 , right: 50 , left: 50)
-                
               ),
-              
                const Text(
-        
          "رمز عبور جدید برای ایمیل شما ارسال شد سعی  کنید بعد از آن اقدام به تغییر رمز عبور کنید",
-         
          style: TextStyle(color: Color.fromARGB(255, 92, 102, 105),
-         fontSize: 15
+         fontSize: 15,
+         fontFamily: 'Vazirmatn'
          ),
-         
           ),
-        
           ],
         ),
         ),
     ),
     ],
-
-
     );  
   }
-}
-        
-        
-            
+}           

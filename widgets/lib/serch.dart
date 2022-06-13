@@ -1,4 +1,4 @@
-//صفحه سرچ و جست و جو
+
 import 'package:flutter/material.dart';
 
 class search extends StatefulWidget {
@@ -12,13 +12,11 @@ class _searchState extends State<search> {
   @override
   Widget build(BuildContext context) {
     return  Material(
-      child: Padding(
-        
+      child: Padding(        
         padding: EdgeInsets.only(left: 150 , right: 150 , top: 0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.start,
-
           children: <Widget> [
             Material(
               child: TextField(
@@ -26,19 +24,18 @@ class _searchState extends State<search> {
                   border: InputBorder.none ,
                   contentPadding : EdgeInsets.fromLTRB(10, 15, 10, 15),
                   hintText: "جست و جو...",
+                  hintStyle: TextStyle(fontFamily: 'Vazirmatn'),
                   icon: Padding(
                     padding: EdgeInsets.only(left: 20),
                     child: Icon(
                       Icons.search ,
-                       color:Color.fromARGB(255, 7, 205, 255) ,
+                       color:Color.fromARGB(255, 24, 28, 29) ,
                     ),
                     ),
-                
                 ),
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 20,
-
                 ),
               ),
               elevation: 20,
@@ -52,7 +49,6 @@ class _searchState extends State<search> {
       ),
     ),
     );
-
   }
 }  
               

@@ -17,7 +17,8 @@ class _favoriteState extends State<favorite> {
          "علاقه مندی ها",
          
          style: TextStyle(color: Color.fromARGB(255, 231, 238, 240),
-         fontSize: 30.0
+         fontSize: 30.0,
+         fontFamily: 'Vazirmatn',
          ),
          ),
           centerTitle:true,
@@ -38,21 +39,11 @@ class _favoriteState extends State<favorite> {
       position: Tween<Offset>(begin: Offset(1 , 0) , end: Offset(0,0)).animate(CurvedAnimation(parent: animation , curve: Curves.easeOutQuad)),
       );
     }
-    ),
-
-  
-  
+    ),  
   );
-             },
-           
-           
-          
+             },      
            )
-        
-        
        ),
-          
-         
        );
   }
 }

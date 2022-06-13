@@ -59,7 +59,8 @@ class Descriptionpage extends StatelessWidget {
               "نام درس",
               style: const TextStyle(
                 color: Color.fromARGB(255, 13, 241, 203),
-                fontSize: 35
+                fontSize: 35,
+                fontFamily: 'Vazirmatn',
               ),
               ),
             ),
@@ -79,14 +80,16 @@ class Descriptionpage extends StatelessWidget {
         "عنوان درس",
           style: const TextStyle(
             color: Color.fromARGB(255, 13, 241, 203) ,
-            fontSize: 30
+            fontSize: 30,
+            fontFamily: 'Vazirmatn'
           ),
            ),
            Text(
           "محل توضیحات و.. هر درس",
           style: TextStyle(
             color: Colors.grey[800],       
-            fontSize: 20
+            fontSize: 20,
+            fontFamily: 'Vazirmatn'
           ),
            ),
            const SizedBox(
@@ -99,6 +102,7 @@ class Descriptionpage extends StatelessWidget {
             style: TextStyle(
                    color: Colors.grey[600],
                    fontSize: 16,
+                   fontFamily: 'Vazirmatn',
                    ),
                    textDirection: TextDirection.rtl,
                    textAlign: TextAlign.center,
@@ -114,11 +118,12 @@ class Descriptionpage extends StatelessWidget {
                     borderRadius: BorderRadius.all(const Radius.circular(10))
                   ) ,
                child: const Center(
-                 child: Text("افزودن به علاقه مندی ها" , 
-                 style: const TextStyle(
-                 fontSize: 18 ,
-                 ),
-                 ),
+                child: Text("افزودن به علاقه مندی ها" , 
+                style: const TextStyle(
+                fontSize: 18,
+                fontFamily: 'Vazirmatn'
+                ),
+                ),
                ),
                 width: MediaQuery.of(context).size.width-50 ,
                 height: 70,

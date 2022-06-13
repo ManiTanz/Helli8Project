@@ -125,12 +125,14 @@ Card generateItem(context){
               style: TextStyle(
                 color: Color.fromARGB(255, 2, 82, 2),
                 fontSize: 20.0,
+                fontFamily: 'Vazirmatn',
               ),),
              Text(
               "عنوان درس ",
               style: TextStyle(
                 color: Color.fromARGB(255, 3, 14, 117),
                 fontSize: 20.0,
+                fontFamily: 'Vazirmatn',
               ),) 
           ],)
      ),

@@ -2,7 +2,6 @@ import 'package:first_app/forget.dart';
 import 'package:flutter/material.dart';
 import 'main.dart';
 
-
 class LoginWidget extends StatefulWidget {
   const LoginWidget({ Key? key }) : super(key: key);
 
@@ -18,20 +17,19 @@ class _LoginWidgetState extends State<LoginWidget> {
         title: Text(
           "ورود",
           style: TextStyle(
-            color: Colors.white
+            color: Colors.white,
+            fontFamily: 'Vazirmatn'
           ),
         ),
         centerTitle: true,
         leading: Icon(
           Icons.arrow_back ,
           color: Color.fromARGB(115, 16, 29, 39),
-
         ),
         backgroundColor: (Color.fromARGB(255, 7, 205, 255)),
         elevation: 5,
       ),
       body: loginUI(),
-      
     );
   }
   Widget loginUI(){
@@ -43,11 +41,9 @@ class _LoginWidgetState extends State<LoginWidget> {
       "Sign In",
       style: TextStyle(
         fontSize: 55 ,
-        color: Color.fromARGB(255, 7, 205, 255),
-        
+        color: Color.fromARGB(255, 7, 205, 255),     
       ),
     ),
-    
     ),
     Center(
       child: Padding(
@@ -62,18 +58,17 @@ class _LoginWidgetState extends State<LoginWidget> {
                   border: InputBorder.none ,
                   contentPadding : EdgeInsets.fromLTRB(10, 8, 10, 8),
                   hintText: "نام کاربری",
+                  hintStyle: TextStyle(fontFamily: 'Vazirmatn'),
                   icon: Padding(
                     padding: EdgeInsets.only(left: 20),
                     child: Icon(
                       Icons.perm_identity , color:Color.fromARGB(255, 7, 205, 255) ,
                     ),
-                    ),
-                
+                    ),          
                 ),
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 20,
-
                 ),
               ),
               elevation: 20,
@@ -89,19 +84,18 @@ class _LoginWidgetState extends State<LoginWidget> {
                   border: InputBorder.none ,
                   contentPadding : EdgeInsets.fromLTRB(10, 15, 10, 15),
                   hintText: "رمز عبور",
+                  hintStyle: TextStyle(fontFamily: 'Vazirmatn'),
                   icon: Padding(
                     padding: EdgeInsets.only(left: 20),
                     child: Icon(
                       Icons.lock_outline , color:Color.fromARGB(255, 7, 205, 255) ,
                     ),
-                    ),
-                
+                    ),  
                 ),
                 obscureText: true,
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 20,
-
                 ),
               ),
               elevation: 20,
@@ -131,14 +125,12 @@ class _LoginWidgetState extends State<LoginWidget> {
                           style: TextStyle(
                             color: Colors.white , 
                             fontSize: 20 ,
+                            fontFamily: 'Vazirmatn',
                           ),
                         ),
-                      ),
-                      
+                      ),      
                     ),
-                    
                   ),
-
                 ),
               ),
               Padding(
@@ -150,24 +142,8 @@ class _LoginWidgetState extends State<LoginWidget> {
          ));
     },
     child: const Text('فراموشی رمز عبور'),
-
 ),
- ),
-//           Padding(
-  //              padding: EdgeInsets.symmetric(horizontal: 50),
-    //            
-      //        ),
-        //      
-          //     const Text(
-        
-        // " 😍سلام دوست عزیز به سایت خودت خوش اومدی😊 قراره که کلی محتوا مفید درسی و غیر درسی و با هم یاد بگیریم پس وارد سایت شو و لذت ببر",
-         
-         //style: TextStyle(color: Color.fromARGB(255, 92, 102, 105),
-         //fontSize: 15
-         //),
-         
-         // ),
-              
+ ),                    
           ],
         ),
       ),
