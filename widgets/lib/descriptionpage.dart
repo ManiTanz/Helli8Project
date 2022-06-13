@@ -15,7 +15,6 @@ class Descriptionpage extends StatelessWidget {
          style: TextStyle(color: Color.fromARGB(255, 231, 238, 240),
          fontSize: 70.0
          ),
-         
           ),
         centerTitle:true,
        leading:  IconButton(
@@ -36,66 +35,48 @@ class Descriptionpage extends StatelessWidget {
       position: Tween<Offset>(begin: Offset(1 , 0) , end: Offset(0,0)).animate(CurvedAnimation(parent: animation , curve: Curves.easeOutQuad)),
       );
     }
-    ),
-
-  
-  
+    )  
   );
-         },
-           
-         
-       ),
-           
+         },     
+       ),  
       actions: <Widget> [
            IconButton(
-           icon: const Icon(Icons.favorite,color:Color.fromARGB(115, 16, 29, 39)), onPressed: () {  },
-          
+           icon: const Icon(Icons.favorite,color:Color.fromARGB(115, 16, 29, 39)), onPressed: () {  }, 
            )
         ],
-      
-      
-       
-      
-        
-        
-        
-        backgroundColor: (const Color.fromARGB(255, 7, 205, 255)),
-        
-        elevation: 5,
-        
-        
+      backgroundColor: (const Color.fromARGB(255, 7, 205, 255)),  
+      elevation: 5,
        ),
-       body: Column(
-         children:  <Widget>[
-           const SizedBox(
-            height: 20,
-           ),
-           const Align(
-             child: const Padding(
-               padding: EdgeInsets.only(right: 50 , left: 50),
-               child: Text(
-               "نام درس",
-               style: const TextStyle(
-                 color: Color.fromARGB(255, 13, 241, 203),
-                 fontSize: 35
-               ),
-               ),
-             ),
-             alignment: Alignment.topCenter,
-           ),
-           const SizedBox(
-           height: 80,
-           ),
-           Center(
-           child: Image.network("",
-           height: 250,
-           width: 250,
-           fit: BoxFit.contain,
-           ),
-
-           ),
-           const Text(
-          "عنوان درس",
+      body: Column(
+        children:  <Widget>[
+          const SizedBox(
+          height: 20,
+          ),
+          const Align(
+            child: const Padding(
+              padding: EdgeInsets.only(right: 50 , left: 50),
+              child: Text(
+              "نام درس",
+              style: const TextStyle(
+                color: Color.fromARGB(255, 13, 241, 203),
+                fontSize: 35
+              ),
+              ),
+            ),
+            alignment: Alignment.topCenter,
+          ),
+          const SizedBox(
+          height: 80,
+          ),
+          Center(
+          child: Image.network("",
+          height: 250,
+          width: 250,
+          fit: BoxFit.contain,
+          ),
+          ),
+          const Text(
+        "عنوان درس",
           style: const TextStyle(
             color: Color.fromARGB(255, 13, 241, 203) ,
             fontSize: 30
@@ -104,8 +85,7 @@ class Descriptionpage extends StatelessWidget {
            Text(
           "محل توضیحات و.. هر درس",
           style: TextStyle(
-            color: Colors.grey[800],
-            
+            color: Colors.grey[800],       
             fontSize: 20
           ),
            ),
@@ -137,12 +117,9 @@ class Descriptionpage extends StatelessWidget {
                  child: Text("افزودن به علاقه مندی ها" , 
                  style: const TextStyle(
                  fontSize: 18 ,
-                 
                  ),
-                 
                  ),
                ),
-             
                 width: MediaQuery.of(context).size.width-50 ,
                 height: 70,
                 ), 
@@ -153,7 +130,5 @@ class Descriptionpage extends StatelessWidget {
          ],
        ),
     );
-  
-
   }
 }
