@@ -77,6 +77,7 @@ class _LoginWidgetState extends State<LoginWidget> {
             ) ,
             SizedBox(
             height: 20,
+            width: 100,
             ),
             Material(
               child: TextField(
@@ -104,6 +105,7 @@ class _LoginWidgetState extends State<LoginWidget> {
             ),
             SizedBox(
               height: 30,
+              width: 100,
               ),
                 Padding(
                   padding: EdgeInsets.symmetric(horizontal: 50),
@@ -119,6 +121,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                     } ,
                     child: Container(
                       height: 70,
+                      width: 100,
                       child: Center(
                         child:  Text(
                           "ورود" , 
@@ -135,14 +138,18 @@ class _LoginWidgetState extends State<LoginWidget> {
               ),
               Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: TextButton(
-    onPressed: () {
-      Navigator.of(context).push(MaterialPageRoute(
-         builder: (context) => const forget()
-         ));
+                child: SizedBox(
+                  height: 60,
+                  width: 120,
+                  child: TextButton(
+                    onPressed: () {
+                    Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => const forget()
+                    ));
     },
     child: const Text('فراموشی رمز عبور'),
-),
+                  ),
+                ),
  ),                    
           ],
         ),
