@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'ShopBottomNavigator.dart';
 import 'descriptionpage.dart';
 import 'loginpage.dart';
-import 'serch.dart';
+import 'Search.dart';
 
 void main() => runApp(MainMaterial());
 class MainMaterial extends StatelessWidget {
@@ -90,7 +90,7 @@ class _StoreState extends State<Store> {
        ),
       bottomNavigationBar: ShopBottomNavigator(),
       floatingActionButton:  FloatingActionButton (backgroundColor: Color.fromARGB(255, 7, 205, 255), onPressed: () {
-        Navigator.of(context).push(MaterialPageRoute(builder:(context) => const search ( ) ));
+        Navigator.of(context).push(MaterialPageRoute(builder:(context) => const Search ( ) ));
         },
       child: Icon(Icons.search)),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked, 
