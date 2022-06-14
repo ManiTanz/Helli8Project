@@ -36,9 +36,10 @@ class _LoginWidgetState extends State<LoginWidget> {
     return Stack(
     children: <Widget>[
     Padding(
-    padding: EdgeInsets.only(left: 20 , top: 50 ),
+    padding: EdgeInsets.only(left: 600 , top: 50 ),
     child: Text(
       "Sign In",
+      textAlign: TextAlign.center,
       style: TextStyle(
         fontSize: 55 ,
         color: Color.fromARGB(255, 7, 205, 255),     
@@ -52,20 +53,22 @@ class _LoginWidgetState extends State<LoginWidget> {
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget> [
-            Material(
-              child: TextField(
-                decoration: InputDecoration(
-                  border: InputBorder.none ,
-                  contentPadding : EdgeInsets.fromLTRB(10, 8, 10, 8),
-                  hintText: "نام کاربری",
-                  hintStyle: TextStyle(fontFamily: 'Vazirmatn'),
-                  icon: Padding(
-                    padding: EdgeInsets.only(left: 20),
-                    child: Icon(
-                      Icons.perm_identity , color:Color.fromARGB(255, 7, 205, 255) ,
-                    ),
-                    ),          
-                ),
+            Container(
+              width: 400,
+              child: Material(
+                    child: TextField(
+                          decoration: InputDecoration(
+                          border: InputBorder.none ,
+                          contentPadding : EdgeInsets.fromLTRB(10, 8, 10, 8),
+                          hintText: "نام کاربری",
+                          hintStyle: TextStyle(fontFamily: 'Vazirmatn'),
+                          icon: Padding(
+                                  padding: EdgeInsets.only(left: 20),
+                                  child: Icon(
+                                    Icons.perm_identity , color:Color.fromARGB(255, 7, 205, 255) ,
+                                    ),
+                                  ),          
+                            ),
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 20,
@@ -74,24 +77,27 @@ class _LoginWidgetState extends State<LoginWidget> {
               elevation: 20,
               borderRadius: BorderRadius.circular(40),
               shadowColor: Colors.grey[300],
-            ) ,
+            ),
+            ),
             SizedBox(
             height: 20,
             width: 100,
             ),
-            Material(
-              child: TextField(
-                decoration: InputDecoration(
-                  border: InputBorder.none ,
-                  contentPadding : EdgeInsets.fromLTRB(10, 15, 10, 15),
-                  hintText: "رمز عبور",
-                  hintStyle: TextStyle(fontFamily: 'Vazirmatn'),
-                  icon: Padding(
-                    padding: EdgeInsets.only(left: 20),
-                    child: Icon(
-                      Icons.lock_outline , color:Color.fromARGB(255, 7, 205, 255) ,
-                    ),
-                    ),  
+            Container(
+              width: 400 ,
+              child: Material(
+                child: TextField(
+                  decoration: InputDecoration(
+                    border: InputBorder.none ,
+                    contentPadding : EdgeInsets.fromLTRB(10, 15, 10, 15),
+                    hintText: "رمز عبور",
+                    hintStyle: TextStyle(fontFamily: 'Vazirmatn'),
+                    icon: Padding(
+                      padding: EdgeInsets.only(left: 20),
+                      child: Icon(
+                        Icons.lock_outline , color:Color.fromARGB(255, 7, 205, 255) ,
+                        ),
+                      ),  
                 ),
                 obscureText: true,
                 textAlign: TextAlign.center,
@@ -102,13 +108,14 @@ class _LoginWidgetState extends State<LoginWidget> {
               elevation: 20,
               borderRadius: BorderRadius.circular(40),
               shadowColor: Colors.grey[300],
+              ),
             ),
             SizedBox(
               height: 30,
               width: 100,
-              ),
+             ),
                 Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 50),
+                padding: EdgeInsets.symmetric(horizontal: 50),
                 child: Material(
                   elevation: 20,
                   borderRadius: BorderRadius.circular(40),
@@ -120,8 +127,8 @@ class _LoginWidgetState extends State<LoginWidget> {
          ));
                     } ,
                     child: Container(
-                      height: 70,
-                      width: 100,
+                      height: 40,
+                      width: 400,
                       child: Center(
                         child:  Text(
                           "ورود" , 
