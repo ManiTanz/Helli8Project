@@ -109,10 +109,12 @@ Card generateItem(context){
          builder: (context) => const Descriptionpage()
          ));
      },
-     child: Center(
        child:Column(
-         mainAxisAlignment: MainAxisAlignment.center ,
           children: <Widget> [
+            Container(
+              height: 500,
+              child: Image.asset("assets/images/Logo.png"),
+            ),
             Container(
               width: 700,
               height: 400,
@@ -133,7 +135,6 @@ Card generateItem(context){
                 fontFamily: 'Vazirmatn',
               ),) 
           ],)
-     ),
    ),
   );
 }

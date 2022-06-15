@@ -14,13 +14,11 @@ class _LoginWidgetState extends State<LoginWidget> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(
-          "ورود",
-          style: TextStyle(
-            color: Colors.white,
-            fontFamily: 'Vazirmatn'
-          ),
+        title: Image.asset(
+          "assets/images/Logo.png", 
+          height: 250,
         ),
+        toolbarHeight: 80,
         centerTitle: true,
         leading: Icon(
           Icons.arrow_back ,

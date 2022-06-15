@@ -61,6 +61,7 @@ flutter:
     - assets/images/Sample.jpg
     - assets/images/cool-background-stellar.png
     - assets/images/cool-background-ether.png
+    - assets/images/Logo.png
   fonts:
     - family: Vazirmatn
       fonts:
