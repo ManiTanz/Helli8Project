@@ -116,7 +116,7 @@ Card generateItem(context){
             Container(
               width: 700,
               height: 400,
-              child: Image.asset('assets/images/background.jpg'),
+              child: Image.asset('assets/images/Sample.jpg'),
             ),
             Text(
               "رشته و پایه ",

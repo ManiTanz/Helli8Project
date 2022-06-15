@@ -35,6 +35,16 @@ class _LoginWidgetState extends State<LoginWidget> {
   Widget loginUI(){
     return Stack(
     children: <Widget>[
+    Container(
+      height: double.infinity,
+      width: double.infinity,
+      decoration: const BoxDecoration(
+        image: DecorationImage(
+          image: AssetImage("assets/images/cool-background-stellar.png"),
+          fit: BoxFit.cover
+          ),
+      ),
+    ),
     Padding(
     padding: EdgeInsets.only(left: 600 , top: 50 ),
     child: Text(

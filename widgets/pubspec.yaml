@@ -58,7 +58,9 @@ flutter:
   # the material Icons class.
   uses-material-design: true
   assets:
-    - assets/images/background.jpg
+    - assets/images/Sample.jpg
+    - assets/images/cool-background-stellar.png
+    - assets/images/cool-background-ether.png
   fonts:
     - family: Vazirmatn
       fonts:
