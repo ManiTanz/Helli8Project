@@ -3,6 +3,7 @@ import 'ShopBottomNavigator.dart';
 import 'descriptionpage.dart';
 import 'loginpage.dart';
 import 'Search.dart';
+import 'package:http/http.dart' as http;
 
 void main() => runApp(MainMaterial());
 class MainMaterial extends StatelessWidget {
