@@ -1,4 +1,7 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:http/http.dart';
 import 'ShopBottomNavigator.dart';
 import 'descriptionpage.dart';
 import 'loginpage.dart';
@@ -19,6 +22,8 @@ class MainMaterial extends StatelessWidget {
   }
 void Main() => runApp(const MyApp());
 class MyApp extends StatelessWidget {
+ 
+  
     const MyApp({ Key? key }) : super(key: key);
   
     @override
@@ -36,6 +41,11 @@ class Store extends StatefulWidget {
    
   }
 class _StoreState extends State<Store> {
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+  }
   
   @override
   Widget build(BuildContext context){
@@ -97,7 +107,13 @@ class _StoreState extends State<Store> {
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked, 
      );  
   }
+
+  void fetchItems() async{
+    var url = Uri.parse('https://schema.getpostman.com/json/collection/v2.1.0/collection.json');
+    
+  }
 }
+
 Card generateItem(context){
  return Card(
    shape: RoundedRectangleBorder(
