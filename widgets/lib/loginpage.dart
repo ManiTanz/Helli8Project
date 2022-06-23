@@ -184,7 +184,7 @@ class _LoginWidgetState extends State<LoginWidget> {
 
   void loginHttpRequest() async{
     final response = await http.post(
-     Uri.parse('https://192.168.43.125:6969/api/login/'),
+     Uri.parse('http://192.168.43.125:6969/api/login/'),
     headers: <String, String>{
       'Content-Type': 'application/json; charset=UTF-8',
     },
@@ -193,6 +193,6 @@ class _LoginWidgetState extends State<LoginWidget> {
       'password': passwordTextController.text,
     }),
   );
-  print(response);
+  print(response.body);
   }
 }
