@@ -1,6 +1,9 @@
+import 'dart:convert';
+
 import 'package:first_app/forget.dart';
 import 'package:flutter/material.dart';
 import 'main.dart';
+import 'package:http/http.dart' as http;
 
 class LoginWidget extends StatefulWidget {
   const LoginWidget({ Key? key }) : super(key: key);
@@ -10,6 +13,8 @@ class LoginWidget extends StatefulWidget {
 }
 
 class _LoginWidgetState extends State<LoginWidget> {
+  var usernameTextController = new TextEditingController();
+  var passwordTextController = new TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -65,6 +70,7 @@ class _LoginWidgetState extends State<LoginWidget> {
               width: 400,
               child: Material(
                     child: TextField(
+                      controller: usernameTextController,
                           decoration: InputDecoration(
                           border: InputBorder.none ,
                           contentPadding : EdgeInsets.fromLTRB(10, 8, 10, 8),
@@ -95,6 +101,7 @@ class _LoginWidgetState extends State<LoginWidget> {
               width: 400 ,
               child: Material(
                 child: TextField(
+                  controller: passwordTextController,
                   decoration: InputDecoration(
                     border: InputBorder.none ,
                     contentPadding : EdgeInsets.fromLTRB(10, 15, 10, 15),
@@ -130,6 +137,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                   color:Color.fromARGB(255, 7, 205, 255) ,
                   child: InkWell(
                     onTap: (){
+                     loginHttpRequest();
                       Navigator.of(context).push(MaterialPageRoute(
          builder: (context) => const MyApp()
          ));
@@ -172,5 +180,19 @@ class _LoginWidgetState extends State<LoginWidget> {
     ),
     ],
     );
+  }
+
+  void loginHttpRequest() async{
+    final response = await http.post(
+     Uri.parse('https://192.168.43.125:6969/api/login/'),
+    headers: <String, String>{
+      'Content-Type': 'application/json; charset=UTF-8',
+    },
+    body: jsonEncode(<String, String>{
+      'username': usernameTextController.text,
+      'password': passwordTextController.text,
+    }),
+  );
+  print(response);
   }
 }

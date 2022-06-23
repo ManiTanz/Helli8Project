@@ -1,5 +1,4 @@
 import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:http/http.dart';
 import 'ShopBottomNavigator.dart';
@@ -109,8 +108,9 @@ class _StoreState extends State<Store> {
   }
 
   void fetchItems() async{
-    var url = Uri.parse('https://schema.getpostman.com/json/collection/v2.1.0/collection.json');
-    
+    var url = Uri.parse('https://schema.getpostman.com/json/collection/v2.0.0/collection.json');
+    Response response = await get(url);
+    print(utf8.decode(response.bodyBytes));
   }
 }
 
