@@ -1,5 +1,7 @@
+import 'dart:html';
 import 'package:flutter/material.dart';
 import 'main.dart';
+import 'UploadContent.dart';
 
 class Descriptionpage extends StatelessWidget {
   const Descriptionpage({ Key? key }) : super(key: key);
@@ -107,6 +109,13 @@ class Descriptionpage extends StatelessWidget {
                    textDirection: TextDirection.rtl,
                    textAlign: TextAlign.center,
              ),
+           ),
+           SizedBox(
+            child: ElevatedButton(
+              child: Text("بارگذاری محتوا", 
+              style:TextStyle(fontFamily: 'Vazirmatn' , fontSize: 16) ,),
+              onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => Upload(title: "Upload")))
+            ),
            ),
            Expanded(
              child: Padding(
