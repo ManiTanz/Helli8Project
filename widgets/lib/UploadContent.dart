@@ -6,6 +6,9 @@ import 'descriptionpage.dart';
 class Upload extends StatelessWidget {
   const Upload({Key? key, required this.title}) : super(key: key);
   final String title;
+  void sag(){
+    
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -16,7 +19,7 @@ class Upload extends StatelessWidget {
         child: Column(
           children: [
             Image.asset("assets/images/upload-file.png", width: 100, height: 100,),
-            
+            picPicker("mmd", sag)
           ]
         )
         )
@@ -31,9 +34,8 @@ class Upload extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            SizedBox(
-              height: 35,
-              width: 35,
+            Padding(
+              padding: EdgeInsets.all(20),
               child: IconButton(
                   icon: Icon(
                   Icons.image,
@@ -48,19 +50,7 @@ class Upload extends StatelessWidget {
                 },
                  ),
             ),
-            SizedBox(
-              height: 35,
-              width: 35,
-              child: new IconButton(onPressed: (){
-                _imageFile = _picker.getImage(source: ImageSource.camera) as Future<PickedFile>?;
-                _imageFile?.then((file) => 
-                {
-                  onFilePicked(file)
-                });
-              }, 
-              icon: Icon(Icons.camera)),
-            ),
-            Image.file(File(fileName), width: 35, height: 35,)
+            
           ],
         ),
       ],
