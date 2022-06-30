@@ -16,6 +16,7 @@ class Upload extends StatelessWidget {
         child: Column(
           children: [
             Image.asset("assets/images/upload-file.png", width: 100, height: 100,),
+            
           ]
         )
         )
@@ -33,7 +34,11 @@ class Upload extends StatelessWidget {
             SizedBox(
               height: 35,
               width: 35,
-              child: new IconButton(
+              child: IconButton(
+                  icon: Icon(
+                  Icons.image,
+                   size: 35,
+                 ),
                 onPressed: (){
                   _imageFile = _picker.getImage(source: ImageSource.gallery) as Future<PickedFile>?;
                   _imageFile?.then((file) =>
@@ -41,10 +46,6 @@ class Upload extends StatelessWidget {
                     onFilePicked(file)
                   });
                 },
-                 icon: Icon(
-                  Icons.image,
-                   size: 35,
-                 )
                  ),
             ),
             SizedBox(
