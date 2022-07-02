@@ -47,15 +47,21 @@ class _LoginWidgetState extends State<LoginWidget> {
           ),
       ),
     ),
-    Padding(
-    padding: EdgeInsets.only(left: 600 , top: 50 ),
-    child: Text(
-      "Sign In",
-      textAlign: TextAlign.center,
-      style: TextStyle(
-        fontSize: 55 ,
-        color: Color.fromARGB(255, 7, 205, 255),     
-      ),
+    Center(
+    child: Column(
+      children: [
+        Text(
+          "Sign In",
+          textAlign: TextAlign.center,
+          style: TextStyle(
+            fontSize: 55 ,
+            color: Color.fromARGB(255, 7, 205, 255),     
+          ),
+        ),
+        const Align(
+          alignment: Alignment.topCenter,
+        ),
+      ],
     ),
     ),
     Center(

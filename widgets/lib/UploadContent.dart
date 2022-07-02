@@ -50,7 +50,6 @@ class Upload extends StatelessWidget {
                 },
                  ),
             ),
-            
           ],
         ),
       ],
