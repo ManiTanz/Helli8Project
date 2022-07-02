@@ -19,7 +19,7 @@ class _LoginWidgetState extends State<LoginWidget> {
     return Scaffold(
       appBar: AppBar(
         title: Image.asset(
-          "assets/images/Logo.png", 
+          "assets/images/Logo-Red.png", 
           height: 250,
         ),
         toolbarHeight: 80,
