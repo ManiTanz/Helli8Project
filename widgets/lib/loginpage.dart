@@ -19,7 +19,7 @@ class _LoginWidgetState extends State<LoginWidget> {
     return Scaffold(
       appBar: AppBar(
         title: Image.asset(
-          "assets/images/Logo-Red.png", 
+          "assets/images/Logo-Red-Green.png", 
           height: 250,
         ),
         toolbarHeight: 80,
@@ -51,11 +51,11 @@ class _LoginWidgetState extends State<LoginWidget> {
     child: Column(
       children: [
         Text(
-          "Sign In",
+          "ورود",
           textAlign: TextAlign.center,
           style: TextStyle(
             fontSize: 55 ,
-            color: Color.fromARGB(255, 7, 205, 255),     
+            color: Color.fromARGB(255, 207, 24, 24),     
           ),
         ),
         const Align(
@@ -168,14 +168,23 @@ class _LoginWidgetState extends State<LoginWidget> {
                 padding: const EdgeInsets.all(8.0),
                 child: SizedBox(
                   height: 60,
-                  width: 120,
+                  width: 150,
                   child: TextButton(
                     onPressed: () {
                     Navigator.of(context).push(MaterialPageRoute(
                     builder: (context) => const forget()
                     ));
     },
-    child: const Text('فراموشی رمز عبور'),
+          child: Center(
+            child: Text(
+              'فراموشی رمز عبور', 
+              style: TextStyle(
+                  color: Colors.white , 
+                  fontSize: 18 ,
+                  fontFamily: 'Vazirmatn',
+                            ),
+                            ),
+          ),
                   ),
                 ),
  ),                    

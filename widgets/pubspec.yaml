@@ -66,6 +66,7 @@ flutter:
     - assets/images/Logo.png
     - assets/images/upload-file.png
     - assets/images/Logo-Red.png
+    - assets/images/Logo-Red-Green.png
   fonts:
     - family: Vazirmatn
       fonts:
