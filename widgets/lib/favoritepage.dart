@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'main.dart';
 import 'favoritedata.dart';
+import 'favoriteitem.dart';
 class favorite extends StatefulWidget {
   const favorite({ Key? key }) : super(key: key);
 
@@ -45,8 +46,57 @@ class _favoriteState extends State<favorite> {
              },      
            )
        ),
-       );
-       
+       body: basketUI(),
+    );
   }
-  
+
+  Widget basketUI() {
+    return Stack(
+      children: <Widget>[
+        Padding(
+          padding: EdgeInsets.only(bottom: 85),
+          child: ListView.builder(
+            itemCount: ShoppingBasketData.getInstance().basketItems.length,
+            itemBuilder: (context, postion) {
+              return GestureDetector(
+                child: Padding(
+                  child: ShoppingBasketItem(
+                      ShoppingBasketData.getInstance().basketItems[postion],
+                      removeItem,
+                      postion),
+                  padding: EdgeInsets.only(left: 10, right: 10, top: 10),
+                ),
+              );
+            },
+          ),
+        ),
+        Align(
+          alignment: Alignment.bottomCenter,
+          child: Material(
+            color: Colors.red,
+            child: InkWell(
+              onTap: () {},
+              child: Container(
+                width: MediaQuery.of(context).size.width,
+                height: 85,
+                child: Center(
+                  child: Text(
+                    "پرداخت",
+                    style: TextStyle(
+                        fontFamily: "Vazir", fontSize: 20, color: Colors.white),
+                  ),
+                ),
+              ),
+            ),
+          ),
+        )
+      ],
+    );
+  }
+
+  void removeItem(int index) {
+    setState(() {
+      ShoppingBasketData.getInstance().basketItems.removeAt(index);
+    });
+  }
 }

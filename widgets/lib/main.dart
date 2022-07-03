@@ -6,6 +6,8 @@ import 'descriptionpage.dart';
 import 'loginpage.dart';
 import 'Search.dart';
 import 'package:http/http.dart' as http;
+import 'product.dart';
+
 
 void main() => runApp(MainMaterial());
 class MainMaterial extends StatelessWidget {
@@ -40,6 +42,7 @@ class Store extends StatefulWidget {
    
   }
 class _StoreState extends State<Store> {
+  List<Product> items=[];
   @override
   void initState() {
     // TODO: implement initState
@@ -93,8 +96,8 @@ class _StoreState extends State<Store> {
          crossAxisCount:1,
          crossAxisSpacing: 10,
          mainAxisSpacing: 10,
-         children: List.generate(10 , (int position){
-           return generateItem(context);
+         children: List.generate(items.length , (int position){
+           return generateItem(items[position] , context);
          }),
          ),
        ),
@@ -110,11 +113,17 @@ class _StoreState extends State<Store> {
   void fetchItems() async{
     var url = Uri.parse('https://schema.getpostman.com/json/collection/v2.0.0/collection.json');
     Response response = await get(url);
-    print(utf8.decode(response.bodyBytes));
+    setState(() {
+      var productjson = json.decode(utf8.decode(response.bodyBytes));
+      for(var i in productjson){
+        var productitem = Product(i["name"], i["id"], i["desc"], i["img"], i["auther"]);
+        items.add(productitem);
+      }
+    });
   }
 }
 
-Card generateItem(context){
+Card generateItem(Product product,context){
  return Card(
    shape: RoundedRectangleBorder(
      borderRadius: BorderRadius.all(Radius.circular(40))
@@ -130,12 +139,12 @@ Card generateItem(context){
           children: <Widget> [
             Container(
               height: 500,
-              child: Image.asset("assets/images/Logo.png"),
+              child: Image.asset(product.img),
             ),
             Container(
               width: 700,
               height: 400,
-              child: Image.asset('assets/images/Sample.jpg'),
+              child: Image.asset(product.img),
             ),
             Text(
               "رشته و پایه ",
