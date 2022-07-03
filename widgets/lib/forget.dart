@@ -24,28 +24,28 @@ class _forgetState extends State<forget> {
         toolbarHeight: 80,
         centerTitle: true,
         leading: IconButton(
-         icon: Icon(
+         icon: const Icon(
            Icons.arrow_back ,
            color: Color.fromARGB(115, 16, 29 , 39),
          ),
          onPressed: () {
            Navigator.of(context).push(
     PageRouteBuilder(
-    transitionDuration: Duration(milliseconds: 950),
+    transitionDuration: const Duration(milliseconds: 950),
     pageBuilder: (BuildContext context,Animation<double> animation,Animation<double> secondAnimation ){
-      return LoginWidget();
+      return const LoginWidget();
     },
     transitionsBuilder: (BuildContext context,Animation<double> animation,Animation<double> secondAnimation , Widget child){
       return SlideTransition(
       child: child,
-      position: Tween<Offset>(begin: Offset(1 , 0) , end: Offset(0,0)).animate(CurvedAnimation(parent: animation , curve: Curves.easeOutQuad)),
+      position: Tween<Offset>(begin: const Offset(1 , 0) , end: const Offset(0,0)).animate(CurvedAnimation(parent: animation , curve: Curves.easeOutQuad)),
       );
     }
     ),
   );
          },         
        ),
-        backgroundColor: (Color.fromARGB(255, 7, 205, 255)),
+        backgroundColor: (const Color.fromARGB(255, 7, 205, 255)),
         elevation: 5,
       ),
       body: forgetUI(),  
@@ -66,7 +66,7 @@ class _forgetState extends State<forget> {
     ),
     Container(
     child: Column(
-      children: [
+      children: const [
         Center(
           child:
             Text(
@@ -83,16 +83,16 @@ class _forgetState extends State<forget> {
     ),
     Center(
       child: Padding(
-        padding: EdgeInsets.only(left: 70 , right: 70),
+        padding: const EdgeInsets.only(left: 70 , right: 70),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Container(
+            SizedBox(
               width: 400,
               child:
                 Material(
-                  child: TextField(
+                  child: const TextField(
                     decoration: InputDecoration(
                       border: InputBorder.none ,
                       contentPadding : EdgeInsets.fromLTRB(10, 15, 10, 15),
@@ -116,13 +116,13 @@ class _forgetState extends State<forget> {
                   shadowColor: Colors.grey[300],
                 ),
             ),
-                SizedBox(
+                const SizedBox(
                 height: 20,
                 ),
-                Container(
+                SizedBox(
                   width: 400,
                   child: Material(
-                    child: TextField(
+                    child: const TextField(
                       decoration: InputDecoration(
                         border: InputBorder.none ,
                         contentPadding : EdgeInsets.fromLTRB(10, 15, 10, 15),
@@ -146,12 +146,12 @@ class _forgetState extends State<forget> {
                     shadowColor: Colors.grey[300],
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 30,) ,
-                  Container(
+                  SizedBox(
                     width: 400,
                     child: Material(
-                    child: TextField(
+                    child: const TextField(
                       decoration: InputDecoration(
                         border: InputBorder.none ,
                         contentPadding : EdgeInsets.fromLTRB(10, 15, 10, 15),
@@ -175,21 +175,21 @@ class _forgetState extends State<forget> {
                     shadowColor: Colors.grey[300],
                 ),
                   ),
-                SizedBox(
+                const SizedBox(
                   height: 30,) , 
                   Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 50),
+                      padding: const EdgeInsets.symmetric(horizontal: 50),
                     child: Material(
                       elevation: 20,
                       borderRadius: BorderRadius.circular(40),
-                      color:Color.fromARGB(255, 7, 205, 255) ,
+                      color:const Color.fromARGB(255, 7, 205, 255) ,
                       child: InkWell(
                         onTap: (){
                           Navigator.of(context).push(MaterialPageRoute(
                    builder: (context) => const LoginWidget()
                    ));
                         } ,
-                        child: Container(
+                        child: const SizedBox(
                           height: 40,
                           width: 400,
                           child: Center(
@@ -206,7 +206,7 @@ class _forgetState extends State<forget> {
                       ),
                     ),
                   ),
-                   Padding(
+                   const Padding(
                     padding: EdgeInsets.only(top: 10 , right: 50 , left: 50)
                   ),
                    const Text(

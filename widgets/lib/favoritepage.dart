@@ -14,7 +14,7 @@ class _favoriteState extends State<favorite> {
   Widget build(BuildContext context) {
     return Scaffold(
        appBar: AppBar(
-         title:  Text(
+         title: const Text(
         
          "علاقه مندی ها",
          
@@ -25,20 +25,20 @@ class _favoriteState extends State<favorite> {
          ),
           centerTitle:true,
        leading:  IconButton(
-       icon: Icon(Icons.home ,
+       icon: const Icon(Icons.home ,
        color: Color.fromARGB(115, 16, 29, 39)
        ),
          onPressed: () {
            Navigator.of(context).push(
     PageRouteBuilder(
-    transitionDuration: Duration(milliseconds: 950),
+    transitionDuration: const Duration(milliseconds: 950),
     pageBuilder: (BuildContext context,Animation<double> animation,Animation<double> secondAnimation ){
-      return MyApp();
+      return const MyApp();
     },
     transitionsBuilder: (BuildContext context,Animation<double> animation,Animation<double> secondAnimation , Widget child){
       return SlideTransition(
       child: child,
-      position: Tween<Offset>(begin: Offset(1 , 0) , end: Offset(0,0)).animate(CurvedAnimation(parent: animation , curve: Curves.easeOutQuad)),
+      position: Tween<Offset>(begin: const Offset(1 , 0) , end: const Offset(0,0)).animate(CurvedAnimation(parent: animation , curve: Curves.easeOutQuad)),
       );
     }
     ),  
@@ -54,17 +54,17 @@ class _favoriteState extends State<favorite> {
     return Stack(
       children: <Widget>[
         Padding(
-          padding: EdgeInsets.only(bottom: 85),
+          padding: const EdgeInsets.only(bottom: 85),
           child: ListView.builder(
-            itemCount: ShoppingBasketData.getInstance().basketItems.length,
+            itemCount: ShoppingBasketData.getInstance()!.basketItems.length,
             itemBuilder: (context, postion) {
               return GestureDetector(
                 child: Padding(
                   child: ShoppingBasketItem(
-                      ShoppingBasketData.getInstance().basketItems[postion],
+                      ShoppingBasketData.getInstance()!.basketItems[postion],
                       removeItem,
                       postion),
-                  padding: EdgeInsets.only(left: 10, right: 10, top: 10),
+                  padding: const EdgeInsets.only(left: 10, right: 10, top: 10),
                 ),
               );
             },
@@ -76,10 +76,10 @@ class _favoriteState extends State<favorite> {
             color: Colors.red,
             child: InkWell(
               onTap: () {},
-              child: Container(
+              child: SizedBox(
                 width: MediaQuery.of(context).size.width,
                 height: 85,
-                child: Center(
+                child: const Center(
                   child: Text(
                     "پرداخت",
                     style: TextStyle(
@@ -96,7 +96,7 @@ class _favoriteState extends State<favorite> {
 
   void removeItem(int index) {
     setState(() {
-      ShoppingBasketData.getInstance().basketItems.removeAt(index);
+      ShoppingBasketData.getInstance()!.basketItems.removeAt(index);
     });
   }
 }

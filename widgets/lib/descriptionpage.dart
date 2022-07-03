@@ -19,21 +19,21 @@ class Descriptionpage extends StatelessWidget {
           ),
         centerTitle:true,
        leading:  IconButton(
-         icon: Icon(
+         icon: const Icon(
            Icons.arrow_back ,
            color: Color.fromARGB(115, 16, 29 , 39),
          ),
          onPressed: () {
            Navigator.of(context).push(
     PageRouteBuilder(
-    transitionDuration: Duration(milliseconds: 950),
+    transitionDuration: const Duration(milliseconds: 950),
     pageBuilder: (BuildContext context,Animation<double> animation,Animation<double> secondAnimation ){
-      return MyApp();
+      return const MyApp();
     },
     transitionsBuilder: (BuildContext context,Animation<double> animation,Animation<double> secondAnimation , Widget child){
       return SlideTransition(
       child: child,
-      position: Tween<Offset>(begin: Offset(1 , 0) , end: Offset(0,0)).animate(CurvedAnimation(parent: animation , curve: Curves.easeOutQuad)),
+      position: Tween<Offset>(begin: const Offset(1 , 0) , end: const Offset(0,0)).animate(CurvedAnimation(parent: animation , curve: Curves.easeOutQuad)),
       );
     }
     )  
@@ -54,11 +54,11 @@ class Descriptionpage extends StatelessWidget {
           height: 20,
           ),
           const Align(
-            child: const Padding(
+            child:  Padding(
               padding: EdgeInsets.only(right: 50 , left: 50),
               child: Text(
               "نام درس",
-              style: const TextStyle(
+              style: TextStyle(
                 color: Color.fromARGB(255, 13, 241, 203),
                 fontSize: 35,
                 fontFamily: 'Vazirmatn',
@@ -79,7 +79,7 @@ class Descriptionpage extends StatelessWidget {
           ),
           const Text(
         "عنوان درس",
-          style: const TextStyle(
+          style: TextStyle(
             color: Color.fromARGB(255, 13, 241, 203) ,
             fontSize: 30,
             fontFamily: 'Vazirmatn'
@@ -111,9 +111,9 @@ class Descriptionpage extends StatelessWidget {
            ),
            SizedBox(
             child: ElevatedButton(
-              child: Text("بارگذاری محتوا", 
+              child: const Text("بارگذاری محتوا", 
               style:TextStyle(fontFamily: 'Vazirmatn' , fontSize: 16) ,),
-              onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => Upload(title: "Upload")))
+              onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => const Upload(title: "Upload")))
             ),
            ),
            Expanded(
@@ -123,11 +123,11 @@ class Descriptionpage extends StatelessWidget {
                 child: Container(
                   decoration: const BoxDecoration(
                      color:  Color.fromARGB(255, 7, 205, 255),
-                    borderRadius: BorderRadius.all(const Radius.circular(10))
+                    borderRadius: BorderRadius.all(Radius.circular(10))
                   ) ,
                child: const Center(
                 child: Text("افزودن به علاقه مندی ها" , 
-                style: const TextStyle(
+                style: TextStyle(
                 fontSize: 18,
                 fontFamily: 'Vazirmatn'
                 ),

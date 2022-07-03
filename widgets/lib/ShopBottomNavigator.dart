@@ -1,20 +1,21 @@
 import 'package:flutter/material.dart';
+
 class ShopBottomNavigator extends StatelessWidget {
   const ShopBottomNavigator({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return BottomAppBar(         
-         color: Color.fromARGB(255, 250, 250, 250),
-        shape: CircularNotchedRectangle(),
+         color: const Color.fromARGB(255, 250, 250, 250),
+        shape: const CircularNotchedRectangle(),
          notchMargin: 8.0,
          clipBehavior: Clip.antiAlias,
-         child: Container(
+         child: SizedBox(
            height: 0,
          child: Row(
            mainAxisAlignment:MainAxisAlignment.spaceBetween ,
            children:<Widget> [
-             Container(
+             SizedBox(
                height:0,
             width: MediaQuery.of(context).size.width/2-20,
             child: Row(

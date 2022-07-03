@@ -1,7 +1,5 @@
-import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
-import 'descriptionpage.dart';
 
 class Upload extends StatelessWidget {
   const Upload({Key? key, required this.title}) : super(key: key);
@@ -27,7 +25,7 @@ class Upload extends StatelessWidget {
   }
   static Widget picPicker(String fileName, Function onFilePicked){
     Future<PickedFile>? _imageFile;
-    ImagePicker _picker = new ImagePicker();
+    ImagePicker _picker = ImagePicker();
 
     return Column(
       children: [
@@ -35,9 +33,9 @@ class Upload extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Padding(
-              padding: EdgeInsets.all(20),
+              padding: const EdgeInsets.all(20),
               child: IconButton(
-                  icon: Icon(
+                  icon: const Icon(
                   Icons.image,
                    size: 35,
                  ),

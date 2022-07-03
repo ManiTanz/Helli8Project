@@ -12,13 +12,13 @@ class _SearchState extends State<Search> {
   Widget build(BuildContext context) {
     return  Material(
       child: Padding(        
-        padding: EdgeInsets.only(left: 150 , right: 150 , top: 0),
+        padding: const EdgeInsets.only(left: 150 , right: 150 , top: 0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget> [
             Material(
-              child: TextField(
+              child: const TextField(
                 decoration: InputDecoration(
                   border: InputBorder.none ,
                   contentPadding : EdgeInsets.fromLTRB(10, 15, 10, 15),
@@ -41,7 +41,7 @@ class _SearchState extends State<Search> {
               borderRadius: BorderRadius.circular(40),
               shadowColor: Colors.grey[300],
             ) ,
-            SizedBox(
+            const SizedBox(
             height: 0,
             ),
           ],

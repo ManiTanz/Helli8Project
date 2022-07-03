@@ -5,17 +5,16 @@ import 'ShopBottomNavigator.dart';
 import 'descriptionpage.dart';
 import 'loginpage.dart';
 import 'Search.dart';
-import 'package:http/http.dart' as http;
 import 'product.dart';
 
 
-void main() => runApp(MainMaterial());
+void main() => runApp(const MainMaterial());
 class MainMaterial extends StatelessWidget {
     const MainMaterial({ Key? key }) : super(key: key);
   
     @override
     Widget build(BuildContext context) {
-      return MaterialApp(
+      return const MaterialApp(
     debugShowCheckedModeBanner: false,
      home: LoginWidget(), 
       );
@@ -29,14 +28,14 @@ class MyApp extends StatelessWidget {
   
     @override
     Widget build(BuildContext context) {
-      return MaterialApp(
+      return const MaterialApp(
     debugShowCheckedModeBanner: false,
      home: Store(), 
       );
     }
 }
 class Store extends StatefulWidget {
-   Store({Key? key}) : super(key: key);
+   const Store({Key? key}) : super(key: key);
   @override
    _StoreState createState() => _StoreState();
    
@@ -45,7 +44,6 @@ class _StoreState extends State<Store> {
   List<Product> items=[];
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
   }
   
@@ -54,7 +52,7 @@ class _StoreState extends State<Store> {
      
      return  Scaffold(
        appBar: AppBar(
-         title:  Text(
+         title:  const Text(
          "HLS",
          style: TextStyle(color: Color.fromARGB(255, 231, 238, 240),
          fontSize: 70.0
@@ -62,26 +60,26 @@ class _StoreState extends State<Store> {
           ),
         centerTitle:true,
        leading:  IconButton(
-       icon: Icon(Icons.favorite ,
+       icon: const Icon(Icons.favorite ,
        color: Color.fromARGB(115, 16, 29, 39)
        ),
          onPressed: () {},
        ),
-        backgroundColor: (Color.fromARGB(255, 7, 205, 255)),
+        backgroundColor: (const Color.fromARGB(255, 7, 205, 255)),
         elevation: 5,
         actions: <Widget> [
            IconButton(
            icon: const Icon(Icons.person_outline,color:Color.fromARGB(115, 16, 29, 39)), onPressed: () {  
    Navigator.of(context).push(
     PageRouteBuilder(
-    transitionDuration: Duration(milliseconds: 950),
+    transitionDuration: const Duration(milliseconds: 950),
     pageBuilder: (BuildContext context,Animation<double> animation,Animation<double> secondAnimation ){
-      return LoginWidget();
+      return const LoginWidget();
     },
     transitionsBuilder: (BuildContext context,Animation<double> animation,Animation<double> secondAnimation , Widget child){
       return SlideTransition(
       child: child,
-      position: Tween<Offset>(begin: Offset(1 , 0) , end: Offset(0,0)).animate(CurvedAnimation(parent: animation , curve: Curves.easeOutQuad)),
+      position: Tween<Offset>(begin: const Offset(1 , 0) , end: const Offset(0,0)).animate(CurvedAnimation(parent: animation , curve: Curves.easeOutQuad)),
       );
     }
     ),
@@ -91,7 +89,7 @@ class _StoreState extends State<Store> {
         ],
        ),
        body: Padding(
-       padding: EdgeInsets.all(24),
+       padding: const EdgeInsets.all(24),
        child: GridView.count(
          crossAxisCount:1,
          crossAxisSpacing: 10,
@@ -101,11 +99,11 @@ class _StoreState extends State<Store> {
          }),
          ),
        ),
-      bottomNavigationBar: ShopBottomNavigator(),
-      floatingActionButton:  FloatingActionButton (backgroundColor: Color.fromARGB(255, 7, 205, 255), onPressed: () {
+      bottomNavigationBar: const ShopBottomNavigator(),
+      floatingActionButton:  FloatingActionButton (backgroundColor: const Color.fromARGB(255, 7, 205, 255), onPressed: () {
         Navigator.of(context).push(MaterialPageRoute(builder:(context) => const Search ( ) ));
         },
-      child: Icon(Icons.search)),
+      child: const Icon(Icons.search)),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked, 
      );  
   }
@@ -125,7 +123,7 @@ class _StoreState extends State<Store> {
 
 Card generateItem(Product product,context){
  return Card(
-   shape: RoundedRectangleBorder(
+   shape: const RoundedRectangleBorder(
      borderRadius: BorderRadius.all(Radius.circular(40))
    ),
    elevation: 5,
@@ -137,23 +135,23 @@ Card generateItem(Product product,context){
      },
        child:Column(
           children: <Widget> [
-            Container(
+            SizedBox(
               height: 500,
               child: Image.asset(product.img),
             ),
-            Container(
+            SizedBox(
               width: 700,
               height: 400,
               child: Image.asset(product.img),
             ),
-            Text(
+            const Text(
               "رشته و پایه ",
               style: TextStyle(
                 color: Color.fromARGB(255, 2, 82, 2),
                 fontSize: 20.0,
                 fontFamily: 'Vazirmatn',
               ),),
-             Text(
+             const Text(
               "عنوان درس ",
               style: TextStyle(
                 color: Color.fromARGB(255, 3, 14, 117),

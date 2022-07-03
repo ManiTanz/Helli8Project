@@ -24,11 +24,11 @@ class _LoginWidgetState extends State<LoginWidget> {
         ),
         toolbarHeight: 80,
         centerTitle: true,
-        leading: Icon(
+        leading: const Icon(
           Icons.arrow_back ,
           color: Color.fromARGB(115, 16, 29, 39),
         ),
-        backgroundColor: (Color.fromARGB(255, 7, 205, 255)),
+        backgroundColor: (const Color.fromARGB(255, 7, 205, 255)),
         elevation: 5,
       ),
       body: loginUI(),
@@ -49,7 +49,7 @@ class _LoginWidgetState extends State<LoginWidget> {
     ),
     Center(
     child: Column(
-      children: [
+      children: const [
         Text(
           "ورود",
           textAlign: TextAlign.center,
@@ -58,7 +58,7 @@ class _LoginWidgetState extends State<LoginWidget> {
             color: Color.fromARGB(255, 207, 24, 24),     
           ),
         ),
-        const Align(
+        Align(
           alignment: Alignment.topCenter,
         ),
       ],
@@ -66,17 +66,17 @@ class _LoginWidgetState extends State<LoginWidget> {
     ),
     Center(
       child: Padding(
-        padding: EdgeInsets.only(left: 150 , right: 150),
+        padding: const EdgeInsets.only(left: 150 , right: 150),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget> [
-            Container(
+            SizedBox(
               width: 400,
               child: Material(
                     child: TextField(
                       controller: usernameTextController,
-                          decoration: InputDecoration(
+                          decoration: const InputDecoration(
                           border: InputBorder.none ,
                           contentPadding : EdgeInsets.fromLTRB(10, 8, 10, 8),
                           hintText: "نام کاربری",
@@ -89,7 +89,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                                   ),          
                             ),
                 textAlign: TextAlign.center,
-                style: TextStyle(
+                style: const TextStyle(
                   fontSize: 20,
                 ),
               ),
@@ -98,16 +98,16 @@ class _LoginWidgetState extends State<LoginWidget> {
               shadowColor: Colors.grey[300],
             ),
             ),
-            SizedBox(
+            const SizedBox(
             height: 20,
             width: 100,
             ),
-            Container(
+            SizedBox(
               width: 400 ,
               child: Material(
                 child: TextField(
                   controller: passwordTextController,
-                  decoration: InputDecoration(
+                  decoration: const InputDecoration(
                     border: InputBorder.none ,
                     contentPadding : EdgeInsets.fromLTRB(10, 15, 10, 15),
                     hintText: "رمز عبور",
@@ -121,7 +121,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                 ),
                 obscureText: true,
                 textAlign: TextAlign.center,
-                style: TextStyle(
+                style: const TextStyle(
                   fontSize: 20,
                 ),
               ),
@@ -130,16 +130,16 @@ class _LoginWidgetState extends State<LoginWidget> {
               shadowColor: Colors.grey[300],
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 30,
               width: 100,
              ),
                 Padding(
-                padding: EdgeInsets.symmetric(horizontal: 50),
+                padding: const EdgeInsets.symmetric(horizontal: 50),
                 child: Material(
                   elevation: 20,
                   borderRadius: BorderRadius.circular(40),
-                  color:Color.fromARGB(255, 7, 205, 255) ,
+                  color:const Color.fromARGB(255, 7, 205, 255) ,
                   child: InkWell(
                     onTap: (){
                     //  loginHttpRequest();
@@ -147,7 +147,7 @@ class _LoginWidgetState extends State<LoginWidget> {
          builder: (context) => const MyApp()
          ));
                     } ,
-                    child: Container(
+                    child: const SizedBox(
                       height: 40,
                       width: 400,
                       child: Center(
@@ -175,7 +175,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                     builder: (context) => const forget()
                     ));
     },
-          child: Center(
+          child: const Center(
             child: Text(
               'فراموشی رمز عبور', 
               style: TextStyle(
