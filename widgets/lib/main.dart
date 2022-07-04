@@ -1,4 +1,5 @@
 import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:http/http.dart';
 import 'ShopBottomNavigator.dart';
@@ -6,15 +7,19 @@ import 'descriptionpage.dart';
 import 'loginpage.dart';
 import 'Search.dart';
 import 'product.dart';
+import 'UploadContent.dart';
 
 
 void main() => runApp(const MainMaterial());
 class MainMaterial extends StatelessWidget {
     const MainMaterial({ Key? key }) : super(key: key);
+    static const appTitle = 'Drawer Demo';
+
   
     @override
     Widget build(BuildContext context) {
       return const MaterialApp(
+      title: appTitle,
     debugShowCheckedModeBanner: false,
      home: LoginWidget(), 
       );
@@ -51,6 +56,36 @@ class _StoreState extends State<Store> {
   Widget build(BuildContext context){
      
      return  Scaffold(
+      drawer: Drawer( 
+        
+        child: ListView(padding: EdgeInsets.fromLTRB(10,15, 10, 15), addAutomaticKeepAlives: true,
+        children:[
+          DrawerHeader(decoration: BoxDecoration(color:Color.fromARGB(255, 7, 205, 255)), child: Text("منو"), 
+          padding:  EdgeInsets.fromLTRB(10, 15, 10, 15),
+        
+         
+          ),
+          
+          ListTile(title: Text("❤صفحه علاقه مندی ها"),
+          onTap: (){
+            Navigator.of(context).push(MaterialPageRoute(
+         builder: (context) => const LoginWidget()
+         ));
+
+          },
+          ),
+          ListTile(title: Text("🔍 جستجو"),
+          onTap: (){
+            Navigator.of(context).push(MaterialPageRoute(
+         builder: (context) => const Search()
+         ));
+          },
+          ),
+        ],
+        ),
+        
+
+       ),
        appBar: AppBar(
          title:  const Text(
          "HLS",
@@ -65,26 +100,17 @@ class _StoreState extends State<Store> {
        ),
          onPressed: () {},
        ),
+       
         backgroundColor: (const Color.fromARGB(255, 7, 205, 255)),
         elevation: 5,
         actions: <Widget> [
            IconButton(
-           icon: const Icon(Icons.person_outline,color:Color.fromARGB(115, 16, 29, 39)), onPressed: () {  
-   Navigator.of(context).push(
-    PageRouteBuilder(
-    transitionDuration: const Duration(milliseconds: 950),
-    pageBuilder: (BuildContext context,Animation<double> animation,Animation<double> secondAnimation ){
-      return const LoginWidget();
-    },
-    transitionsBuilder: (BuildContext context,Animation<double> animation,Animation<double> secondAnimation , Widget child){
-      return SlideTransition(
-      child: child,
-      position: Tween<Offset>(begin: const Offset(1 , 0) , end: const Offset(0,0)).animate(CurvedAnimation(parent: animation , curve: Curves.easeOutQuad)),
-      );
-    }
-    ),
-  );
-             },
+           icon: const Icon(Icons.menu,color:Color.fromARGB(115, 16, 29, 39)), onPressed: () =>
+   Scaffold.of(context).openDrawer(),
+   
+  
+             
+             tooltip: MaterialLocalizations.of(context).openAppDrawerTooltip,
            )
         ],
        ),
@@ -99,6 +125,7 @@ class _StoreState extends State<Store> {
          }),
          ),
        ),
+       
       bottomNavigationBar: const ShopBottomNavigator(),
       floatingActionButton:  FloatingActionButton (backgroundColor: const Color.fromARGB(255, 7, 205, 255), onPressed: () {
         Navigator.of(context).push(MaterialPageRoute(builder:(context) => const Search ( ) ));
