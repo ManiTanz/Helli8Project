@@ -36,7 +36,7 @@ class Upload extends StatelessWidget {
               padding: const EdgeInsets.all(20),
               child: IconButton(
                   icon: const Icon(
-                  Icons.image,
+                  Icons.upload,
                    size: 35,
                  ),
                 onPressed: (){

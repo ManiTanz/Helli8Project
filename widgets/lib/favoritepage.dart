@@ -83,7 +83,7 @@ class _favoriteState extends State<favorite> {
                   child: Text(
                     "پرداخت",
                     style: TextStyle(
-                        fontFamily: "Vazir", fontSize: 20, color: Colors.white),
+                        fontFamily: "Vazirmatn", fontSize: 20, color: Colors.white),
                   ),
                 ),
               ),

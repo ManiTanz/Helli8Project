@@ -1,5 +1,6 @@
 import 'dart:convert';
-
+import 'package:first_app/Profile.dart';
+import 'package:first_app/favoritepage.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart';
 import 'ShopBottomNavigator.dart';
@@ -13,7 +14,7 @@ import 'UploadContent.dart';
 void main() => runApp(const MainMaterial());
 class MainMaterial extends StatelessWidget {
     const MainMaterial({ Key? key }) : super(key: key);
-    static const appTitle = 'Drawer Demo';
+    static const appTitle = 'HLS';
 
   
     @override
@@ -60,31 +61,43 @@ class _StoreState extends State<Store> {
         
         child: ListView(padding: EdgeInsets.fromLTRB(10,15, 10, 15), addAutomaticKeepAlives: true,
         children:[
-          DrawerHeader(decoration: BoxDecoration(color:Color.fromARGB(255, 7, 205, 255)), child: Text("منو"), 
+          DrawerHeader(decoration: BoxDecoration(color:Color.fromARGB(255, 7, 205, 255)), child: Center(child: Text("HLS" , style:TextStyle(fontWeight: FontWeight.bold) ,)), 
           padding:  EdgeInsets.fromLTRB(10, 15, 10, 15),
-        
-         
           ),
-          
-          ListTile(title: Text("❤صفحه علاقه مندی ها"),
+          ListTile(title: Text(" خانه",style: TextStyle(fontFamily: "Vazirmatn")),
+          leading: Icon(Icons.home),
           onTap: (){
             Navigator.of(context).push(MaterialPageRoute(
-         builder: (context) => const LoginWidget()
+         builder: (context) => const Store()
          ));
-
           },
           ),
-          ListTile(title: Text("🔍 جستجو"),
+          ListTile(title: Text("علاقه مندی ها",style: TextStyle(fontFamily: "Vazirmatn"),),  
+          leading: Icon(Icons.favorite),
           onTap: (){
             Navigator.of(context).push(MaterialPageRoute(
-         builder: (context) => const Search()
+         builder: (context) => const favorite()
+         ));
+          },
+          ),
+          ListTile(title: Text("جست و جو", style: TextStyle(fontFamily: "Vazirmatn"), ), 
+                    leading: Icon(Icons.search),
+          onTap: (){
+            Navigator.of(context).push(MaterialPageRoute(
+         builder: (context) => const Search(),
+            ));
+          },
+                    ),
+          ListTile(title: Text("پروفایل",style: TextStyle(fontFamily: "Vazirmatn"),),  
+          leading: Icon(Icons.man),
+          onTap: (){
+            Navigator.of(context).push(MaterialPageRoute(
+         builder: (context) => const Profile()
          ));
           },
           ),
         ],
         ),
-        
-
        ),
        appBar: AppBar(
          title:  const Text(
@@ -96,17 +109,7 @@ class _StoreState extends State<Store> {
         centerTitle:true,
         backgroundColor: (const Color.fromARGB(255, 7, 205, 255)),
         elevation: 5,
-        actions: <Widget> [
-           IconButton(
-           icon: const Icon(Icons.menu,color:Color.fromARGB(115, 16, 29, 39)), onPressed: () =>
-   Scaffold.of(context).openDrawer(),
-   
-  
-             
-             tooltip: MaterialLocalizations.of(context).openAppDrawerTooltip,
-           )
-        ],
-       ),
+           ),
        body: Padding(
        padding: const EdgeInsets.all(24),
        child: GridView.count(
@@ -118,13 +121,6 @@ class _StoreState extends State<Store> {
          }),
          ),
        ),
-       
-      bottomNavigationBar: const ShopBottomNavigator(),
-      floatingActionButton:  FloatingActionButton (backgroundColor: const Color.fromARGB(255, 7, 205, 255), onPressed: () {
-        Navigator.of(context).push(MaterialPageRoute(builder:(context) => const Search ( ) ));
-        },
-      child: const Icon(Icons.search)),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked, 
      );  
   }
 
