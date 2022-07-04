@@ -24,10 +24,6 @@ class _LoginWidgetState extends State<LoginWidget> {
         ),
         toolbarHeight: 80,
         centerTitle: true,
-        leading: const Icon(
-          Icons.arrow_back ,
-          color: Color.fromARGB(115, 16, 29, 39),
-        ),
         backgroundColor: (const Color.fromARGB(255, 7, 205, 255)),
         elevation: 5,
       ),

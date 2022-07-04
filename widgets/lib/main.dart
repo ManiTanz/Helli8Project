@@ -94,13 +94,6 @@ class _StoreState extends State<Store> {
          ),
           ),
         centerTitle:true,
-       leading:  IconButton(
-       icon: const Icon(Icons.favorite ,
-       color: Color.fromARGB(115, 16, 29, 39)
-       ),
-         onPressed: () {},
-       ),
-       
         backgroundColor: (const Color.fromARGB(255, 7, 205, 255)),
         elevation: 5,
         actions: <Widget> [
