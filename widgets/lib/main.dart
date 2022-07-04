@@ -89,7 +89,7 @@ class _StoreState extends State<Store> {
           },
                     ),
           ListTile(title: Text("پروفایل",style: TextStyle(fontFamily: "Vazirmatn"),),  
-          leading: Icon(Icons.man),
+          leading: Icon(Icons.person),
           onTap: (){
             Navigator.of(context).push(MaterialPageRoute(
          builder: (context) => const Profile()
