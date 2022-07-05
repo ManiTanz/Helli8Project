@@ -57,39 +57,76 @@ class _StoreState extends State<Store> {
   Widget build(BuildContext context){
      
      return  Scaffold(
-      drawer: Drawer( 
-        
-        child: ListView(padding: EdgeInsets.fromLTRB(10,15, 10, 15), addAutomaticKeepAlives: true,
+      drawer: Drawer(
+        child: ListView(addAutomaticKeepAlives: true,
         children:[
-          DrawerHeader(decoration: BoxDecoration(color:Color.fromARGB(255, 7, 205, 255)), child: Center(child: Text("HLS" , style:TextStyle(fontWeight: FontWeight.bold) ,)), 
-          padding:  EdgeInsets.fromLTRB(10, 15, 10, 15),
+          DrawerHeader(
+            decoration: BoxDecoration(
+              color:Color.fromARGB(255, 7, 205, 255)
+              ), 
+              child: Image.asset("assets/images/Logo.png")
           ),
-          ListTile(title: Text(" خانه",style: TextStyle(fontFamily: "Vazirmatn")),
-          leading: Icon(Icons.home),
+          ListTile(
+            title: Text(
+              "خانه",
+              style: TextStyle(
+                fontFamily: "Vazirmatn"
+                ),
+              ),
+          leading: Icon(
+            Icons.home
+            ),
           onTap: (){
             Navigator.of(context).push(MaterialPageRoute(
          builder: (context) => const Store()
-         ));
+         ),
+         );
           },
           ),
-          ListTile(title: Text("علاقه مندی ها",style: TextStyle(fontFamily: "Vazirmatn"),),  
-          leading: Icon(Icons.favorite),
+          ListTile(
+            title: Text(
+              "علاقه مندی ها",
+              style: TextStyle(
+                fontFamily: "Vazirmatn"
+                ),
+                ),  
+          leading: Icon(
+            Icons.favorite
+            ),
           onTap: (){
             Navigator.of(context).push(MaterialPageRoute(
          builder: (context) => const favorite()
-         ));
+         ),
+         );
           },
           ),
-          ListTile(title: Text("جست و جو", style: TextStyle(fontFamily: "Vazirmatn"), ), 
-                    leading: Icon(Icons.search),
+          ListTile(
+            title: Text(
+              "جست و جو",
+              style: TextStyle(
+                fontFamily: "Vazirmatn",
+                ),
+                ), 
+                    leading: Icon(
+                      Icons.search
+                      ),
           onTap: (){
             Navigator.of(context).push(MaterialPageRoute(
          builder: (context) => const Search(),
-            ));
+            ),
+            );
           },
                     ),
-          ListTile(title: Text("پروفایل",style: TextStyle(fontFamily: "Vazirmatn"),),  
-          leading: Icon(Icons.person),
+          ListTile(
+            title: Text(
+              "پروفایل",
+              style: TextStyle(
+                fontFamily: "Vazirmatn"
+                ),
+                ),  
+          leading: Icon(
+            Icons.person
+            ),
           onTap: (){
             Navigator.of(context).push(MaterialPageRoute(
          builder: (context) => const Profile()
@@ -102,7 +139,8 @@ class _StoreState extends State<Store> {
        appBar: AppBar(
          title:  const Text(
          "HLS",
-         style: TextStyle(color: Color.fromARGB(255, 231, 238, 240),
+         style: TextStyle(
+          color: Color.fromARGB(255, 231, 238, 240),
          fontSize: 70.0
          ),
           ),
@@ -166,7 +204,8 @@ Card generateItem(Product product,context){
                 color: Color.fromARGB(255, 2, 82, 2),
                 fontSize: 20.0,
                 fontFamily: 'Vazirmatn',
-              ),),
+              ),
+              ),
              const Text(
               "عنوان درس ",
               style: TextStyle(
