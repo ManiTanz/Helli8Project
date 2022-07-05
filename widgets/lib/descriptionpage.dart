@@ -9,14 +9,10 @@ class Descriptionpage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
     appBar: AppBar(
-         title: const Text(
-        
-         "HLS",
-         
-         style: TextStyle(color: Color.fromARGB(255, 231, 238, 240),
-         fontSize: 70.0
-         ),
-          ),
+         title: Image.asset(
+          "assets/images/Logo-Red-Green.png", 
+          height: 250,
+        ),
         centerTitle:true,
        leading:  IconButton(
          icon: const Icon(
@@ -40,11 +36,6 @@ class Descriptionpage extends StatelessWidget {
   );
          },     
        ),  
-      actions: <Widget> [
-           IconButton(
-           icon: const Icon(Icons.favorite,color:Color.fromARGB(115, 16, 29, 39)), onPressed: () {  }, 
-           )
-        ],
       backgroundColor: (const Color.fromARGB(255, 7, 205, 255)),  
       elevation: 5,
        ),
@@ -133,7 +124,7 @@ class Descriptionpage extends StatelessWidget {
                 ),
                 ),
                ),
-                width: MediaQuery.of(context).size.width-50 ,
+                width: 200 ,
                 height: 70,
                 ), 
                 alignment: Alignment.bottomCenter,
