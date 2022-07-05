@@ -22,7 +22,7 @@ class _LoginWidgetState extends State<LoginWidget> {
           "assets/images/Logo-Red-Green.png", 
           height: 250,
         ),
-        toolbarHeight: 80,
+        toolbarHeight: 60,
         centerTitle: true,
         backgroundColor: (const Color.fromARGB(255, 7, 205, 255)),
         elevation: 5,
@@ -43,23 +43,7 @@ class _LoginWidgetState extends State<LoginWidget> {
           ),
       ),
     ),
-    Center(
-    child: Column(
-      children: const [
-        Text(
-          "ورود",
-          textAlign: TextAlign.center,
-          style: TextStyle(
-            fontSize: 55 ,
-            color: Color.fromARGB(255, 207, 24, 24),     
-          ),
-        ),
-        Align(
-          alignment: Alignment.topCenter,
-        ),
-      ],
-    ),
-    ),
+
     Center(
       child: Padding(
         padding: const EdgeInsets.only(left: 150 , right: 150),

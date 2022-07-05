@@ -62,88 +62,117 @@ class _StoreState extends State<Store> {
         children:[
           DrawerHeader(
             decoration: BoxDecoration(
-              color:Color.fromARGB(255, 7, 205, 255)
-              ), 
-              child: Image.asset("assets/images/Logo.png")
-          ),
-          ListTile(
-            title: Text(
-              "خانه",
-              style: TextStyle(
-                fontFamily: "Vazirmatn"
+              color: Color.fromARGB(255, 7, 205, 255),
+              image: DecorationImage(
+                image: AssetImage(
+                  "assets/images/Logo-Red-Green.png"
                 ),
+                fit: BoxFit.cover,
               ),
-          leading: Icon(
-            Icons.home
-            ),
-          onTap: (){
-            Navigator.of(context).push(MaterialPageRoute(
+              ), 
+              child: Center(
+
+              ),
+          ),
+          Container(
+            color: Color.fromARGB(255, 243, 255, 78),
+            child: Column(
+              children: [
+                ListTile(
+                  title: Text(
+                    "خانه",
+                    style: TextStyle(
+                      fontFamily: "Vazirmatn"
+                      ),
+                    ),
+                leading: Icon(
+                  Icons.home
+                  ),
+                onTap: (){
+                  Navigator.of(context).push(MaterialPageRoute(
          builder: (context) => const Store()
          ),
          );
-          },
-          ),
-          ListTile(
-            title: Text(
-              "علاقه مندی ها",
-              style: TextStyle(
-                fontFamily: "Vazirmatn"
+                },
                 ),
-                ),  
-          leading: Icon(
-            Icons.favorite
-            ),
-          onTap: (){
-            Navigator.of(context).push(MaterialPageRoute(
+                ListTile(
+                  title: Text(
+                    "علاقه مندی ها",
+                    style: TextStyle(
+                      fontFamily: "Vazirmatn"
+                      ),
+                      ),  
+                leading: Icon(
+                  Icons.favorite
+                  ),
+                onTap: (){
+                  Navigator.of(context).push(MaterialPageRoute(
          builder: (context) => const favorite()
          ),
          );
-          },
-          ),
-          ListTile(
-            title: Text(
-              "جست و جو",
-              style: TextStyle(
-                fontFamily: "Vazirmatn",
+                },
                 ),
-                ), 
-                    leading: Icon(
-                      Icons.search
+                ListTile(
+                  title: Text(
+                    "جست و جو",
+                    style: TextStyle(
+                      fontFamily: "Vazirmatn",
                       ),
-          onTap: (){
-            Navigator.of(context).push(MaterialPageRoute(
+                      ), 
+                          leading: Icon(
+                            Icons.search
+                            ),
+                onTap: (){
+                  Navigator.of(context).push(MaterialPageRoute(
          builder: (context) => const Search(),
-            ),
-            );
-          },
-                    ),
-          ListTile(
-            title: Text(
-              "پروفایل",
-              style: TextStyle(
-                fontFamily: "Vazirmatn"
-                ),
-                ),  
-          leading: Icon(
-            Icons.person
-            ),
-          onTap: (){
-            Navigator.of(context).push(MaterialPageRoute(
+                  ),
+                  );
+                },
+                          ),
+                ListTile(
+                  title: Text(
+                    "پروفایل",
+                    style: TextStyle(
+                      fontFamily: "Vazirmatn"
+                      ),
+                      ),  
+                leading: Icon(
+                  Icons.person
+                  ),
+                onTap: (){
+                  Navigator.of(context).push(MaterialPageRoute(
          builder: (context) => const Profile()
          ));
-          },
+                },
+                ),
+                ListTile(
+                  title: Text(
+                    "خروج",
+                    style: TextStyle(
+                      fontFamily: "Vazirmatn",
+                      ),
+                      ), 
+                          leading: Icon(
+                            Icons.logout
+                            ),
+                onTap: (){
+                  Navigator.of(context).push(MaterialPageRoute(
+         builder: (context) => const LoginWidget(),
+                  ),
+                  );
+                },
+                          ),
+              ],
+            ),
           ),
         ],
         ),
        ),
        appBar: AppBar(
-         title:  const Text(
-         "HLS",
-         style: TextStyle(
-          color: Color.fromARGB(255, 231, 238, 240),
-         fontSize: 70.0
-         ),
-          ),
+         title: Image.asset(
+          "assets/images/Logo-Red-Green.png", 
+          height: 250,
+        ),
         centerTitle:true,
         backgroundColor: (const Color.fromARGB(255, 7, 205, 255)),
         elevation: 5,
@@ -151,7 +180,7 @@ class _StoreState extends State<Store> {
        body: Padding(
        padding: const EdgeInsets.all(24),
        child: GridView.count(
-         crossAxisCount:1,
+         crossAxisCount:2,
          crossAxisSpacing: 10,
          mainAxisSpacing: 10,
          children: List.generate(items.length , (int position){
