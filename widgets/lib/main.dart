@@ -28,6 +28,8 @@ class MainMaterial extends StatelessWidget {
   }
 void Main() => runApp(const MyApp());
 class MyApp extends StatelessWidget {
+  static var themeNotifier;
+
  
   
     const MyApp({ Key? key }) : super(key: key);
@@ -40,6 +42,36 @@ class MyApp extends StatelessWidget {
       );
     }
 }
+class dark extends StatelessWidget {
+  // Using "static" so that we can easily access it later
+  static final ValueNotifier<ThemeMode> themeNotifier =
+      ValueNotifier(ThemeMode.light);
+
+  const dark({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return ValueListenableBuilder<ThemeMode>(
+        valueListenable: themeNotifier,
+        builder: (_, ThemeMode currentMode, __) {
+          return MaterialApp(
+            // Remove the debug banner
+            debugShowCheckedModeBanner: false,
+            title: 'Kindacode.com',
+            theme: ThemeData(primarySwatch: Colors.amber),
+            darkTheme: ThemeData.dark(),
+            themeMode: currentMode,
+           
+          );
+        });
+  }
+}
+
+  
+
+
+
+
 class Store extends StatefulWidget {
    const Store({Key? key}) : super(key: key);
   @override
@@ -68,29 +100,29 @@ class _StoreState extends State<Store> {
                   "assets/images/Logo-Red-Green.png"
                 ),
                 fit: BoxFit.cover,
-              ),
+             ),
               ), 
               child: Center(
 
               ),
           ),
-          Container(
+         Container(
             color: Color.fromARGB(255, 243, 255, 78),
             child: Column(
               children: [
                 ListTile(
                   title: Text(
                     "خانه",
-                    style: TextStyle(
+                  style: TextStyle(
                       fontFamily: "Vazirmatn"
                       ),
                     ),
-                leading: Icon(
+              leading: Icon(
                   Icons.home
                   ),
                 onTap: (){
                   Navigator.of(context).push(MaterialPageRoute(
-         builder: (context) => const Store()
+    builder: (context) => const Store()
          ),
          );
                 },
@@ -105,9 +137,9 @@ class _StoreState extends State<Store> {
                 leading: Icon(
                   Icons.favorite
                   ),
-                onTap: (){
+           onTap: (){
                   Navigator.of(context).push(MaterialPageRoute(
-         builder: (context) => const favorite()
+   builder: (context) => const favorite()
          ),
          );
                 },
@@ -122,10 +154,10 @@ class _StoreState extends State<Store> {
                           leading: Icon(
                             Icons.search
                             ),
-                onTap: (){
+           onTap: (){
                   Navigator.of(context).push(MaterialPageRoute(
-         builder: (context) => const Search(),
-                  ),
+      builder: (context) => const Search(),
+                ),
                   );
                 },
                           ),
@@ -136,12 +168,12 @@ class _StoreState extends State<Store> {
                       fontFamily: "Vazirmatn"
                       ),
                       ),  
-                leading: Icon(
+               leading: Icon(
                   Icons.person
                   ),
-                onTap: (){
+            onTap: (){
                   Navigator.of(context).push(MaterialPageRoute(
-         builder: (context) => const Profile()
+   builder: (context) => const Profile()
          ));
                 },
                 ),
@@ -155,7 +187,7 @@ class _StoreState extends State<Store> {
                           leading: Icon(
                             Icons.logout
                             ),
-                onTap: (){
+       onTap: (){
                   Navigator.of(context).push(MaterialPageRoute(
          builder: (context) => const LoginWidget(),
                   ),
@@ -163,20 +195,36 @@ class _StoreState extends State<Store> {
                 },
                           ),
               ],
-            ),
+     ),
           ),
         ],
-        ),
-       ),
+      ),
+      ),
        appBar: AppBar(
          title: Image.asset(
           "assets/images/Logo-Red-Green.png", 
           height: 250,
+          
         ),
         centerTitle:true,
         backgroundColor: (const Color.fromARGB(255, 7, 205, 255)),
         elevation: 5,
-           ),
+        actions: [
+         IconButton(
+              icon: Icon(MyApp.themeNotifier.value == ThemeMode.light
+                  ? Icons.dark_mode
+                  : Icons.light_mode),
+              onPressed: () {
+                MyApp.themeNotifier.value =
+                    MyApp.themeNotifier.value == ThemeMode.light
+                        ? ThemeMode.dark
+                        : ThemeMode.light;
+              })
+        ],
+      ),
+    
+            
+          
        body: Padding(
        padding: const EdgeInsets.all(24),
        child: GridView.count(
@@ -188,9 +236,14 @@ class _StoreState extends State<Store> {
          }),
          ),
        ),
-     );  
+      
+    );
   }
+  
 
+
+    
+  
   void fetchItems() async{
     var url = Uri.parse('https://schema.getpostman.com/json/collection/v2.0.0/collection.json');
     Response response = await get(url);
@@ -202,7 +255,7 @@ class _StoreState extends State<Store> {
       }
     });
   }
-}
+
 
 Card generateItem(Product product,context){
  return Card(
@@ -245,4 +298,5 @@ Card generateItem(Product product,context){
           ],)
    ),
   );
+}
 }
