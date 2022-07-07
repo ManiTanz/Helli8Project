@@ -52,7 +52,7 @@ class _StoreState extends State<Store> {
   @override
   void initState() {
     super.initState();
-    fetchItems();
+    //fetchItems();
   }
   
   @override
@@ -185,37 +185,37 @@ class _StoreState extends State<Store> {
          crossAxisCount:2,
          crossAxisSpacing: 10,
          mainAxisSpacing: 10,
-         children: List.generate(items.length , (int position){
-           return Container(
+            children:[
+              Container(
             color: Colors.red,
-           );
-         }),
+            child: generateItem(, context),
+            ),
+            ],
+           ),
          ),
-       ),
-    );
+         );
   }
-  
-  Future<void> fetchItems() async{
-    var url = Uri.parse('http://192.168.43.125:6969/api/product/1');
+  //Future<void> fetchItems() async{
+   // var url = Uri.parse('http://192.168.43.125:6969/api/product/1');
     
-    Response response = await http.get(url);
-    print(response.statusCode);  
-  void fetchItems() async{
-    var url = Uri.parse('https://schema.getpostman.com/json/collection/v2.0.0/collection.json');
-    Response response = await get(url);
-    setState(() {
+   // Response response = await http.get(url);
+   // print(response.statusCode);  
+  //void fetchItems() async{
+   // var url = Uri.parse('https://schema.getpostman.com/json/collection/v2.0.0/collection.json');
+   // Response response = await get(url);
+   // setState(() {
       
-      var productjson = json.decode(jsonDecode(response.body));
+     // var productjson = json.decode(jsonDecode(response.body));
       
-      for(var i in productjson){
+     // for(var i in productjson){
         
-        var productitem = Product(i["name"], i["id"], i["desc"], i["img"], i["author"], i["categories"]);
-        items.add(productitem);
+      //  var productitem = Product(i["name"], i["id"], i["desc"], i["img"], i["author"], i["categories"]);
+       // items.add(productitem);
         
-     }
-     print(items);
-    });
-  }
+     //}
+     //print(items);
+    //});
+ // }
 
 
 Card generateItem(Product product,context){
@@ -259,6 +259,5 @@ Card generateItem(Product product,context){
           ],)
    ),
   );
-}
 }
 }
