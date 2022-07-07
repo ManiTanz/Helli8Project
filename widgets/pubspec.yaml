@@ -67,6 +67,8 @@ flutter:
     - assets/images/upload-file.png
     - assets/images/Logo-Red.png
     - assets/images/Logo-Red-Green.png
+    - assets/images/Calculus.jpg
+    - assets/images/Probability-and-Statistics.jpg
   fonts:
     - family: Vazirmatn
       fonts:

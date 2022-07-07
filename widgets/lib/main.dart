@@ -186,10 +186,23 @@ class _StoreState extends State<Store> {
          crossAxisSpacing: 10,
          mainAxisSpacing: 10,
             children:[
-              Container(
-            color: Colors.red,
-            child: generateItem(, context),
-            ),
+              Row(
+                children: [
+                  Column(
+                    children:[
+                      Image.asset('assets/images/Calculus.jpg', width: 100, height: 100,),
+                    ],
+                  ),
+                  SizedBox(
+                    width: 50,
+                  ),
+                  Column(
+                    children:[
+                      Image.asset('assets/images/Probability-and-Statistics.jpg', width: 50, height: 50,),
+                    ],
+                  ),
+                ],
+              ),
             ],
            ),
          ),
@@ -218,7 +231,7 @@ class _StoreState extends State<Store> {
  // }
 
 
-Card generateItem(Product product,context){
+Card generateItem(context){
  return Card(
    shape: const RoundedRectangleBorder(
      borderRadius: BorderRadius.all(Radius.circular(40))
@@ -234,12 +247,12 @@ Card generateItem(Product product,context){
           children: <Widget> [
             SizedBox(
               height: 500,
-              child: Image.asset(product.img),
+              child: Image.asset(""),
             ),
             SizedBox(
               width: 700,
               height: 400,
-              child: Image.asset(product.img),
+              child: Image.asset(""),
             ),
             const Text(
               "رشته و پایه ",
