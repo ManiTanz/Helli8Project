@@ -1,0 +1,38 @@
+{
+	"info": {
+		"_postman_id": "fae9be02-32e0-45b4-af77-b269260405c2",
+		"name": "New Collection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "19890114"
+	},
+	"item": [
+		{
+			"name": "192.168.43.125:6969/api/product/1",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "",
+						"value": "",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://192.168.43.125:6969/api/product/1"
+			},
+			"response": {"id":1,"name":"lili hosak","author":"seyed","desc":"mmd","img":null,"categories":[3]}
+		}
+	]
+}

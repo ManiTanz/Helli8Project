@@ -124,7 +124,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                     onTap: (){
                     //  loginHttpRequest();
                       Navigator.of(context).push(MaterialPageRoute(
-         builder: (context) => const MyApp()
+         builder: (context) => const Store()
          ));
                     } ,
                     child: const SizedBox(
