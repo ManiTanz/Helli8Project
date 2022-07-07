@@ -29,7 +29,7 @@ class MainMaterial extends StatelessWidget {
   }
 void Main() => runApp(const MyApp());
 class MyApp extends StatelessWidget {
- 
+
   
     const MyApp({ Key? key }) : super(key: key);
   
@@ -70,29 +70,29 @@ class _StoreState extends State<Store> {
                   "assets/images/Logo-Red-Green.png"
                 ),
                 fit: BoxFit.cover,
-              ),
+             ),
               ), 
               child: Center(
 
               ),
           ),
-          Container(
+         Container(
             color: Color.fromARGB(255, 243, 255, 78),
             child: Column(
               children: [
                 ListTile(
                   title: Text(
                     "خانه",
-                    style: TextStyle(
+                  style: TextStyle(
                       fontFamily: "Vazirmatn"
                       ),
                     ),
-                leading: Icon(
+              leading: Icon(
                   Icons.home
                   ),
                 onTap: (){
                   Navigator.of(context).push(MaterialPageRoute(
-         builder: (context) => const Store()
+    builder: (context) => const Store()
          ),
          );
                 },
@@ -107,9 +107,9 @@ class _StoreState extends State<Store> {
                 leading: Icon(
                   Icons.favorite
                   ),
-                onTap: (){
+           onTap: (){
                   Navigator.of(context).push(MaterialPageRoute(
-         builder: (context) => const favorite()
+   builder: (context) => const favorite()
          ),
          );
                 },
@@ -124,10 +124,10 @@ class _StoreState extends State<Store> {
                           leading: Icon(
                             Icons.search
                             ),
-                onTap: (){
+           onTap: (){
                   Navigator.of(context).push(MaterialPageRoute(
-         builder: (context) => const Search(),
-                  ),
+      builder: (context) => const Search(),
+                ),
                   );
                 },
                           ),
@@ -138,12 +138,12 @@ class _StoreState extends State<Store> {
                       fontFamily: "Vazirmatn"
                       ),
                       ),  
-                leading: Icon(
+               leading: Icon(
                   Icons.person
                   ),
-                onTap: (){
+            onTap: (){
                   Navigator.of(context).push(MaterialPageRoute(
-         builder: (context) => const Profile()
+   builder: (context) => const Profile()
          ));
                 },
                 ),
@@ -157,7 +157,7 @@ class _StoreState extends State<Store> {
                           leading: Icon(
                             Icons.logout
                             ),
-                onTap: (){
+       onTap: (){
                   Navigator.of(context).push(MaterialPageRoute(
          builder: (context) => const LoginWidget(),
                   ),
@@ -165,20 +165,20 @@ class _StoreState extends State<Store> {
                 },
                           ),
               ],
-            ),
+     ),
           ),
         ],
-        ),
-       ),
+      ),
+      ),
        appBar: AppBar(
          title: Image.asset(
           "assets/images/Logo-Red-Green.png", 
-          height: 250,
+          height: 250,          
         ),
         centerTitle:true,
         backgroundColor: (const Color.fromARGB(255, 7, 205, 255)),
         elevation: 5,
-           ),
+      ),      
        body: Padding(
        padding: const EdgeInsets.all(24),
        child: GridView.count(
@@ -186,18 +186,23 @@ class _StoreState extends State<Store> {
          crossAxisSpacing: 10,
          mainAxisSpacing: 10,
          children: List.generate(items.length , (int position){
-           return generateItem(items[position] , context);
+           return Container(
+            color: Colors.red,
+           );
          }),
          ),
        ),
-     );  
+    );
   }
-
+  
   Future<void> fetchItems() async{
     var url = Uri.parse('http://192.168.43.125:6969/api/product/1');
     
     Response response = await http.get(url);
-    print(response.statusCode);
+    print(response.statusCode);  
+  void fetchItems() async{
+    var url = Uri.parse('https://schema.getpostman.com/json/collection/v2.0.0/collection.json');
+    Response response = await get(url);
     setState(() {
       
       var productjson = json.decode(jsonDecode(response.body));
@@ -211,7 +216,7 @@ class _StoreState extends State<Store> {
      print(items);
     });
   }
-}
+
 
 Card generateItem(Product product,context){
  return Card(
@@ -254,4 +259,6 @@ Card generateItem(Product product,context){
           ],)
    ),
   );
+}
+}
 }
