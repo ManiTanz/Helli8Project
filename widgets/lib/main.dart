@@ -196,10 +196,9 @@ class _StoreState extends State<Store> {
                   SizedBox(
                     width: 50,
                   ),
-                  Column(
-                    children:[
+                  Card(
+                    child:
                       Image.asset('assets/images/Probability-and-Statistics.jpg', width: 50, height: 50,),
-                    ],
                   ),
                 ],
               ),
