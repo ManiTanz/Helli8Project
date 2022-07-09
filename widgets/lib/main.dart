@@ -3,7 +3,7 @@ import 'package:first_app/Profile.dart';
 import 'package:first_app/favoritepage.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart';
-import 'ShopBottomNavigator.dart';
+
 import 'descriptionpage.dart';
 import 'loginpage.dart';
 import 'Search.dart';
@@ -126,7 +126,7 @@ class _StoreState extends State<Store> {
                             ),
            onTap: (){
                   Navigator.of(context).push(MaterialPageRoute(
-      builder: (context) => const Search(),
+      builder: (context) => const search(),
                 ),
                   );
                 },
