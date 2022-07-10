@@ -1,5 +1,7 @@
 import 'dart:io';
+import 'package:first_app/User.dart';
 import 'package:flutter/material.dart';
+
 
 class ProfileWidget extends StatelessWidget{
   final String imagePath;
@@ -17,11 +19,16 @@ class ProfileWidget extends StatelessWidget{
   Widget build(BuildContext context){
     
     return Center(
-      child: Stack( 
-        children:[
-          buildImage(),
-          ],  
-      ),
+    //  child: Stack( 
+      //  children:[
+      //    buildImage(),
+       //   Positioned(bottom: 0, right: 4, child:
+         //  buildediticon(color),
+           
+         //  ),
+      
+         // ],  
+   //   ),
     );
   }
   Widget buildImage(){
@@ -42,4 +49,31 @@ class ProfileWidget extends StatelessWidget{
       ),
     );
   }
+  Widget buildediticon(Color color) => buildcircle(
+    color:Colors.white,
+    all: 3,
+    child: buildcircle(
+     color: color,
+    all: 8,
+    child:Icon(
+    Icons.edit,
+    color: Colors.white,
+    size: 20,
+    ),
+  ),
+  );
+  Widget buildcircle({
+    required Widget child,
+    required double all,
+    required Color color,
+  }) =>
+  ClipOval(
+
+  
+   child: Container(
+    padding: EdgeInsets.all(all),
+    color: color,
+    child: child,
+  ),
+  );
 }
