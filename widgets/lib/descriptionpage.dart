@@ -1,138 +1,254 @@
 import 'package:flutter/material.dart';
+import 'favoritedata.dart';
 import 'main.dart';
+import 'package:first_app/Profile.dart';
+import 'package:first_app/favoritepage.dart';
+import 'package:http/http.dart';
+import 'dart:async';
+import 'package:flutter/foundation.dart';
+import 'descriptionpage.dart';
+import 'loginpage.dart';
+import 'Search.dart';
+import 'product.dart';
 import 'UploadContent.dart';
+import 'package:http/http.dart' as http;
 
-class Descriptionpage extends StatelessWidget {
-  const Descriptionpage({ Key? key }) : super(key: key);
+
+
+
+class DescriptionPage extends StatelessWidget {
+  Product product;
+  DescriptionPage(this.product);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-    appBar: AppBar(
-         title: Image.asset(
-          "assets/images/Logo-Red-Green.png", 
-          height: 250,
-        ),
-        centerTitle:true,
-       leading:  IconButton(
-         icon: const Icon(
-           Icons.arrow_back ,
-           color: Color.fromARGB(115, 16, 29 , 39),
+       drawer: Drawer(
+        child: ListView(addAutomaticKeepAlives: true,
+        children:[
+          DrawerHeader(
+            decoration: BoxDecoration(
+              color: Color.fromARGB(255, 7, 205, 255),
+              image: DecorationImage(
+                image: AssetImage(
+                  "assets/images/Logo-Red-Green.png"
+                ),
+                fit: BoxFit.cover,
+             ),
+              ), 
+              child: Center(
+
+              ),
+          ),
+         Container(
+            color: Color.fromARGB(255, 243, 255, 78),
+            child: Column(
+              children: [
+                ListTile(
+                  title: Text(
+                    "خانه",
+                  style: TextStyle(
+                      fontFamily: "Vazirmatn"
+                      ),
+                    ),
+              leading: Icon(
+                  Icons.home
+                  ),
+                onTap: (){
+                  Navigator.of(context).push(MaterialPageRoute(
+    builder: (context) => const Store()
          ),
-         onPressed: () {
-           Navigator.of(context).push(
-    PageRouteBuilder(
-    transitionDuration: const Duration(milliseconds: 950),
-    pageBuilder: (BuildContext context,Animation<double> animation,Animation<double> secondAnimation ){
-      return const MyApp();
-    },
-    transitionsBuilder: (BuildContext context,Animation<double> animation,Animation<double> secondAnimation , Widget child){
-      return SlideTransition(
-      child: child,
-      position: Tween<Offset>(begin: const Offset(1 , 0) , end: const Offset(0,0)).animate(CurvedAnimation(parent: animation , curve: Curves.easeOutQuad)),
-      );
-    }
-    )  
-  );
-         },     
-       ),  
-      backgroundColor: (const Color.fromARGB(255, 7, 205, 255)),  
-      elevation: 5,
-       ),
-      body: Column(
-        children:  <Widget>[
-          const SizedBox(
-          height: 20,
+         );
+                },
+                ),
+                ListTile(
+                  title: Text(
+                    "علاقه مندی ها",
+                    style: TextStyle(
+                      fontFamily: "Vazirmatn"
+                      ),
+                      ),  
+                leading: Icon(
+                  Icons.favorite
+                  ),
+           onTap: (){
+                  Navigator.of(context).push(MaterialPageRoute(
+   builder: (context) => const favorite()
+         ),
+         );
+                },
+                ),
+                ListTile(
+                  title: Text(
+                    "جست و جو",
+                    style: TextStyle(
+                      fontFamily: "Vazirmatn",
+                      ),
+                      ), 
+                          leading: Icon(
+                            Icons.search
+                            ),
+           onTap: (){
+                  Navigator.of(context).push(MaterialPageRoute(
+      builder: (context) => const search(),
+                ),
+                  );
+                },
+                          ),
+                ListTile(
+                  title: Text(
+                    "پروفایل",
+                    style: TextStyle(
+                      fontFamily: "Vazirmatn"
+                      ),
+                      ),  
+               leading: Icon(
+                  Icons.person
+                  ),
+            onTap: (){
+                  Navigator.of(context).push(MaterialPageRoute(
+   builder: (context) => const Profile()
+         ));
+                },
+                ),
+                ListTile(
+                  title: Text(
+                    "خروج",
+                    style: TextStyle(
+                      fontFamily: "Vazirmatn",
+                      ),
+                      ), 
+                          leading: Icon(
+                            Icons.logout
+                            ),
+       onTap: (){
+                  Navigator.of(context).push(MaterialPageRoute(
+         builder: (context) => const LoginWidget(),
+                  ),
+                  );
+                },
+                          ),
+              ],
+     ),
           ),
-          const Align(
-            child:  Padding(
-              padding: EdgeInsets.only(right: 50 , left: 50),
-              child: Text(
-              "نام درس",
+        ],
+      ),
+      ),
+      appBar: AppBar(
+          title: Image.asset(
+          "assets/images/Logo-Red-Green.png", 
+          height: 250,          
+        ),
+        centerTitle: true,
+        leading: Icon(
+          Icons.arrow_back,
+          color: Colors.black45,
+        ),
+       
+        backgroundColor: (const Color.fromARGB(255, 7, 205, 255)),
+        elevation: 5,
+      ),      
+      
+      body: Builder(
+        builder:(context)=> Column(
+          children: <Widget>[
+            SizedBox(
+              height: 20,
+            ),
+            Align(
+              child: Padding(
+                padding: EdgeInsets.only(left: 10),
+                child: Text(
+                  "درس",
+                  style: TextStyle(
+                      fontFamily: "", color: Colors.red[700], fontSize: 40),
+                ),
+              ),
+              alignment: Alignment.topLeft,
+            ),
+            SizedBox(
+              height: 30,
+            ),
+            Center(
+              child: Image.network(
+                product.img,
+                height: 280,
+                width: 280,
+                fit: BoxFit.contain,
+              ),
+            ),
+            Text(
+              product.author,
               style: TextStyle(
-                color: Color.fromARGB(255, 13, 241, 203),
-                fontSize: 35,
-                fontFamily: 'Vazirmatn',
-              ),
+                color: Colors.red[700],
+                fontFamily: "Vazirmatn",
+                fontSize: 30,
               ),
             ),
-            alignment: Alignment.topCenter,
-          ),
-          const SizedBox(
-          height: 80,
-          ),
-          Center(
-          child: Image.asset("assets/images/Sample.jpg",
-          height: 250,
-          width: 250,
-          fit: BoxFit.contain,
-          ),
-          ),
-          const Text(
-        "عنوان درس",
-          style: TextStyle(
-            color: Color.fromARGB(255, 13, 241, 203) ,
-            fontSize: 30,
-            fontFamily: 'Vazirmatn'
-          ),
-           ),
-           Text(
-          "محل توضیحات و.. هر درس",
-          style: TextStyle(
-            color: Colors.grey[800],       
-            fontSize: 20,
-            fontFamily: 'Vazirmatn'
-          ),
-           ),
-           const SizedBox(
-            height: 80, 
-           ),
-           Padding(
-             padding: const EdgeInsets.only(left: 45 , right: 45),
-             child: Text(
-           "توضیحات مربوط به آیتم مثل ویژگی فیلم زمان فیلم و..",
-            style: TextStyle(
-                   color: Colors.grey[600],
-                   fontSize: 16,
-                   fontFamily: 'Vazirmatn',
-                   ),
-                   textDirection: TextDirection.rtl,
-                   textAlign: TextAlign.center,
-             ),
-           ),
-           SizedBox(
-            child: ElevatedButton(
-              child: const Text("بارگذاری محتوا", 
-              style:TextStyle(fontFamily: 'Vazirmatn' , fontSize: 16) ,),
-              onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => const Upload(title: "Upload")))
+            Text(
+              product.name,
+              style: TextStyle(
+                color: Colors.grey[700],
+                fontFamily: "Vazirmatn",
+                fontSize: 20,
+              ),
             ),
-           ),
-           Expanded(
-             child: Padding(
-               padding: const EdgeInsets.only(bottom: 20),
-               child: Align(
-                child: Container(
-                  decoration: const BoxDecoration(
-                     color:  Color.fromARGB(255, 7, 205, 255),
-                    borderRadius: BorderRadius.all(Radius.circular(10))
-                  ) ,
-               child: const Center(
-                child: Text("افزودن به علاقه مندی ها" , 
+            SizedBox(
+              height: 40,
+            ),
+            Padding(
+              padding: EdgeInsets.only(left: 45, right: 45),
+              child: Text(
+                product.desc,
                 style: TextStyle(
-                fontSize: 18,
-                fontFamily: 'Vazirmatn'
+                  color: Colors.grey[500],
+                  fontSize: 16,
+                  fontFamily: "Vazirmatn",
                 ),
+                textDirection: TextDirection.rtl,
+                textAlign: TextAlign.center,
+              ),
+            ),
+            Expanded(
+              child: Align(
+                child: Padding(
+                  padding: EdgeInsets.only(bottom: 20),
+                  child: GestureDetector(
+                    onTap: () {
+                      print("added to basket ${product.name}");
+                      favoritedata.getInstance()?.basketItems.add(product);
+                      print(favoritedata.getInstance()?.basketItems.length);
+                      Scaffold.of(context).showSnackBar(
+                        SnackBar(
+                          content: Text("${product.name} "+"به علاقه مندی ها افزوده شد",
+                              style: TextStyle(fontSize: 15,fontFamily: "Vazirmatn")),
+                        )
+                      );
+                    },
+                    child: Container(
+                      decoration: BoxDecoration(
+                          color: Colors.red[600],
+                          borderRadius: BorderRadius.all(Radius.circular(10))),
+                      child: Center(
+                        child: Text(
+                          "افزودن به علاقه مندی ها",
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontFamily: "Vazirmatn",
+                              fontSize: 18),
+                        ),
+                      ),
+                      width: MediaQuery.of(context).size.width - 50,
+                      height: 70,
+                    ),
+                  ),
                 ),
-               ),
-                width: 200 ,
-                height: 70,
-                ), 
                 alignment: Alignment.bottomCenter,
-               ),
-             ),
-           ),
-         ],
-       ),
+              ),
+            )
+          ],
+        ),
+      ),
     );
   }
 }

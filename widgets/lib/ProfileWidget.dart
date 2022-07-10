@@ -19,16 +19,16 @@ class ProfileWidget extends StatelessWidget{
   Widget build(BuildContext context){
     
     return Center(
-    //  child: Stack( 
-      //  children:[
+   // child: Stack( 
+    // children:[
       //    buildImage(),
-       //   Positioned(bottom: 0, right: 4, child:
+        // Positioned(bottom: 0, right: 4, child:
          //  buildediticon(color),
            
-         //  ),
+       //   ),
       
-         // ],  
-   //   ),
+      //    ],  
+    //  ),
     );
   }
   Widget buildImage(){

@@ -56,12 +56,12 @@ class _favoriteState extends State<favorite> {
         Padding(
           padding: const EdgeInsets.only(bottom: 85),
           child: ListView.builder(
-            itemCount: ShoppingBasketData.getInstance()!.basketItems.length,
+            itemCount: favoritedata.getInstance()!.basketItems.length,
             itemBuilder: (context, postion) {
               return GestureDetector(
                 child: Padding(
                   child: ShoppingBasketItem(
-                      ShoppingBasketData.getInstance()!.basketItems[postion],
+                      favoritedata.getInstance()!.basketItems[postion],
                       removeItem,
                       postion),
                   padding: const EdgeInsets.only(left: 10, right: 10, top: 10),
@@ -96,7 +96,7 @@ class _favoriteState extends State<favorite> {
 
   void removeItem(int index) {
     setState(() {
-      ShoppingBasketData.getInstance()!.basketItems.removeAt(index);
+      favoritedata.getInstance()!.basketItems.removeAt(index);
     });
   }
 }

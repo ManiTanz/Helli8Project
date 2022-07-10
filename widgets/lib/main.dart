@@ -3,7 +3,8 @@ import 'package:first_app/Profile.dart';
 import 'package:first_app/favoritepage.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart';
-
+import 'dart:async';
+import 'package:flutter/foundation.dart';
 import 'descriptionpage.dart';
 import 'loginpage.dart';
 import 'Search.dart';
@@ -48,7 +49,7 @@ class Store extends StatefulWidget {
    
   }
 class _StoreState extends State<Store> {
-  List<Product> items=[];
+  List<Product> _items=[];
   @override
   void initState() {
     super.initState();
@@ -179,97 +180,73 @@ class _StoreState extends State<Store> {
         backgroundColor: (const Color.fromARGB(255, 7, 205, 255)),
         elevation: 5,
       ),      
-       body: Padding(
-       padding: const EdgeInsets.all(24),
-       child: GridView.count(
-         crossAxisCount:2,
-         crossAxisSpacing: 10,
-         mainAxisSpacing: 10,
-            children:[
-              Row(
-                children: [
-                  Column(
-                    children:[
-                      Image.asset('assets/images/Calculus.jpg', width: 100, height: 100,),
-                    ],
-                  ),
-                  SizedBox(
-                    width: 50,
-                  ),
-                  Card(
-                    child:
-                      Image.asset('assets/images/Probability-and-Statistics.jpg', width: 50, height: 50,),
-                  ),
-                ],
-              ),
-            ],
-           ),
-         ),
-         );
-  }
-  //Future<void> fetchItems() async{
-   // var url = Uri.parse('http://192.168.43.125:6969/api/product/1');
+      body: Padding(
+        padding: EdgeInsets.all(15),
+        child: GridView.count(
+          crossAxisCount: 2,
+          crossAxisSpacing: 10,
+          mainAxisSpacing: 15,
+          children: List.generate(_items.length, (int position) {
+            return generateItem(_items[position], context);
+          }),
+        ),
+      ),
     
-   // Response response = await http.get(url);
-   // print(response.statusCode);  
-  //void fetchItems() async{
-   // var url = Uri.parse('https://schema.getpostman.com/json/collection/v2.0.0/collection.json');
-   // Response response = await get(url);
-   // setState(() {
-      
-     // var productjson = json.decode(jsonDecode(response.body));
-      
-     // for(var i in productjson){
-        
-      //  var productitem = Product(i["name"], i["id"], i["desc"], i["img"], i["author"], i["categories"]);
-       // items.add(productitem);
-        
-     //}
-     //print(items);
-    //});
- // }
+    );
+  }
 
 
-Card generateItem(context){
- return Card(
-   shape: const RoundedRectangleBorder(
-     borderRadius: BorderRadius.all(Radius.circular(40))
-   ),
-   elevation: 5,
-   child: InkWell(
-     onTap: (){
-       Navigator.of(context).push(MaterialPageRoute(
-         builder: (context) => const Descriptionpage()
-         ));
-     },
-       child:Column(
-          children: <Widget> [
-            SizedBox(
-              height: 500,
-              child: Image.asset(""),
+
+  void fetchItems() async {
+    var url = Uri (scheme:"https://schema.getpostman.com/json/collection/v2.0.0/collection.json" , 
+   
+     );
+    Response response = await get(url);
+    setState(() {
+      var productJson = json.decode(utf8.decode(response.bodyBytes));
+      for (var i in productJson) {
+        var productItem = Product(i['name'], i['id'], i['author'],
+            i['img'], i['catagories'], i['desc']);
+        _items.add(productItem);
+      }
+    });
+  }
+}
+
+Card generateItem(Product product, context) {
+  return Card(
+    shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.all(Radius.circular(30))),
+    elevation: 4,
+    child: InkWell(
+      onTap: () {
+        Navigator.of(context).push(
+            MaterialPageRoute(builder: (context) => DescriptionPage(product)));
+      },
+      child: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Container(
+              width: 130,
+              height: 130,
+              child: Image.network(product.img),
             ),
-            SizedBox(
-              width: 700,
-              height: 400,
-              child: Image.asset(""),
+            Text(
+              product.author,
+              style: TextStyle(
+                  fontFamily: "Vazirmatn", color: Colors.red[700], fontSize: 16.0),
             ),
-            const Text(
-              "رشته و پایه ",
+            Text(
+              product.name,
               style: TextStyle(
-                color: Color.fromARGB(255, 2, 82, 2),
-                fontSize: 20.0,
-                fontFamily: 'Vazirmatn',
-              ),
-              ),
-             const Text(
-              "عنوان درس ",
-              style: TextStyle(
-                color: Color.fromARGB(255, 3, 14, 117),
-                fontSize: 20.0,
-                fontFamily: 'Vazirmatn',
-              ),) 
-          ],)
-   ),
+                  fontFamily: "Vazirmatn",
+                  color: Color(0xFF575E67),
+                  fontSize: 14.0),
+            )
+          ],
+        ),
+      ),
+    ),
   );
-}
-}
+} 

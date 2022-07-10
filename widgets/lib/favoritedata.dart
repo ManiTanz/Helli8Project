@@ -1,10 +1,10 @@
 import 'product.dart';
 
-class ShoppingBasketData {
-static ShoppingBasketData ?_instance;
+class favoritedata{
+static favoritedata ?_instance;
   List<Product> _basketItems;
 
-    ShoppingBasketData(this._basketItems) {
+    favoritedata(this._basketItems) {
     _basketItems = <Product>[];
   }
 
@@ -14,8 +14,8 @@ static ShoppingBasketData ?_instance;
     _basketItems = value;
   }
 
-  static ShoppingBasketData? getInstance() {
-    _instance ??= ShoppingBasketData(<Product>[]);
+  static favoritedata? getInstance() {
+    _instance ??= favoritedata(<Product>[]);
 
     return _instance;
   }
