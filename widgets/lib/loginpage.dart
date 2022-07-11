@@ -178,7 +178,7 @@ class _LoginWidgetState extends State<LoginWidget> {
 
   void loginHttpRequest() async{
     final response = await http.post(
-     Uri.parse('http://192.168.43.125:6969/api/login/'),
+     Uri.parse('http://154.91.170.55:8900/api/login/'),
     headers: <String, String>{
       'Content-Type': 'application/json; charset=UTF-8',
     },
