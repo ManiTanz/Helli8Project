@@ -53,7 +53,7 @@ class _StoreState extends State<Store> {
   @override
   void initState() {
     super.initState();
-    //fetchItems();
+    fetchItems();
   }
   
   @override
