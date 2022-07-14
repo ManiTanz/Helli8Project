@@ -8,8 +8,8 @@ class Product{
   final String _author;
   final List _catagories;
 
-  Product(this._name, this._id, this._desc, this._img, 
-      this._author, this._catagories);
+  Product(this._name, this._id, this._author, this._img, 
+      this._catagories, this._desc);
 
   String get desc => _desc;
 

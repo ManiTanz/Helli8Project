@@ -1,5 +1,4 @@
 import 'dart:ui';
-
 import 'package:first_app/User.dart';
 import 'package:first_app/user_prefrenence.dart';
 import 'package:flutter/material.dart';
