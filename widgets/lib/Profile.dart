@@ -29,8 +29,8 @@ class _ProfileState extends State<Profile> {
                     physics: BouncingScrollPhysics(),
                     children: [
                       ProfileWidget(
-                        imagePath: user.imagePath,
-                        onClicked: () async {},
+                        
+                        onClicked: () async {}, img: '',
                       ),
                       const SizedBox(height: 24),
                       buildname(user),
@@ -67,11 +67,6 @@ class _ProfileState extends State<Profile> {
         style: TextStyle(fontSize: 16 , fontWeight: FontWeight.bold ),
       ),
      const SizedBox(height: 16),
-     Text(
-      user.about,
-      style: TextStyle(fontSize: 16 , height: 1.4 ),
-     ),
-
     ],
   ),
   );

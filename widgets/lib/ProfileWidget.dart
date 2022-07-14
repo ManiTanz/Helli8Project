@@ -4,13 +4,13 @@ import 'package:flutter/material.dart';
 
 
 class ProfileWidget extends StatelessWidget{
-  final String imagePath;
+  final String img;
   final bool isEdit;
   final VoidCallback onClicked;
 
   const ProfileWidget({
     Key? key,
-    required this.imagePath,
+    required this.img,
     this.isEdit = false,
     required this.onClicked,
   })  : super(key: key);
@@ -19,20 +19,20 @@ class ProfileWidget extends StatelessWidget{
   Widget build(BuildContext context){
     
     return Center(
-   // child: Stack( 
-    // children:[
-      //    buildImage(),
-        // Positioned(bottom: 0, right: 4, child:
-         //  buildediticon(color),
+    child: Stack( 
+     children:[
+          buildImage(),
+         Positioned(bottom: 0, right: 4, child:
+           buildediticon(Colors.green),
            
-       //   ),
+          ),
       
-      //    ],  
-    //  ),
+          ],  
+      ),
     );
   }
   Widget buildImage(){
-    final image = NetworkImage(imagePath);
+    final image = NetworkImage(img);
     
     return ClipOval(
       child: Material(

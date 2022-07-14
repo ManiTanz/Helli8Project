@@ -2,7 +2,6 @@ import 'dart:convert';
 import 'package:first_app/Profile.dart';
 import 'package:first_app/favoritepage.dart';
 import 'package:flutter/material.dart';
-import 'package:http/http.dart';
 import 'dart:async';
 import 'package:flutter/foundation.dart';
 import 'descriptionpage.dart';
@@ -53,6 +52,7 @@ class _StoreState extends State<Store> {
   @override
   void initState() {
     super.initState();
+    final response = fetchItems();
     fetchItems();
   }
   
@@ -194,23 +194,25 @@ class _StoreState extends State<Store> {
     
     );
   }
-
-
-
-  void fetchItems() async {
-    var url = Uri (scheme:"https://schema.getpostman.com/json/collection/v2.0.0/collection.json" , 
-   
-     );
-    Response response = await get(url);
+Future<void> fetchItems() async{
+  final response = await http.get(Uri.parse("http://154.91.170.55:8900/api/product/"));
+  print(response.statusCode);
+  var ProuductJson = jsonDecode(response.body);
+  print("sag");
+  for(var i in ProuductJson){
+    // print(i['name']);
     setState(() {
-      var productJson = json.decode(utf8.decode(response.bodyBytes));
-      for (var i in productJson) {
-        var productItem = Product(i['name'], i['id'], i['author'],
-            i['img'], i['catagories'], i['desc']);
-        _items.add(productItem);
-      }
+          if(i["img"] == null){
+      var ProductItem = Product(i['name'], i['id'] , i['author'] , "" , i['categories'] , i['desc'],);
+    _items.add(ProductItem);
+    } else {
+    var ProductItem = Product(i['name'], i['id'] , i['author'] , i["img"] , i['categories'] , i['desc'],);
+    _items.add(ProductItem);
+    }
     });
+
   }
+}
 }
 
 Card generateItem(Product product, context) {
