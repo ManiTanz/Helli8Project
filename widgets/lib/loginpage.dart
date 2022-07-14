@@ -1,8 +1,10 @@
 import 'dart:convert';
 import 'package:first_app/forget.dart';
 import 'package:flutter/material.dart';
+import 'package:http/http.dart';
 import 'main.dart';
 import 'package:http/http.dart' as http;
+import 'loginresponse.dart';
 
 class LoginWidget extends StatefulWidget {
   const LoginWidget({ Key? key }) : super(key: key);
@@ -176,17 +178,54 @@ class _LoginWidgetState extends State<LoginWidget> {
     );
   }
 
-  void loginHttpRequest() async{
-    final response = await http.post(
-     Uri.parse('http://154.91.170.55:8900/api/login/'),
-    headers: <String, String>{
-      'Content-Type': 'application/json; charset=UTF-8',
-    },
-    body: jsonEncode(<String, String>{
-      'username': usernameTextController.text,
-      'password': passwordTextController.text,
-    }),
-  );
-  print(response.body);
+   void sendLoginRequest({required BuildContext context, required String username,required String password}) async{
+    var url=Uri(scheme: "http://154.91.170.55:8900/api/login/");
+    var body=Map<String,dynamic>();
+    body["username"]=username;
+    body["password"]=password;
+    Response response = await post(url,body: body);
+    if(response.statusCode==200){
+      //successful
+      var loginJson=json.decode(utf8.decode(response.bodyBytes));
+      var model=LoginResponseModel(loginJson["result"],loginJson["message"]);
+      if(model.result==0){
+        showMySnackBar(context, model.message);
+      }
+      else if(model.result==1){
+        Navigator.of(context).pushReplacement(PageRouteBuilder(
+            transitionDuration: Duration(milliseconds: 300),
+            pageBuilder: (BuildContext context,
+                Animation<double> animation,
+                Animation<double> secondAnimation) {
+              return Store();
+            },
+            transitionsBuilder: (BuildContext context,
+                Animation<double> animation,
+                Animation<double> secondAnimation,
+                Widget child) {
+              return ScaleTransition(
+                child: child,
+                scale:
+                Tween<double>(begin: 0, end: 1)
+                    .animate(CurvedAnimation(
+                    parent: animation,
+                    curve: Curves.fastOutSlowIn)),
+              );
+            }));
+      }
+
+    }
+    else{
+      //error
+      showMySnackBar(context, "درخواست با خطا مواجه شد");
+    }
+  }
+
+  void showMySnackBar(BuildContext context,String message){
+    Scaffold.of(context).showSnackBar(
+      SnackBar(
+        content: Text(message,style: TextStyle(fontFamily: "Vazirmatn",fontSize: 15,),),
+      )
+    );
   }
 }
