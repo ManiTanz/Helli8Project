@@ -125,9 +125,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                   child: InkWell(
                     onTap: (){
                     //  loginHttpRequest();
-                      Navigator.of(context).push(MaterialPageRoute(
-         builder: (context) => const Store()
-         ));
+                      login(usernameTextController.text.toString(), passwordTextController.text.toString());
                     } ,
                     child: const SizedBox(
                       height: 40,
@@ -177,55 +175,89 @@ class _LoginWidgetState extends State<LoginWidget> {
     ],
     );
   }
-
-   void sendLoginRequest({required BuildContext context, required String username,required String password}) async{
-    var url=Uri(scheme: "http://154.91.170.55:8900/api/login/");
-    var body=Map<String,dynamic>();
-    body["username"]=username;
-    body["password"]=password;
-    Response response = await post(url,body: body);
-    if(response.statusCode==200){
-      //successful
-      var loginJson=json.decode(utf8.decode(response.bodyBytes));
-      var model=LoginResponseModel(loginJson["result"],loginJson["message"]);
-      if(model.result==0){
-        showMySnackBar(context, model.message);
+void login(String username, password) async {
+  
+  try{
+    
+    Response response = await http.post(
+      Uri.parse('http://154.91.170.55:8900/api/login/'),
+      body: {
+        'username' : username,
+        'password' : password
       }
-      else if(model.result==1){
-        Navigator.of(context).pushReplacement(PageRouteBuilder(
-            transitionDuration: Duration(milliseconds: 300),
-            pageBuilder: (BuildContext context,
-                Animation<double> animation,
-                Animation<double> secondAnimation) {
-              return Store();
-            },
-            transitionsBuilder: (BuildContext context,
-                Animation<double> animation,
-                Animation<double> secondAnimation,
-                Widget child) {
-              return ScaleTransition(
-                child: child,
-                scale:
-                Tween<double>(begin: 0, end: 1)
-                    .animate(CurvedAnimation(
-                    parent: animation,
-                    curve: Curves.fastOutSlowIn)),
-              );
-            }));
-      }
+    );
 
-    }
-    else{
-      //error
-      showMySnackBar(context, "درخواست با خطا مواجه شد");
-    }
-  }
+    if(response.statusCode == 200){
+      
+      var data = jsonDecode(response.body.toString());
+      print(data['token']);
+      print('Login successfully');
+      Navigator.of(context).push(MaterialPageRoute(
+   builder: (context) => const Store()));
 
-  void showMySnackBar(BuildContext context,String message){
+    }else {
+      print('failed');
+         void showMySnackBar(BuildContext context,String message){
     Scaffold.of(context).showSnackBar(
       SnackBar(
         content: Text(message,style: TextStyle(fontFamily: "Vazirmatn",fontSize: 15,),),
       )
     );
+    }
+    showMySnackBar(context, "نام کاربری یا رمز عبور اشتباه است.");
+    }
+  }catch(e){
+    print(e.toString());
   }
+}
+  //  void sendLoginRequest({required BuildContext context, required String username,required String password}) async{
+  //   var url=Uri(scheme: "http://154.91.170.55:8900/api/login/");
+  //   var body=Map<String,dynamic>();
+  //   body["username"]=username;
+  //   body["password"]=password;
+  //   Response response = await http.post(url,body: body);
+  //   if(response.statusCode==200){
+  //     //successful
+  //     var loginJson=json.decode(utf8.decode(response.bodyBytes));
+  //     var model=LoginResponseModel(loginJson["result"],loginJson["message"]);
+  //     if(model.result==0){
+  //       showMySnackBar(context, model.message);
+  //     }
+  //     else if(model.result==1){
+  //       Navigator.of(context).pushReplacement(PageRouteBuilder(
+  //           transitionDuration: Duration(milliseconds: 300),
+  //           pageBuilder: (BuildContext context,
+  //               Animation<double> animation,
+  //               Animation<double> secondAnimation) {
+  //             return Store();
+  //           },
+  //           transitionsBuilder: (BuildContext context,
+  //               Animation<double> animation,
+  //               Animation<double> secondAnimation,
+  //               Widget child) {
+  //             return ScaleTransition(
+  //               child: child,
+  //               scale:
+  //               Tween<double>(begin: 0, end: 1)
+  //                   .animate(CurvedAnimation(
+  //                   parent: animation,
+  //                   curve: Curves.fastOutSlowIn)),
+  //             );
+  //           }));
+  //     }
+
+  //   }
+  //   else{
+  //     //error
+  //     showMySnackBar(context, "نام کاربری یا رمز عبور اشتباه است.");
+  //   }
+  // }
+
+  // void showMySnackBar(BuildContext context,String message){
+  //   Scaffold.of(context).showSnackBar(
+  //     SnackBar(
+  //       content: Text(message,style: TextStyle(fontFamily: "Vazirmatn",fontSize: 15,),),
+  //     )
+  //   );
+  // }
 }
