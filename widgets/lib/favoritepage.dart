@@ -2,6 +2,11 @@ import 'package:flutter/material.dart';
 import 'main.dart';
 import 'favoritedata.dart';
 import 'favoriteitem.dart';
+import 'Search.dart' ;
+import 'Profile.dart';
+import 'loginpage.dart';
+
+
 class favorite extends StatefulWidget {
   const favorite({ Key? key }) : super(key: key);
 
@@ -13,39 +18,129 @@ class _favoriteState extends State<favorite> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-       appBar: AppBar(
-         title: const Text(
-        
-         "علاقه مندی ها",
+        drawer: Drawer(
+        child: ListView(addAutomaticKeepAlives: true,
+        children:[
+          DrawerHeader(
+            decoration: BoxDecoration(
+              color: Color.fromARGB(255, 7, 205, 255),
+              image: DecorationImage(
+                image: AssetImage(
+                  "assets/images/Logo-Red-Green.png"
+                ),
+                fit: BoxFit.cover,
+             ),
+              ), 
+              child: Center(
+
+              ),
+          ),
+         Container(
+            color: Color.fromARGB(255, 243, 255, 78),
+            child: Column(
+              children: [
+                ListTile(
+                  title: Text(
+                    "خانه",
+                  style: TextStyle(
+                      fontFamily: "Vazirmatn"
+                      ),
+                    ),
+              leading: Icon(
+                  Icons.home
+                  ),
+                onTap: (){
+                  Navigator.of(context).push(MaterialPageRoute(
+    builder: (context) => const Store()
+         ),
+         );
+                },
+                ),
+                ListTile(
+                  title: Text(
+                    "علاقه مندی ها",
+                    style: TextStyle(
+                      fontFamily: "Vazirmatn"
+                      ),
+                      ),  
+                leading: Icon(
+                  Icons.favorite
+                  ),
+           onTap: (){
+                  Navigator.of(context).push(MaterialPageRoute(
+   builder: (context) => const favorite()
+         ),
+         );
+                },
+                ),
+                ListTile(
+                  title: Text(
+                    "جست و جو",
+                    style: TextStyle(
+                      fontFamily: "Vazirmatn",
+                      ),
+                      ), 
+                          leading: Icon(
+                            Icons.search
+                            ),
+           onTap: (){
+                  Navigator.of(context).push(MaterialPageRoute(
+      builder: (context) => const search(),
+                ),
+                  );
+                },
+                          ),
+                ListTile(
+                  title: Text(
+                    "پروفایل",
+                    style: TextStyle(
+                      fontFamily: "Vazirmatn"
+                      ),
+                      ),  
+               leading: Icon(
+                  Icons.person
+                  ),
+            onTap: (){
+                  Navigator.of(context).push(MaterialPageRoute(
+   builder: (context) => const Profile()
+         ));
+                },
+                ),
+                ListTile(
+                  title: Text(
+                    "خروج",
+                    style: TextStyle(
+                      fontFamily: "Vazirmatn",
+                      ),
+                      ), 
+                          leading: Icon(
+                            Icons.logout
+                            ),
+       onTap: (){
+                  Navigator.of(context).push(MaterialPageRoute(
+         builder: (context) => const LoginWidget(),
          
-         style: TextStyle(color: Color.fromARGB(255, 231, 238, 240),
-         fontSize: 30.0,
-         fontFamily: 'Vazirmatn',
-         ),
-         ),
-          centerTitle:true,
-       leading:  IconButton(
-       icon: const Icon(Icons.home ,
-       color: Color.fromARGB(115, 16, 29, 39)
-       ),
-         onPressed: () {
-           Navigator.of(context).push(
-    PageRouteBuilder(
-    transitionDuration: const Duration(milliseconds: 950),
-    pageBuilder: (BuildContext context,Animation<double> animation,Animation<double> secondAnimation ){
-      return const MyApp();
-    },
-    transitionsBuilder: (BuildContext context,Animation<double> animation,Animation<double> secondAnimation , Widget child){
-      return SlideTransition(
-      child: child,
-      position: Tween<Offset>(begin: const Offset(1 , 0) , end: const Offset(0,0)).animate(CurvedAnimation(parent: animation , curve: Curves.easeOutQuad)),
-      );
-    }
-    ),  
-  );
-             },      
-           )
-       ),
+                  ),
+                  );
+                },
+                          ),
+              ],
+     ),
+          ),
+        ],
+      ),
+      ),
+       appBar: AppBar(
+        
+         title: Image.asset(
+          "assets/images/Logo-Red-Green.png", 
+          height: 250,          
+        ),
+        centerTitle:true,
+        backgroundColor: (const Color.fromARGB(255, 7, 205, 255)),
+        elevation: 5,
+        
+      ),      
        body: basketUI(),
     );
   }
@@ -70,26 +165,7 @@ class _favoriteState extends State<favorite> {
             },
           ),
         ),
-        Align(
-          alignment: Alignment.bottomCenter,
-          child: Material(
-            color: Colors.red,
-            child: InkWell(
-              onTap: () {},
-              child: SizedBox(
-                width: MediaQuery.of(context).size.width,
-                height: 85,
-                child: const Center(
-                  child: Text(
-                    "پرداخت",
-                    style: TextStyle(
-                        fontFamily: "Vazirmatn", fontSize: 20, color: Colors.white),
-                  ),
-                ),
-              ),
-            ),
-          ),
-        )
+       
       ],
     );
   }
