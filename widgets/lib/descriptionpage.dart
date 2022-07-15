@@ -140,10 +140,7 @@ class DescriptionPage extends StatelessWidget {
           height: 250,          
         ),
         centerTitle: true,
-        leading: Icon(
-          Icons.arrow_back,
-          color: Colors.black45,
-        ),
+       
        
         backgroundColor: (const Color.fromARGB(255, 7, 205, 255)),
         elevation: 5,

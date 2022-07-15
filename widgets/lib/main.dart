@@ -184,7 +184,7 @@ class _StoreState extends State<Store> {
         padding: EdgeInsets.all(15),
         child: GridView.count(
           crossAxisCount: 2,
-          crossAxisSpacing: 10,
+          crossAxisSpacing:10,
           mainAxisSpacing: 15,
           children: List.generate(_items.length, (int position) {
             return generateItem(_items[position], context);
