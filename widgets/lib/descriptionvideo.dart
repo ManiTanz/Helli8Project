@@ -136,7 +136,21 @@ class Descriptionvideos extends StatelessWidget {
         backgroundColor: (const Color.fromARGB(255, 7, 205, 255)),
         elevation: 5,
       ),
-      body: Builder(
+      body: 
+        Stack(
+         children:<Widget> [
+               Container(
+      height: double.infinity,
+      width: double.infinity,
+      decoration: const BoxDecoration(
+        image: DecorationImage(
+          image: AssetImage("assets/images/photo1657973117 (2).jpeg"),
+          fit: BoxFit.cover
+          ),
+      ),
+               ),
+           Center(
+            child: Builder(
         builder:(context)=> Column(
           children: <Widget>[
             SizedBox(
@@ -236,6 +250,10 @@ class Descriptionvideos extends StatelessWidget {
           ],
         ),
       ),
+           ),
+         ]
+    )
     );
+    
   }
 }

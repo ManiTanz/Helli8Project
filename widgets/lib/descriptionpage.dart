@@ -14,6 +14,7 @@ import 'Search.dart';
 import 'product.dart';
 import 'UploadContent.dart';
 
+
 class DescriptionPage extends StatelessWidget {
   Product product;
   DescriptionPage(this.product);
@@ -142,6 +143,7 @@ class DescriptionPage extends StatelessWidget {
         elevation: 5,
       ),      
       body: 
+      
        Stack(
          children:<Widget> [
                Container(
@@ -149,7 +151,7 @@ class DescriptionPage extends StatelessWidget {
       width: double.infinity,
       decoration: const BoxDecoration(
         image: DecorationImage(
-          image: AssetImage("assets/images/cool-background-ether.png"),
+          image: AssetImage("assets/images/photo1657973117.jpeg"),
           fit: BoxFit.cover
           ),
       ),
@@ -221,7 +223,7 @@ class DescriptionPage extends StatelessWidget {
                                       "ویدئو ها" , 
                                       style: TextStyle(
                                         color: Colors.white , 
-                                        fontSize: 40 ,
+                                        fontSize: 20 ,
                                         fontFamily: 'Vazirmatn',
                                       ),
                                     ),
@@ -250,7 +252,7 @@ class DescriptionPage extends StatelessWidget {
                                       "پادکست ها" , 
                                       style: TextStyle(
                                         color: Colors.white , 
-                                        fontSize: 40 ,
+                                        fontSize: 20 ,
                                         fontFamily: 'Vazirmatn',
                                       ),
                                     ),

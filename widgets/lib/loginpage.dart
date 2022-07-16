@@ -6,6 +6,7 @@ import 'main.dart';
 import 'package:http/http.dart' as http;
 import 'loginresponse.dart';
 
+
 class LoginWidget extends StatefulWidget {
   const LoginWidget({ Key? key }) : super(key: key);
 
@@ -40,7 +41,7 @@ class _LoginWidgetState extends State<LoginWidget> {
       width: double.infinity,
       decoration: const BoxDecoration(
         image: DecorationImage(
-          image: AssetImage("assets/images/cool-background-stellar.png"),
+          image: AssetImage("assets/images/photo1657973117 (1).jpeg"),
           fit: BoxFit.cover
           ),
       ),
