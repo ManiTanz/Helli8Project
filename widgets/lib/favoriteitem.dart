@@ -45,40 +45,7 @@ class _ShoppingBasketItemState extends State<ShoppingBasketItem> {
                     style: const TextStyle(fontFamily: "Vazirmatn", fontSize: 20),
                   ),
                 ),
-                Padding(
-                  padding: const EdgeInsets.only(bottom: 30),
-                  child: Row(
-                    textDirection: TextDirection.rtl,
-                    children: <Widget>[
-                      GestureDetector(
-                        child: const Icon(
-                          Icons.chevron_right,
-                          size: 35,
-                        ),
-                        onTap: () {
-                          Decrement();
-                        },
-                      ),
-                      const SizedBox(
-                        width: 5,
-                      ),
-                      Text(
-                        widget._count.toString(),
-                      ),
-                      const SizedBox(
-                        width: 5,
-                      ),
-                      GestureDetector(
-                          onTap: () {
-                            Increment();
-                          },
-                          child: const Icon(
-                            Icons.chevron_left,
-                            size: 35,
-                          )),
-                    ],
-                  ),
-                )
+               
               ],
             ),
             Expanded(
@@ -111,20 +78,6 @@ class _ShoppingBasketItemState extends State<ShoppingBasketItem> {
     );
   }
 
-  void Increment() {
-    setState(() {
-      widget._count++;
-    });
-  }
-
-  void Decrement() {
-    setState(() {
-      if (widget._count == 0){
-        return;
-      }
-      else {
-        widget._count--;
-      }
-    });
-  }
+ 
+  
 }

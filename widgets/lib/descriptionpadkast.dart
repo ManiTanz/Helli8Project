@@ -1,31 +1,22 @@
-
-import 'package:first_app/padkast.dart';
-import 'package:first_app/videos.dart';
-import 'package:flutter/material.dart';
-import 'main.dart';
-import 'package:first_app/Profile.dart';
-import 'package:first_app/favoritepage.dart';
-import 'package:http/http.dart';
-import 'dart:async';
-import 'package:flutter/foundation.dart';
-import 'descriptionpage.dart';
-import 'loginpage.dart';
+import 'package:first_app/favoritedata.dart';
+import 'Profile.dart';
 import 'Search.dart';
+import 'favoritepage.dart';
+import 'loginpage.dart';
+import 'main.dart';
 import 'product.dart';
-import 'UploadContent.dart';
-import 'package:http/http.dart' as http;
+import 'package:flutter/material.dart';
 
+import 'favorite.dart';
 
-
-
-class DescriptionPage extends StatelessWidget {
-  Product product;
-  DescriptionPage(this.product);
+class Descriptionpadkast extends StatelessWidget {
+    Product  product;
+  Descriptionpadkast(this.product);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-       drawer: Drawer(
+        drawer: Drawer(
         child: ListView(addAutomaticKeepAlives: true,
         children:[
           DrawerHeader(
@@ -58,7 +49,7 @@ class DescriptionPage extends StatelessWidget {
                   ),
                 onTap: (){
                   Navigator.of(context).push(MaterialPageRoute(
-    builder: (context) => const MyApp()
+    builder: (context) => const Store()
          ),
          );
                 },
@@ -137,20 +128,15 @@ class DescriptionPage extends StatelessWidget {
       ),
       ),
       appBar: AppBar(
-          title: Image.asset(
+         title: Image.asset(
           "assets/images/Logo-Red-Green.png", 
           height: 250,          
         ),
-        centerTitle: true,
-       
-       
+        centerTitle:true,
         backgroundColor: (const Color.fromARGB(255, 7, 205, 255)),
         elevation: 5,
-      ),      
-      
-      body: 
-       Builder(
-        
+      ),
+      body: Builder(
         builder:(context)=> Column(
           children: <Widget>[
             SizedBox(
@@ -160,9 +146,9 @@ class DescriptionPage extends StatelessWidget {
               child: Padding(
                 padding: EdgeInsets.only(left: 10),
                 child: Text(
-                  "درس",
+                  "ویدئو",
                   style: TextStyle(
-                      fontFamily: "Vazirmatn", color: Colors.red[700], fontSize: 40),
+                      fontFamily: "Vazirmatn", color: Color.fromARGB(255, 7, 205, 255), fontSize: 40),
                 ),
               ),
               alignment: Alignment.topLeft,
@@ -181,8 +167,8 @@ class DescriptionPage extends StatelessWidget {
             Text(
               product.author,
               style: TextStyle(
-                color: Colors.red[700],
-                fontFamily: "Vazirmatn",
+                color: Color.fromARGB(255, 7, 205, 255),
+                fontFamily: "Vazir",
                 fontSize: 30,
               ),
             ),
@@ -213,77 +199,40 @@ class DescriptionPage extends StatelessWidget {
             Expanded(
               child: Align(
                 child: Padding(
-                
-                
-                padding: const EdgeInsets.symmetric(horizontal: 50),
-                child: Material(
-                  elevation: 20,
-                  borderRadius: BorderRadius.circular(40),
-                  color:const Color.fromARGB(255, 7, 205, 255) ,
-                  child: InkWell(
-                    onTap: (){
-                       Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => const videos()
-                    ));
+                  padding: EdgeInsets.only(bottom: 20),
+                  child: GestureDetector(
+                    onTap: () {
+                      print("added to basket ${product.name}");
+                      favoritedata.getInstance()?.basketItems.add(product);
+                      print(favoritedata.getInstance()?.basketItems.length);
+                      Scaffold.of(context).showSnackBar(
+                        SnackBar(
+                          content: Text("${product.name} "+"به علاقه مندی ها افزوده شد",
+                              style: TextStyle(fontSize: 15,fontFamily: "Vazirmatn")),
+                        )
+                      );
                     },
-                    child: const SizedBox(
-                      height: 40,
-                      width: 400,
+                    child: Container(
+                      decoration: BoxDecoration(
+                          color: Color.fromARGB(255, 7, 205, 255),
+                          borderRadius: BorderRadius.all(Radius.circular(10))),
                       child: Center(
-                        child:  Text(
-                          "ویدئو ها" , 
+                        child: Text(
+                          "افزودن به علاقه مندی ها",
                           style: TextStyle(
-                            color: Colors.white , 
-                            fontSize: 20 ,
-                            fontFamily: 'Vazirmatn',
-                          ),
+                              color: Colors.white,
+                              fontFamily: "Vazirmatn",
+                              fontSize: 18),
                         ),
-                      ),      
+                      ),
+                      width: MediaQuery.of(context).size.width - 50,
+                      height: 70,
                     ),
                   ),
                 ),
+                alignment: Alignment.bottomCenter,
               ),
-                ) 
-                
-                  
-                ),
-                Expanded(  child:
-                Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 50),
-                child: Material(
-                  elevation: 20,
-                  borderRadius: BorderRadius.circular(40),
-                  color:const Color.fromARGB(255, 7, 205, 255) ,
-                  child: InkWell(
-                    onTap: (){
-                    Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => const padkast()
-                    ));
-                    } ,
-                    child: const SizedBox(
-                      height: 40,
-                      width: 400,
-                      child: Center(
-                        child:  Text(
-                          "پادکست ها" , 
-                          style: TextStyle(
-                            color: Colors.white , 
-                            fontSize: 20 ,
-                            fontFamily: 'Vazirmatn',
-                          ),
-                        ),
-                      ),      
-                    ),
-                  ),
-                ),
-              ),
-                
-                )
-                
-                
-               
-              
-            
+            )
           ],
         ),
       ),
