@@ -1,6 +1,6 @@
 import 'dart:convert';
 import 'package:first_app/Profile.dart';
-import 'package:first_app/descriptionpadkast.dart';
+import 'package:first_app/descriptionPodcast.dart';
 import 'package:first_app/favoritepage.dart';
 import 'package:flutter/material.dart';
 import 'dart:async';
@@ -14,11 +14,11 @@ import 'package:http/http.dart' as http;
 
 
 
-void Main() => runApp(const padkast());
-class padkast extends StatelessWidget {
+void Main() => runApp(const Podcast());
+class Podcast extends StatelessWidget {
 
   
-    const padkast({ Key? key }) : super(key: key);
+    const Podcast({ Key? key }) : super(key: key);
   
     @override
     Widget build(BuildContext context) {
@@ -210,7 +210,7 @@ Card generateItem(Product product, context) {
     child: InkWell(
       onTap: () {
         Navigator.of(context).push(
-            MaterialPageRoute(builder: (context) => Descriptionpadkast(product)));
+            MaterialPageRoute(builder: (context) => DescriptionPodcast(product)));
       },
       child: Center(
         child: Column(

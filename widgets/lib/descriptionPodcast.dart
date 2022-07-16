@@ -9,9 +9,9 @@ import 'package:flutter/material.dart';
 
 import 'favorite.dart';
 
-class Descriptionpadkast extends StatelessWidget {
+class DescriptionPodcast extends StatelessWidget {
     Product  product;
-  Descriptionpadkast(this.product);
+  DescriptionPodcast(this.product);
 
   @override
   Widget build(BuildContext context) {
