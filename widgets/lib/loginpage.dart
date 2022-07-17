@@ -41,7 +41,7 @@ class _LoginWidgetState extends State<LoginWidget> {
       width: double.infinity,
       decoration: const BoxDecoration(
         image: DecorationImage(
-          image: AssetImage("assets/images/photo1657973117 (1).jpeg"),
+          image: AssetImage("assets/images/cool-background-stellar.png"),
           fit: BoxFit.cover
           ),
       ),
