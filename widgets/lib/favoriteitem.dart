@@ -1,14 +1,14 @@
-import 'package:first_app/product.dart';
+import 'productapload.dart';
 import 'package:flutter/material.dart';
 
 typedef OnRemovePressed = Function(int index);
 
 class ShoppingBasketItem extends StatefulWidget {
-  Product product;
+  Productapload productapload;
   int _count = 0;
   final int _index;
   final OnRemovePressed _onRemovePressed;
-  ShoppingBasketItem(this.product, this._onRemovePressed, this._index, {Key? key}) : super(key: key);
+  ShoppingBasketItem(this.productapload, this._onRemovePressed, this._index, {Key? key}) : super(key: key);
 
   @override
   _ShoppingBasketItemState createState() => _ShoppingBasketItemState();
@@ -29,7 +29,7 @@ class _ShoppingBasketItemState extends State<ShoppingBasketItem> {
             Padding(
               padding: const EdgeInsets.only(right: 40, left: 20),
               child: Image.network(
-                widget.product.img,
+                widget.productapload.img,
                 width: 100,
                 height: 100,
               ),
@@ -41,7 +41,7 @@ class _ShoppingBasketItemState extends State<ShoppingBasketItem> {
                 Padding(
                   padding: const EdgeInsets.only(top: 30, right: 20),
                   child: Text(
-                    widget.product.name,
+                    widget.productapload.name,
                     style: const TextStyle(fontFamily: "Vazirmatn", fontSize: 20),
                   ),
                 ),
@@ -64,7 +64,7 @@ class _ShoppingBasketItemState extends State<ShoppingBasketItem> {
                         child: const Icon(Icons.delete_outline),
                       ),
                       Text(
-                        widget.product.desc,
+                        widget.productapload.desc,
                         style: const TextStyle(fontFamily: "Vazirmatn", fontSize: 16),
                       )
                     ],

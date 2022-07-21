@@ -1,21 +1,21 @@
-import 'product.dart';
+import 'productapload.dart';
 
 class favoritedata{
 static favoritedata ?_instance;
-  List<Product> _basketItems;
+  List<Productapload> _basketItems;
 
     favoritedata(this._basketItems) {
-    _basketItems = <Product>[];
+    _basketItems = <Productapload>[];
   }
 
-  List<Product> get basketItems => _basketItems;
+  List<Productapload> get basketItems => _basketItems;
 
-  set basketItems(List<Product> value) {
+  set basketItems(List<Productapload> value) {
     _basketItems = value;
   }
 
   static favoritedata? getInstance() {
-    _instance ??= favoritedata(<Product>[]);
+    _instance ??= favoritedata(<Productapload>[]);
 
     return _instance;
   }

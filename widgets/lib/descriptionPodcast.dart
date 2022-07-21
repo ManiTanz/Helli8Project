@@ -4,14 +4,14 @@ import 'Search.dart';
 import 'favoritepage.dart';
 import 'loginpage.dart';
 import 'main.dart';
-import 'product.dart';
+import 'productapload.dart';
 import 'package:flutter/material.dart';
 
 import 'favorite.dart';
 
 class DescriptionPodcast extends StatelessWidget {
-    Product  product;
-  DescriptionPodcast(this.product);
+    Productapload productapload;
+  DescriptionPodcast(this.productapload);
 
   @override
   Widget build(BuildContext context) {
@@ -172,14 +172,14 @@ class DescriptionPodcast extends StatelessWidget {
             ),
             Center(
               child: Image.network(
-                product.img,
+                productapload.img,
                 height: 280,
                 width: 280,
                 fit: BoxFit.contain,
               ),
             ),
             Text(
-              product.author,
+              productapload.author,
               style: TextStyle(
                 color: Color.fromARGB(255, 7, 205, 255),
                 fontFamily: "Vazir",
@@ -187,7 +187,7 @@ class DescriptionPodcast extends StatelessWidget {
               ),
             ),
             Text(
-              product.name,
+              productapload.name,
               style: TextStyle(
                 color: Colors.grey[700],
                 fontFamily: "Vazirmatn",
@@ -200,7 +200,7 @@ class DescriptionPodcast extends StatelessWidget {
             Padding(
               padding: EdgeInsets.only(left: 45, right: 45),
               child: Text(
-                product.desc,
+                productapload.desc,
                 style: TextStyle(
                   color: Colors.grey[500],
                   fontSize: 16,
@@ -216,12 +216,12 @@ class DescriptionPodcast extends StatelessWidget {
                   padding: EdgeInsets.only(bottom: 20),
                   child: GestureDetector(
                     onTap: () {
-                      print("added to basket ${product.name}");
-                      favoritedata.getInstance()?.basketItems.add(product);
+                      print("added to basket ${productapload.name}");
+                      favoritedata.getInstance()?.basketItems.add(productapload);
                       print(favoritedata.getInstance()?.basketItems.length);
                       Scaffold.of(context).showSnackBar(
                         SnackBar(
-                          content: Text("${product.name} "+"به علاقه مندی ها افزوده شد",
+                          content: Text("${productapload.name} "+"به علاقه مندی ها افزوده شد",
                               style: TextStyle(fontSize: 15,fontFamily: "Vazirmatn")),
                         )
                       );

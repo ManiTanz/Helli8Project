@@ -8,7 +8,7 @@ import 'package:flutter/foundation.dart';
 import 'descriptionpage.dart';
 import 'loginpage.dart';
 import 'Search.dart';
-import 'product.dart';
+import 'productapload.dart';
 import 'UploadContent.dart';
 import 'package:http/http.dart' as http;
 
@@ -35,7 +35,7 @@ class Store extends StatefulWidget {
    
   }
 class _StoreState extends State<Store> {
-  List<Product> _items=[];
+  List<Productapload> _items=[];
   @override
   void initState() {
     super.initState();
@@ -182,7 +182,7 @@ class _StoreState extends State<Store> {
     );
   }
 Future<void> fetchItems() async{
-  final response = await http.get(Uri.parse("http://154.91.170.55:8900/api/product/"));
+  final response = await http.get(Uri.parse("http://192.168.43.125:6969/api/product/23"));
   print(response.statusCode);
   var ProuductJson = jsonDecode(response.body);
   print("sag");
@@ -190,10 +190,10 @@ Future<void> fetchItems() async{
     // print(i['name']);
     setState(() {
           if(i["img"] == null){
-      var ProductItem = Product(i['name'], i['id'] , i['author'] , "" , i['categories'] , i['desc'],);
+      var ProductItem = Productapload(i['name'], i['id'] , i['author'] , i["img"], i['categories'] , i['desc'], i["podcasts"] , i["videos"],i["date"] , i["exist"]);
     _items.add(ProductItem);
     } else {
-    var ProductItem = Product(i['name'], i['id'] , i['author'] , i["img"] , i['categories'] , i['desc'],);
+    var ProductItem = Productapload(i['name'], i['id'] , i['author'] ,i["img"]  , i['categories'] , i['desc'], i["podcasts"] , i["videos"],i["date"] , i["exist"]);
     _items.add(ProductItem);
     }
     });
@@ -202,7 +202,7 @@ Future<void> fetchItems() async{
 }
 }
 
-Card generateItem(Product product, context) {
+Card generateItem(Productapload productapload, context) {
   return Card(
     shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.all(Radius.circular(30))),
@@ -210,7 +210,7 @@ Card generateItem(Product product, context) {
     child: InkWell(
       onTap: () {
         Navigator.of(context).push(
-            MaterialPageRoute(builder: (context) => Descriptionvideos(product)));
+            MaterialPageRoute(builder: (context) => Descriptionvideos(productapload)));
       },
       child: Center(
         child: Column(
@@ -219,15 +219,15 @@ Card generateItem(Product product, context) {
             Container(
               width: 130,
               height: 130,
-              child: Image.network(product.img),
+              child: Image.network(productapload.img),
             ),
             Text(
-              product.author,
+              productapload.author,
               style: TextStyle(
                   fontFamily: "Vazirmatn", color: Colors.red[700], fontSize: 16.0),
             ),
             Text(
-              product.name,
+              productapload.name,
               style: TextStyle(
                   fontFamily: "Vazirmatn",
                   color: Color(0xFF575E67),
