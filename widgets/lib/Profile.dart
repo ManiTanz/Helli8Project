@@ -1,8 +1,11 @@
 import 'dart:ui';
 
 import 'package:first_app/User.dart';
+import 'package:first_app/favoriteitem.dart';
+import 'package:first_app/main.dart';
 import 'package:first_app/user_prefrenence.dart';
 import 'package:flutter/material.dart';
+import 'ButtonWidget.dart';
 import 'ProfileWidget.dart';
 import 'buildAppBar.dart';
 
@@ -20,55 +23,61 @@ class _ProfileState extends State<Profile> {
 
     return Scaffold(
       appBar: buildAppBar(context),
-      body:
-            Container(
-              color: Color.fromARGB(255, 7, 205, 255),
-              child: Column(
-                children: [
-                  ListView(
-                    physics: BouncingScrollPhysics(),
-                    children: [
-                      ProfileWidget(
-                        
-                        onClicked: () async {}, img: '',
-                      ),
-                      const SizedBox(height: 24),
-                      buildname(user),
-                      const SizedBox(height: 48),
-                      buildabout(user),
-                    ],
-                  ),
-                ],
-              ),
-            ),
-        );
-  }
-  Widget buildname(User user)=> Column(
-  children: [
-  Text(
-   user.name,
-   style: TextStyle(fontWeight: FontWeight.bold , fontSize: 24),
-  ),
-   const SizedBox(height: 4,),
-   Text(user.email, 
-   style: TextStyle(color: Colors.grey),
-   )
-  ],
+      body: ListView(
+        physics: BouncingScrollPhysics(),
+        children: [
+          ProfileWidget(
+            imagePath: user.img,
+            onClicked: () async{},
+          ),
+          SizedBox(height: 24,),
+          buildName(user),
+          const SizedBox(height: 24,),
+          Center(child: buildUpgradeButton()),
+          const SizedBox(height: 24),
+          Center(child: buildAbout(user)),
+        ],
+      )
   );
-  Widget buildabout(User user)=> Container(
-    padding: EdgeInsets.symmetric(horizontal: 48),
-
-  child:
-  Column(
-    crossAxisAlignment: CrossAxisAlignment.start,
+  }
+  Widget buildName (User user) => Column(
     children: [
       Text(
-        "بیوگرافی",
-        style: TextStyle(fontSize: 16 , fontWeight: FontWeight.bold ),
+        user.name,
+        style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30),
       ),
-     const SizedBox(height: 16),
+      const SizedBox(height: 4),
+      Text(
+        user.email,
+        style: TextStyle(color: Colors.grey, fontSize: 25),
+      )
+
     ],
-  ),
   );
   
+  Widget buildUpgradeButton() => ButtonWidget(
+    text: 'خانه',
+    onClicked: () {
+      Navigator.of(context).push(MaterialPageRoute(
+   builder: (context) =>  Store()));
+    }
+  );
+  
+  Widget buildAbout(User user) => Container(
+    padding: EdgeInsets.symmetric(horizontal: 48),
+    child: Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          'About',
+          style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+        ),
+        const SizedBox(height: 16),
+        Text(
+          user.about,
+          style: TextStyle(fontSize: 16, height: 1.4),
+        ),
+      ],
+    ),
+  );
 }
