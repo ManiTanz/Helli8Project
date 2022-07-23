@@ -1,40 +1,26 @@
 import 'dart:async';
 import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-class User {
-  final String img;
-  final String name;
-  final String email;
-  final String about;
-  const User({
-    required this.img,
-    required this.name,
-    required this.email,
-    required this.about
-  });
-}
 
-
-Future<Album> fetchAlbum() async {
+Future<User> fetchUser() async {
   final response = await http
       .get(Uri.parse('http://154.91.170.55:8900/api/profile/'));
 
   if (response.statusCode == 200) {
     // If the server did return a 200 OK response,
     // then parse the JSON.
-    var data = Album.fromJson(jsonDecode(response.body)[0]);
+    var data = User.fromJson(jsonDecode(response.body)[0]);
     return data;
   } else {
     // If the server did not return a 200 OK response,
     // then throw an exception.
     print(response.statusCode);
-    throw Exception('Failed to load album');
+    throw Exception('Failed to load User');
   }
 }
 
-class Album {
+class User {
   final int id;
   final String email;
   final String name;
@@ -42,7 +28,7 @@ class Album {
   //final String img;
   final List favorite;
 
-  const Album({
+  const User({
     required this.id,
     required this.email,
     required this.name,
@@ -51,8 +37,8 @@ class Album {
     required this.favorite,
   });
 
-  factory Album.fromJson(Map<String, dynamic> json) {
-    return Album(
+  factory User.fromJson(Map<String, dynamic> json) {
+    return User(
       id: json['id'],
       email: json['email'],
       name: json['name'],
@@ -73,12 +59,12 @@ class UserData extends StatefulWidget {
 }
 
 class _UserDataState extends State<UserData> {
-  late Future<Album> futureAlbum;
+  late Future<User> futureUser;
 
   @override
   void initState() {
     super.initState();
-    futureAlbum = fetchAlbum();
+    futureUser = fetchUser();
   }
 
   @override
@@ -93,8 +79,8 @@ class _UserDataState extends State<UserData> {
           title: const Text('Fetch Data Example'),
         ),
         body: Center(
-          child: FutureBuilder<Album>(
-            future: futureAlbum,
+          child: FutureBuilder<User>(
+            future: futureUser,
             builder: (context, snapshot) {
               if (snapshot.hasData) {
                 return Text(snapshot.data!.email);
