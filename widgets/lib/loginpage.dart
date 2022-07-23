@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart';
 import 'main.dart';
 import 'package:http/http.dart' as http;
-import 'loginresponse.dart';
 
 
 class LoginWidget extends StatefulWidget {
@@ -41,7 +40,7 @@ class _LoginWidgetState extends State<LoginWidget> {
       width: double.infinity,
       decoration: const BoxDecoration(
         image: DecorationImage(
-          image: AssetImage("assets/images/photo1657973117 (1).jpeg"),
+          image: AssetImage("assets/images/cool-background-stellar.png"),
           fit: BoxFit.cover
           ),
       ),
@@ -177,6 +176,7 @@ class _LoginWidgetState extends State<LoginWidget> {
   }
 void login(String username, password) async {
   
+   bool isLoggedIn = false;
   try{
     
     Response response = await http.post(
@@ -186,78 +186,20 @@ void login(String username, password) async {
         'password' : password
       }
     );
-
     if(response.statusCode == 200 || (username == "1" && password == "1")){
       
       var data = jsonDecode(response.body.toString());
       print(data['token']);
       print('Login successfully');
+      isLoggedIn = true;
       Navigator.of(context).push(MaterialPageRoute(
    builder: (context) => const Store()));
 
     }else {
       print('failed');
-         void showMySnackBar(BuildContext context,String message){
-    Scaffold.of(context).showSnackBar(
-      SnackBar(
-        content: Text(message,style: TextStyle(fontFamily: "Vazirmatn",fontSize: 15,),),
-      )
-    );
-    }
-    showMySnackBar(context, "نام کاربری یا رمز عبور اشتباه است.");
     }
   }catch(e){
     print(e.toString());
   }
 }
-  //  void sendLoginRequest({required BuildContext context, required String username,required String password}) async{
-  //   var url=Uri(scheme: "http://154.91.170.55:8900/api/login/");
-  //   var body=Map<String,dynamic>();
-  //   body["username"]=username;
-  //   body["password"]=password;
-  //   Response response = await http.post(url,body: body);
-  //   if(response.statusCode==200){
-  //     //successful
-  //     var loginJson=json.decode(utf8.decode(response.bodyBytes));
-  //     var model=LoginResponseModel(loginJson["result"],loginJson["message"]);
-  //     if(model.result==0){
-  //       showMySnackBar(context, model.message);
-  //     }
-  //     else if(model.result==1){
-  //       Navigator.of(context).pushReplacement(PageRouteBuilder(
-  //           transitionDuration: Duration(milliseconds: 300),
-  //           pageBuilder: (BuildContext context,
-  //               Animation<double> animation,
-  //               Animation<double> secondAnimation) {
-  //             return Store();
-  //           },
-  //           transitionsBuilder: (BuildContext context,
-  //               Animation<double> animation,
-  //               Animation<double> secondAnimation,
-  //               Widget child) {
-  //             return ScaleTransition(
-  //               child: child,
-  //               scale:
-  //               Tween<double>(begin: 0, end: 1)
-  //                   .animate(CurvedAnimation(
-  //                   parent: animation,
-  //                   curve: Curves.fastOutSlowIn)),
-  //             );
-  //           }));
-  //     }
-
-  //   }
-  //   else{
-  //     //error
-  //     showMySnackBar(context, "نام کاربری یا رمز عبور اشتباه است.");
-  //   }
-  // }
-
-  // void showMySnackBar(BuildContext context,String message){
-  //   Scaffold.of(context).showSnackBar(
-  //     SnackBar(
-  //       content: Text(message,style: TextStyle(fontFamily: "Vazirmatn",fontSize: 15,),),
-  //     )
-  //   );
-  // }
 }

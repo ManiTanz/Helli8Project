@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:first_app/Profile.dart';
+import 'package:first_app/User.dart';
 import 'package:first_app/favoritepage.dart';
 import 'package:flutter/material.dart';
 import 'dart:async';
@@ -166,6 +167,23 @@ class _StoreState extends State<Store> {
                   );
                 },
                           ),
+                          ListTile(
+                  title: Text(
+                    "علاقه مندی ها",
+                    style: TextStyle(
+                      fontFamily: "Vazirmatn"
+                      ),
+                      ),  
+                leading: Icon(
+                  Icons.favorite
+                  ),
+           onTap: (){
+                  Navigator.of(context).push(MaterialPageRoute(
+   builder: (context) => UserData()
+         ),
+         );
+                },
+                ),
               ],
      ),
           ),

@@ -1,9 +1,7 @@
 import 'dart:ui';
-
 import 'package:first_app/User.dart';
 import 'package:first_app/user_prefrenence.dart';
 import 'package:flutter/material.dart';
-import 'ProfileWidget.dart';
 import 'buildAppBar.dart';
 
 class Profile extends StatefulWidget {
@@ -28,9 +26,8 @@ class _ProfileState extends State<Profile> {
                   ListView(
                     physics: BouncingScrollPhysics(),
                     children: [
-                      ProfileWidget(
+                      Container(
                         
-                        onClicked: () async {}, img: '',
                       ),
                       const SizedBox(height: 24),
                       buildname(user),
