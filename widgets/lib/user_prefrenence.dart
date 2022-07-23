@@ -1,10 +1,10 @@
 import 'User.dart';
 
 class UserPrefences{
-  static const myUser = User(
-    img: "",
+  static User myUser = User(
+    img: "assets/images/Sample.jpg",
     name: "mmd",
     email: "example@gmail.com",
-  
+  about: "This is HLS"
   );
 }
