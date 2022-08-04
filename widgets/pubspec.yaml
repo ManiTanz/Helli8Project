@@ -37,6 +37,7 @@ dependencies:
   http: ^0.13.4
   flutter_uploader: ^1.2.1
   image_picker: ^0.8.5+3
+  file_picker: ^5.0.1
  
 
 dev_dependencies:

@@ -106,7 +106,7 @@ class DescriptionPage extends StatelessWidget {
                   ),
             onTap: (){
                   Navigator.of(context).push(MaterialPageRoute(
-   builder: (context) => const Profile()
+   builder: (context) => Profile()
          ));
                 },
                 ),
@@ -161,13 +161,13 @@ class DescriptionPage extends StatelessWidget {
               builder:(context)=> Column(
                 children: <Widget>[
                   SizedBox(
-                    height: 20,
+                    height: 100,
                   ),
                   Center(
-                    child: Image.network(
-                      product.img,
-                      height: 280,
-                      width: 280,
+                    child: Image.asset(
+                      "assets/images/Sample.jpg",
+                      height: 120,
+                      width: 120,
                       fit: BoxFit.contain,
                     ),
                   ),
@@ -182,8 +182,8 @@ class DescriptionPage extends StatelessWidget {
                   Text(
                     product.name,
                     style: TextStyle(
-                      color: Colors.grey[700],
-                      fontFamily: "Vazirmatn",
+                      color: Color.fromARGB(255, 0, 4, 255),
+                        fontFamily: "Vazirmatn",
                       fontSize: 20,
                     ),
                   ),
@@ -194,6 +194,7 @@ class DescriptionPage extends StatelessWidget {
                       style: TextStyle(
                         fontSize: 16,
                         fontFamily: "Vazirmatn",
+                        color: Color.fromARGB(255, 242, 0, 255)
                       ),
                       textDirection: TextDirection.rtl,
                       textAlign: TextAlign.center,

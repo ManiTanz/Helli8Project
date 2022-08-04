@@ -146,7 +146,7 @@ class _StoreState extends State<Store> {
                   ),
             onTap: (){
                   Navigator.of(context).push(MaterialPageRoute(
-   builder: (context) => const Profile()
+   builder: (context) => UserData()
          ));
                 },
                 ),
@@ -167,23 +167,6 @@ class _StoreState extends State<Store> {
                   );
                 },
                           ),
-                          ListTile(
-                  title: Text(
-                    "علاقه مندی ها",
-                    style: TextStyle(
-                      fontFamily: "Vazirmatn"
-                      ),
-                      ),  
-                leading: Icon(
-                  Icons.favorite
-                  ),
-           onTap: (){
-                  Navigator.of(context).push(MaterialPageRoute(
-   builder: (context) => UserData()
-         ),
-         );
-                },
-                ),
               ],
      ),
           ),
@@ -251,8 +234,9 @@ Card generateItem(Product product, context) {
             Container(
               width: 130,
               height: 130,
-              child: Image.network(product.img),
+              child: Image.network("assets/images/Sample.jpg"),
             ),
+            SizedBox(height: 30,),
             Text(
               product.author,
               style: TextStyle(
@@ -262,7 +246,7 @@ Card generateItem(Product product, context) {
               product.name,
               style: TextStyle(
                   fontFamily: "Vazirmatn",
-                  color: Color(0xFF575E67),
+                  color: Color.fromARGB(255, 0, 110, 255),
                   fontSize: 14.0),
             )
           ],

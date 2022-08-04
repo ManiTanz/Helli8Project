@@ -21,19 +21,19 @@ Future<User> fetchUser() async {
 }
 
 class User {
-  final int id;
-  final String email;
-  final String name;
-  final bool isStaff;
-  //final String img;
-  final List favorite;
+   int id;
+   String email;
+   String name;
+   bool isStaff;
+   String img;
+   List favorite;
 
-  const User({
+   User({
     required this.id,
     required this.email,
     required this.name,
     required this.isStaff,
-    //required this.img,
+    this.img = 'assets/images/Sample.jpg',
     required this.favorite,
   });
 
@@ -43,14 +43,11 @@ class User {
       email: json['email'],
       name: json['name'],
       isStaff: json['is_staff'],
-      //img: json['img'],
+      img: json['img'],
       favorite: json['favorite'],
     );
   }
 }
-
-void main() => runApp(const UserData());
-
 class UserData extends StatefulWidget {
   const UserData({super.key});
 
@@ -65,6 +62,7 @@ class _UserDataState extends State<UserData> {
   void initState() {
     super.initState();
     futureUser = fetchUser();
+    fetchUser();
   }
 
   @override
