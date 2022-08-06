@@ -103,7 +103,7 @@ class _favoriteState extends State<favorite> {
                   ),
             onTap: (){
                   Navigator.of(context).push(MaterialPageRoute(
-   builder: (context) => const Profile()
+   builder: (context) => Profile()
          ));
                 },
                 ),

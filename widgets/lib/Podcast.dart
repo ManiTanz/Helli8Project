@@ -131,7 +131,7 @@ class _StoreState extends State<Store> {
                   ),
             onTap: (){
                   Navigator.of(context).push(MaterialPageRoute(
-   builder: (context) => const Profile()
+   builder: (context) => Profile()
          ));
                 },
                 ),
