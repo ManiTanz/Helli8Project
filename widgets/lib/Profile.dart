@@ -1,3 +1,5 @@
+import 'package:first_app/User.dart';
+import 'package:first_app/buildAppBar.dart';
 import 'package:flutter/material.dart';
 
 class Profile extends StatefulWidget {
@@ -10,8 +12,9 @@ class Profile extends StatefulWidget {
 class _ProfileState extends State<Profile> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-
+    return Scaffold(
+    
+      body: UserData(),
     );
   }
 }
