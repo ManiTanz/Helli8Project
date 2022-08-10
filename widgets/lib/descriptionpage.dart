@@ -1,19 +1,13 @@
-
 import 'package:first_app/Podcast.dart';
 import 'package:first_app/videos.dart';
 import 'package:flutter/material.dart';
 import 'main.dart';
 import 'package:first_app/Profile.dart';
 import 'package:first_app/favoritepage.dart';
-import 'package:http/http.dart';
-import 'dart:async';
-import 'package:flutter/foundation.dart';
-import 'descriptionpage.dart';
 import 'loginpage.dart';
 import 'Search.dart';
 import 'product.dart';
 import 'UploadContent.dart';
-
 
 class DescriptionPage extends StatelessWidget {
   Product product;
@@ -22,145 +16,123 @@ class DescriptionPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-       drawer: Drawer(
-        child: ListView(addAutomaticKeepAlives: true,
-        children:[
-          DrawerHeader(
-            decoration: BoxDecoration(
-              color: Color.fromARGB(255, 7, 205, 255),
-              image: DecorationImage(
-                image: AssetImage(
-                  "assets/images/Logo-Red-Green.png"
+      drawer: Drawer(
+        child: ListView(
+          addAutomaticKeepAlives: true,
+          children: [
+            const DrawerHeader(
+              decoration: BoxDecoration(
+                color: Color.fromARGB(255, 7, 205, 255),
+                image: DecorationImage(
+                  image: AssetImage("assets/images/Logo-Red-Green.png"),
+                  fit: BoxFit.cover,
                 ),
-                fit: BoxFit.cover,
-             ),
-              ), 
-              child: Center(
-
               ),
-          ),
-         Container(
-            color: Color.fromARGB(255, 243, 255, 78),
-            child: Column(
-              children: [
-                ListTile(
-                  title: Text(
-                    "خانه",
-                  style: TextStyle(
-                      fontFamily: "Vazirmatn"
+              child: Center(),
+            ),
+            Container(
+              color: const Color.fromARGB(255, 243, 255, 78),
+              child: Column(
+                children: [
+                  ListTile(
+                    title: const Text(
+                      "خانه",
+                      style: TextStyle(fontFamily: "Vazirmatn"),
+                    ),
+                    leading: const Icon(Icons.home),
+                    onTap: () {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(builder: (context) => const MyApp()),
+                      );
+                    },
+                  ),
+                  ListTile(
+                    title: const Text(
+                      "علاقه مندی ها",
+                      style: TextStyle(fontFamily: "Vazirmatn"),
+                    ),
+                    leading: const Icon(Icons.favorite),
+                    onTap: () {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                            builder: (context) => const favorite()),
+                      );
+                    },
+                  ),
+                  ListTile(
+                    title: const Text(
+                      "جست و جو",
+                      style: TextStyle(
+                        fontFamily: "Vazirmatn",
                       ),
                     ),
-              leading: Icon(
-                  Icons.home
+                    leading: const Icon(Icons.search),
+                    onTap: () {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (context) => const search(),
+                        ),
+                      );
+                    },
                   ),
-                onTap: (){
-                  Navigator.of(context).push(MaterialPageRoute(
-    builder: (context) => const MyApp()
-         ),
-         );
-                },
-                ),
-                ListTile(
-                  title: Text(
-                    "علاقه مندی ها",
-                    style: TextStyle(
-                      fontFamily: "Vazirmatn"
-                      ),
-                      ),  
-                leading: Icon(
-                  Icons.favorite
+                  ListTile(
+                    title: const Text(
+                      "پروفایل",
+                      style: TextStyle(fontFamily: "Vazirmatn"),
+                    ),
+                    leading: const Icon(Icons.person),
+                    onTap: () {
+                      Navigator.of(context).push(
+                          MaterialPageRoute(builder: (context) => Profile()));
+                    },
                   ),
-           onTap: (){
-                  Navigator.of(context).push(MaterialPageRoute(
-   builder: (context) => const favorite()
-         ),
-         );
-                },
-                ),
-                ListTile(
-                  title: Text(
-                    "جست و جو",
-                    style: TextStyle(
-                      fontFamily: "Vazirmatn",
+                  ListTile(
+                    title: const Text(
+                      "خروج",
+                      style: TextStyle(
+                        fontFamily: "Vazirmatn",
                       ),
-                      ), 
-                          leading: Icon(
-                            Icons.search
-                            ),
-           onTap: (){
-                  Navigator.of(context).push(MaterialPageRoute(
-      builder: (context) => const search(),
-                ),
-                  );
-                },
-                          ),
-                ListTile(
-                  title: Text(
-                    "پروفایل",
-                    style: TextStyle(
-                      fontFamily: "Vazirmatn"
-                      ),
-                      ),  
-               leading: Icon(
-                  Icons.person
+                    ),
+                    leading: const Icon(Icons.logout),
+                    onTap: () {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (context) => const LoginWidget(),
+                        ),
+                      );
+                    },
                   ),
-            onTap: (){
-                  Navigator.of(context).push(MaterialPageRoute(
-   builder: (context) => Profile()
-         ));
-                },
-                ),
-                ListTile(
-                  title: Text(
-                    "خروج",
-                    style: TextStyle(
-                      fontFamily: "Vazirmatn",
-                      ),
-                      ), 
-                          leading: Icon(
-                            Icons.logout
-                            ),
-       onTap: (){
-                  Navigator.of(context).push(MaterialPageRoute(
-         builder: (context) => const LoginWidget(),
-                  ),
-                  );
-                },
-                          ),
-              ],
-     ),
-          ),
-        ],
-      ),
+                ],
+              ),
+            ),
+          ],
+        ),
       ),
       appBar: AppBar(
-          title: Image.asset(
-          "assets/images/Logo-Red-Green.png", 
-          height: 250,          
+        title: Image.asset(
+          "assets/images/Logo-Red-Green.png",
+          height: 250,
         ),
         centerTitle: true,
         backgroundColor: (const Color.fromARGB(255, 7, 205, 255)),
         elevation: 5,
-      ),      
-      body: 
-      
-       Stack(
-         children:<Widget> [
-               Container(
-      height: double.infinity,
-      width: double.infinity,
-      decoration: const BoxDecoration(
-        image: DecorationImage(
-          image: AssetImage("assets/images/photo1657973117.jpeg"),
-          fit: BoxFit.cover
-          ),
       ),
-               ),
-           Center(
+      body: Stack(
+        children: <Widget>[
+          Container(
+            height: double.infinity,
+            width: double.infinity,
+            decoration: const BoxDecoration(
+              image: DecorationImage(
+                  image: AssetImage("assets/images/cool-background-ether.png"),
+                  fit: BoxFit.cover),
+            ),
+          ),
+          Center(
             child: Builder(
-              builder:(context)=> Column(
+              builder: (context) => Column(
                 children: <Widget>[
-                  SizedBox(
+                  const SizedBox(
                     height: 20,
                   ),
                   Center(
@@ -188,10 +160,10 @@ class DescriptionPage extends StatelessWidget {
                     ),
                   ),
                   Padding(
-                    padding: EdgeInsets.only(left: 45, right: 45),
+                    padding: const EdgeInsets.only(left: 45, right: 45),
                     child: Text(
                       product.desc,
-                      style: TextStyle(
+                      style: const TextStyle(
                         fontSize: 16,
                         fontFamily: "Vazirmatn",
                       ),
@@ -199,75 +171,103 @@ class DescriptionPage extends StatelessWidget {
                       textAlign: TextAlign.center,
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 200,
                   ),
-                         Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Material(
-                              elevation: 20,
-                              borderRadius: BorderRadius.circular(40),
-                              color:const Color.fromARGB(255, 7, 205, 255) ,
-                              child: InkWell(
-                                onTap: (){
-                                   Navigator.of(context).push(MaterialPageRoute(
-                                builder: (context) => const videos()
-                                ));
-                                },
-                                child: const SizedBox(
-                                  height: 60,
-                                  width: 250,
-                                  child: Center(
-                                    child:  Text(
-                                      "ویدئو ها" , 
-                                      style: TextStyle(
-                                        color: Colors.white , 
-                                        fontSize: 20 ,
-                                        fontFamily: 'Vazirmatn',
-                                      ),
-                                    ),
-                                  ),   
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Material(
+                        elevation: 20,
+                        borderRadius: BorderRadius.circular(40),
+                        color: const Color.fromARGB(255, 7, 205, 255),
+                        child: InkWell(
+                          onTap: () {
+                            Navigator.of(context).push(MaterialPageRoute(
+                                builder: (context) => const videos()));
+                          },
+                          child: const SizedBox(
+                            height: 60,
+                            width: 250,
+                            child: Center(
+                              child: Text(
+                                "ویدئو ها",
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 20,
+                                  fontFamily: 'Vazirmatn',
                                 ),
                               ),
+                            ),
+                          ),
+                        ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         width: 100,
                       ),
                       Material(
-                              elevation: 20,
-                              borderRadius: BorderRadius.circular(40),
-                              color:const Color.fromARGB(255, 7, 205, 255),
-                              child: InkWell(
-                                onTap: (){
-                              Navigator.of(context).push(MaterialPageRoute(
-                              builder: (context) => const Podcast()
-                              ));
-                              },
-                                  child: const SizedBox(
-                                  height: 60,
-                                  width: 250,
-                                  child: Center(
-                                    child:  Text(
-                                      "پادکست ها" , 
-                                      style: TextStyle(
-                                        color: Colors.white , 
-                                        fontSize: 20 ,
-                                        fontFamily: 'Vazirmatn',
-                                      ),
-                                    ),
-                                  ),      
-                                ),
+                        elevation: 20,
+                        borderRadius: BorderRadius.circular(40),
+                        color: const Color.fromARGB(255, 7, 205, 255),
+                        child: InkWell(
+                          onTap: () {
+                            Navigator.of(context).push(MaterialPageRoute(
+                                builder: (context) => const Podcast()));
+                          },
+                          child: const SizedBox(
+                            height: 60,
+                            width: 250,
+                            child: Center(
+                              child: Text(
+                                "پادکست ها",
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 20,
+                                  fontFamily: 'Vazirmatn',
                                 ),
                               ),
-                            ],
+                            ),
                           ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(
+                    height: 60,
+                  ),
+                  Center(
+                    child: Material(
+                      elevation: 20,
+                      borderRadius: BorderRadius.circular(40),
+                      color: const Color.fromARGB(255, 7, 205, 255),
+                      child: InkWell(
+                        onTap: () {
+                          Navigator.of(context).push(MaterialPageRoute(
+                              builder: (context) => FilePickerDemo()));
+                        },
+                        child: const SizedBox(
+                          height: 60,
+                          width: 250,
+                          child: Center(
+                            child: Text(
+                              "بارگذاری محتوا",
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 20,
+                                fontFamily: 'Vazirmatn',
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
                 ],
               ),
-      ),
+            ),
           ),
-         ],
-       ),
+        ],
+      ),
     );
   }
 }

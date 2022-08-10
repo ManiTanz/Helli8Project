@@ -1,237 +1,210 @@
 import 'dart:convert';
 import 'package:first_app/Profile.dart';
-import 'package:first_app/User.dart';
 import 'package:first_app/favoritepage.dart';
 import 'package:flutter/material.dart';
 import 'dart:async';
-import 'package:flutter/foundation.dart';
 import 'descriptionpage.dart';
 import 'loginpage.dart';
 import 'Search.dart';
 import 'product.dart';
-import 'UploadContent.dart';
 import 'package:http/http.dart' as http;
 
-
-
 void main() => runApp(const MainMaterial());
+
 class MainMaterial extends StatelessWidget {
-    const MainMaterial({ Key? key }) : super(key: key);
-    static const appTitle = 'HLS';
+  const MainMaterial({Key? key}) : super(key: key);
+  static const appTitle = 'HLS';
 
-  
-    @override
-    Widget build(BuildContext context) {
-      return const MaterialApp(
-      title: appTitle,
-    debugShowCheckedModeBanner: false,
-     home: LoginWidget(), 
-      );
-    }
-  }
-void Main() => runApp(const MyApp());
-class MyApp extends StatelessWidget {
-
-  
-    const MyApp({ Key? key }) : super(key: key);
-  
-    @override
-    Widget build(BuildContext context) {
-      return const MaterialApp(
-    debugShowCheckedModeBanner: false,
-     home: Store(), 
-      );
-    }
-}
-class Store extends StatefulWidget {
-   const Store({Key? key}) : super(key: key);
   @override
-   _StoreState createState() => _StoreState();
-   
+  Widget build(BuildContext context) {
+    return const MaterialApp(
+      title: appTitle,
+      debugShowCheckedModeBanner: false,
+      home: LoginWidget(),
+    );
   }
+}
+
+void Main() => runApp(const MyApp());
+
+class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return const MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: Store(),
+    );
+  }
+}
+
+class Store extends StatefulWidget {
+  const Store({Key? key}) : super(key: key);
+  @override
+  _StoreState createState() => _StoreState();
+}
+
 class _StoreState extends State<Store> {
-  List<Product> _items=[];
+  List<Product> _items = [];
   @override
   void initState() {
     super.initState();
     final response = fetchItems();
     fetchItems();
   }
-  
-  @override
-  Widget build(BuildContext context){
-     
-     return  Scaffold(
-      drawer: Drawer(
-        child: ListView(addAutomaticKeepAlives: true,
-        children:[
-          DrawerHeader(
-            decoration: BoxDecoration(
-              color: Color.fromARGB(255, 7, 205, 255),
-              image: DecorationImage(
-                image: AssetImage(
-                  "assets/images/Logo-Red-Green.png"
-                ),
-                fit: BoxFit.cover,
-             ),
-              ), 
-              child: Center(
 
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      drawer: Drawer(
+        child: ListView(
+          addAutomaticKeepAlives: true,
+          children: [
+            const DrawerHeader(
+              decoration: BoxDecoration(
+                color: Color.fromARGB(255, 7, 205, 255),
+                image: DecorationImage(
+                  image: AssetImage("assets/images/Logo-Red-Green.png"),
+                  fit: BoxFit.cover,
+                ),
               ),
-          ),
-         Container(
-            color: Color.fromARGB(255, 243, 255, 78),
-            child: Column(
-              children: [
-                ListTile(
-                  title: Text(
-                    "خانه",
-                  style: TextStyle(
-                      fontFamily: "Vazirmatn"
+              child: Center(),
+            ),
+            Container(
+              color: Color.fromARGB(255, 243, 255, 78),
+              child: Column(
+                children: [
+                  ListTile(
+                    title: Text(
+                      "خانه",
+                      style: TextStyle(fontFamily: "Vazirmatn"),
+                    ),
+                    leading: Icon(Icons.home),
+                    onTap: () {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(builder: (context) => const Store()),
+                      );
+                    },
+                  ),
+                  ListTile(
+                    title: Text(
+                      "علاقه مندی ها",
+                      style: TextStyle(fontFamily: "Vazirmatn"),
+                    ),
+                    leading: Icon(Icons.favorite),
+                    onTap: () {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                            builder: (context) => const favorite()),
+                      );
+                    },
+                  ),
+                  ListTile(
+                    title: Text(
+                      "جست و جو",
+                      style: TextStyle(
+                        fontFamily: "Vazirmatn",
                       ),
                     ),
-              leading: Icon(
-                  Icons.home
+                    leading: Icon(Icons.search),
+                    onTap: () {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (context) => const search(),
+                        ),
+                      );
+                    },
                   ),
-                onTap: (){
-                  Navigator.of(context).push(MaterialPageRoute(
-    builder: (context) => const Store()
-         ),
-         );
-                },
-                ),
-                ListTile(
-                  title: Text(
-                    "علاقه مندی ها",
-                    style: TextStyle(
-                      fontFamily: "Vazirmatn"
-                      ),
-                      ),  
-                leading: Icon(
-                  Icons.favorite
+                  ListTile(
+                    title: Text(
+                      "پروفایل",
+                      style: TextStyle(fontFamily: "Vazirmatn"),
+                    ),
+                    leading: Icon(Icons.person),
+                    onTap: () {
+                      Navigator.of(context).push(
+                          MaterialPageRoute(builder: (context) => Profile()));
+                    },
                   ),
-           onTap: (){
-                  Navigator.of(context).push(MaterialPageRoute(
-   builder: (context) => const favorite()
-         ),
-         );
-                },
-                ),
-                ListTile(
-                  title: Text(
-                    "جست و جو",
-                    style: TextStyle(
-                      fontFamily: "Vazirmatn",
+                  ListTile(
+                    title: Text(
+                      "خروج",
+                      style: TextStyle(
+                        fontFamily: "Vazirmatn",
                       ),
-                      ), 
-                          leading: Icon(
-                            Icons.search
-                            ),
-           onTap: (){
-                  Navigator.of(context).push(MaterialPageRoute(
-      builder: (context) => const search(),
-                ),
-                  );
-                },
-                          ),
-                ListTile(
-                  title: Text(
-                    "پروفایل",
-                    style: TextStyle(
-                      fontFamily: "Vazirmatn"
-                      ),
-                      ),  
-               leading: Icon(
-                  Icons.person
+                    ),
+                    leading: Icon(Icons.logout),
+                    onTap: () {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (context) => const LoginWidget(),
+                        ),
+                      );
+                    },
                   ),
-            onTap: (){
-                  Navigator.of(context).push(MaterialPageRoute(
-   builder: (context) => Profile()
-         ));
-                },
-                ),
-                ListTile(
-                  title: Text(
-                    "خروج",
-                    style: TextStyle(
-                      fontFamily: "Vazirmatn",
-                      ),
-                      ), 
-                          leading: Icon(
-                            Icons.logout
-                            ),
-       onTap: (){
-                  Navigator.of(context).push(MaterialPageRoute(
-         builder: (context) => const LoginWidget(),
-                  ),
-                  );
-                },
-                          ),
-                          ListTile(
-                  title: Text(
-                    "علاقه مندی ها",
-                    style: TextStyle(
-                      fontFamily: "Vazirmatn"
-                      ),
-                      ),  
-                leading: Icon(
-                  Icons.favorite
-                  ),
-           onTap: (){
-                  Navigator.of(context).push(MaterialPageRoute(
-   builder: (context) => UserData()
-         ),
-         );
-                },
-                ),
-              ],
-     ),
-          ),
-        ],
-      ),
-      ),
-       appBar: AppBar(
-         title: Image.asset(
-          "assets/images/Logo-Red-Green.png", 
-          height: 250,          
+                ],
+              ),
+            ),
+          ],
         ),
-        centerTitle:true,
+      ),
+      appBar: AppBar(
+        title: Image.asset(
+          "assets/images/Logo-Red-Green.png",
+          height: 250,
+        ),
+        centerTitle: true,
         backgroundColor: (const Color.fromARGB(255, 7, 205, 255)),
         elevation: 5,
-      ),      
+      ),
       body: Padding(
         padding: EdgeInsets.all(15),
         child: GridView.count(
           crossAxisCount: 2,
-          crossAxisSpacing:10,
+          crossAxisSpacing: 10,
           mainAxisSpacing: 15,
           children: List.generate(_items.length, (int position) {
             return generateItem(_items[position], context);
           }),
         ),
       ),
-    
     );
   }
-Future<void> fetchItems() async{
-  final response = await http.get(Uri.parse("http://154.91.170.55:8900/api/product/"));
-  print(response.statusCode);
-  var ProuductJson = jsonDecode(response.body);
-  print("sag");
-  for(var i in ProuductJson){
-    // print(i['name']);
-    setState(() {
-          if(i["img"] == null){
-      var ProductItem = Product(i['name'], i['id'] , i['author'] , "" , i['categories'] , i['desc'],);
-    _items.add(ProductItem);
-    } else {
-    var ProductItem = Product(i['name'], i['id'] , i['author'] , i["img"] , i['categories'] , i['desc'],);
-    _items.add(ProductItem);
-    }
-    });
 
+  Future<void> fetchItems() async {
+    final response =
+        await http.get(Uri.parse("http://154.91.170.55:8900/api/product/"));
+    print(response.statusCode);
+    var ProuductJson = jsonDecode(response.body);
+    print("sag");
+    for (var i in ProuductJson) {
+      // print(i['name']);
+      setState(() {
+        if (i["img"] == null) {
+          var ProductItem = Product(
+            i['name'],
+            i['id'],
+            i['author'],
+            "",
+            i['categories'],
+            i['desc'],
+          );
+          _items.add(ProductItem);
+        } else {
+          var ProductItem = Product(
+            i['name'],
+            i['id'],
+            i['author'],
+            i["img"],
+            i['categories'],
+            i['desc'],
+          );
+          _items.add(ProductItem);
+        }
+      });
+    }
   }
-}
 }
 
 Card generateItem(Product product, context) {
@@ -256,7 +229,9 @@ Card generateItem(Product product, context) {
             Text(
               product.author,
               style: TextStyle(
-                  fontFamily: "Vazirmatn", color: Colors.red[700], fontSize: 16.0),
+                  fontFamily: "Vazirmatn",
+                  color: Colors.red[700],
+                  fontSize: 16.0),
             ),
             Text(
               product.name,
@@ -270,4 +245,4 @@ Card generateItem(Product product, context) {
       ),
     ),
   );
-} 
+}
