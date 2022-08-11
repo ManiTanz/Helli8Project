@@ -1,6 +1,4 @@
-import 'package:flutter/foundation.dart';
-
-class Product{
+class Product {
   final String _name;
   final int _id;
   final String _desc;
@@ -8,20 +6,12 @@ class Product{
   final String _author;
   final List _catagories;
 
-  Product(this._name, this._id, this._author, this._img, 
-      this._catagories, this._desc);
-
+  Product(this._name, this._id, this._author, this._img, this._catagories,
+      this._desc);
   String get desc => _desc;
-
-  
-
   String get img => _img;
-
   String get author => _author;
-
   int get id => _id;
-
   String get name => _name;
   List get categories => _catagories;
-
 }

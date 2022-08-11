@@ -1,7 +1,6 @@
 import 'dart:convert';
 import 'package:first_app/Profile.dart';
 import 'package:first_app/favoritepage.dart';
-import 'package:first_app/videoPlayer.dart';
 import 'package:flutter/material.dart';
 import 'dart:async';
 import 'descriptionpage.dart';
@@ -73,15 +72,15 @@ class _StoreState extends State<Store> {
               child: Center(),
             ),
             Container(
-              color: Color.fromARGB(255, 243, 255, 78),
+              color: const Color.fromARGB(255, 243, 255, 78),
               child: Column(
                 children: [
                   ListTile(
-                    title: Text(
+                    title: const Text(
                       "خانه",
                       style: TextStyle(fontFamily: "Vazirmatn"),
                     ),
-                    leading: Icon(Icons.home),
+                    leading: const Icon(Icons.home),
                     onTap: () {
                       Navigator.of(context).push(
                         MaterialPageRoute(builder: (context) => const Store()),
@@ -89,11 +88,11 @@ class _StoreState extends State<Store> {
                     },
                   ),
                   ListTile(
-                    title: Text(
+                    title: const Text(
                       "علاقه مندی ها",
                       style: TextStyle(fontFamily: "Vazirmatn"),
                     ),
-                    leading: Icon(Icons.favorite),
+                    leading: const Icon(Icons.favorite),
                     onTap: () {
                       Navigator.of(context).push(
                         MaterialPageRoute(
@@ -102,13 +101,13 @@ class _StoreState extends State<Store> {
                     },
                   ),
                   ListTile(
-                    title: Text(
+                    title: const Text(
                       "جست و جو",
                       style: TextStyle(
                         fontFamily: "Vazirmatn",
                       ),
                     ),
-                    leading: Icon(Icons.search),
+                    leading: const Icon(Icons.search),
                     onTap: () {
                       Navigator.of(context).push(
                         MaterialPageRoute(
@@ -118,44 +117,28 @@ class _StoreState extends State<Store> {
                     },
                   ),
                   ListTile(
-                    title: Text(
+                    title: const Text(
                       "پروفایل",
                       style: TextStyle(fontFamily: "Vazirmatn"),
                     ),
-                    leading: Icon(Icons.person),
+                    leading: const Icon(Icons.person),
                     onTap: () {
                       Navigator.of(context).push(
                           MaterialPageRoute(builder: (context) => Profile()));
                     },
                   ),
                   ListTile(
-                    title: Text(
+                    title: const Text(
                       "خروج",
                       style: TextStyle(
                         fontFamily: "Vazirmatn",
                       ),
                     ),
-                    leading: Icon(Icons.logout),
+                    leading: const Icon(Icons.logout),
                     onTap: () {
                       Navigator.of(context).push(
                         MaterialPageRoute(
                           builder: (context) => const LoginWidget(),
-                        ),
-                      );
-                    },
-                  ),
-                  ListTile(
-                    title: Text(
-                      "خروج",
-                      style: TextStyle(
-                        fontFamily: "Vazirmatn",
-                      ),
-                    ),
-                    leading: Icon(Icons.logout),
-                    onTap: () {
-                      Navigator.of(context).push(
-                        MaterialPageRoute(
-                          builder: (context) => const Store(),
                         ),
                       );
                     },
@@ -176,7 +159,7 @@ class _StoreState extends State<Store> {
         elevation: 5,
       ),
       body: Padding(
-        padding: EdgeInsets.all(15),
+        padding: const EdgeInsets.all(15),
         child: GridView.count(
           crossAxisCount: 2,
           crossAxisSpacing: 10,
@@ -194,9 +177,7 @@ class _StoreState extends State<Store> {
         await http.get(Uri.parse("http://154.91.170.55:8900/api/product/"));
     print(response.statusCode);
     var ProuductJson = jsonDecode(response.body);
-    print("sag");
     for (var i in ProuductJson) {
-      // print(i['name']);
       setState(() {
         if (i["img"] == null) {
           var ProductItem = Product(
@@ -226,7 +207,7 @@ class _StoreState extends State<Store> {
 
 Card generateItem(Product product, context) {
   return Card(
-    shape: RoundedRectangleBorder(
+    shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.all(Radius.circular(30))),
     elevation: 4,
     child: InkWell(
@@ -238,7 +219,7 @@ Card generateItem(Product product, context) {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Container(
+            SizedBox(
               width: 130,
               height: 130,
               child: Image.network(product.img),
@@ -252,7 +233,7 @@ Card generateItem(Product product, context) {
             ),
             Text(
               product.name,
-              style: TextStyle(
+              style: const TextStyle(
                   fontFamily: "Vazirmatn",
                   color: Color(0xFF575E67),
                   fontSize: 14.0),

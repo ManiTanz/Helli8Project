@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
 Future<User> fetchUser() async {
-  final response = await http
-      .get(Uri.parse('http://154.91.170.55:8900/api/profile/'));
+  final response =
+      await http.get(Uri.parse('http://154.91.170.55:8900/api/profile/'));
 
   if (response.statusCode == 200) {
     // If the server did return a 200 OK response,
@@ -117,11 +117,12 @@ class _UserDataState extends State<UserData> {
                   if (snapshot.hasData) {
                     return Column(
                       children: [
-                        Text(":علاقه مندی ها",
-                        style: TextStyle(
-                      fontFamily: "Vazirmatn",
-                      ),
-                      ),
+                        const Text(
+                          ":علاقه مندی ها",
+                          style: TextStyle(
+                            fontFamily: "Vazirmatn",
+                          ),
+                        ),
                         Text(snapshot.data!.name),
                       ],
                     );

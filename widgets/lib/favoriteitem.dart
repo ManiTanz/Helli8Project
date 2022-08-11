@@ -5,10 +5,11 @@ typedef OnRemovePressed = Function(int index);
 
 class ShoppingBasketItem extends StatefulWidget {
   Productapload productapload;
-  int _count = 0;
   final int _index;
   final OnRemovePressed _onRemovePressed;
-  ShoppingBasketItem(this.productapload, this._onRemovePressed, this._index, {Key? key}) : super(key: key);
+  ShoppingBasketItem(this.productapload, this._onRemovePressed, this._index,
+      {Key? key})
+      : super(key: key);
 
   @override
   _ShoppingBasketItemState createState() => _ShoppingBasketItemState();
@@ -42,10 +43,10 @@ class _ShoppingBasketItemState extends State<ShoppingBasketItem> {
                   padding: const EdgeInsets.only(top: 30, right: 20),
                   child: Text(
                     widget.productapload.name,
-                    style: const TextStyle(fontFamily: "Vazirmatn", fontSize: 20),
+                    style:
+                        const TextStyle(fontFamily: "Vazirmatn", fontSize: 20),
                   ),
                 ),
-               
               ],
             ),
             Expanded(
@@ -65,7 +66,8 @@ class _ShoppingBasketItemState extends State<ShoppingBasketItem> {
                       ),
                       Text(
                         widget.productapload.desc,
-                        style: const TextStyle(fontFamily: "Vazirmatn", fontSize: 16),
+                        style: const TextStyle(
+                            fontFamily: "Vazirmatn", fontSize: 16),
                       )
                     ],
                   ),
@@ -77,7 +79,4 @@ class _ShoppingBasketItemState extends State<ShoppingBasketItem> {
       ),
     );
   }
-
- 
-  
 }

@@ -1,8 +1,6 @@
-import 'dart:io';
 import 'package:chewie/chewie.dart';
 import 'package:first_app/videoPlayerTheme.dart';
 import 'package:flutter/material.dart';
-// ignore: depend_on_referenced_packages
 import 'package:video_player/video_player.dart';
 
 class ChewieDemo extends StatefulWidget {

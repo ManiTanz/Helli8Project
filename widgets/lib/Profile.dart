@@ -1,15 +1,10 @@
-
-import 'package:first_app/User.dart';
-import 'package:first_app/buildAppBar.dart';
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'User.dart';
 
-void main() => runApp(Profile());
+void main() => runApp(const Profile());
 
 class Profile extends StatefulWidget {
-  Profile({super.key});
+  const Profile({super.key});
 
   @override
   State<Profile> createState() => _ProfileState();
@@ -26,9 +21,7 @@ class _ProfileState extends State<Profile> {
 
   @override
   Widget build(BuildContext context) {
-
-    return Scaffold(
-    
+    return const Scaffold(
       body: UserData(),
     );
   }

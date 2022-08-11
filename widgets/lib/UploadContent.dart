@@ -2,9 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
-import 'dart:html' as html;
-import 'dart:io';
-import 'package:http/http.dart' as http;
 
 // class Upload extends StatelessWidget {
 //   const Upload({Key? key, required this.title}) : super(key: key);

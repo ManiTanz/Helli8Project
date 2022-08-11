@@ -2,14 +2,12 @@ import 'package:flutter/material.dart';
 import 'main.dart';
 import 'favoritedata.dart';
 import 'favoriteitem.dart';
-import 'Search.dart' ;
+import 'Search.dart';
 import 'Profile.dart';
 import 'loginpage.dart';
-import 'productapload.dart';
-
 
 class favorite extends StatefulWidget {
-  const favorite({ Key? key }) : super(key: key);
+  const favorite({Key? key}) : super(key: key);
 
   @override
   _favoriteState createState() => _favoriteState();
@@ -19,130 +17,108 @@ class _favoriteState extends State<favorite> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        drawer: Drawer(
-        child: ListView(addAutomaticKeepAlives: true,
-        children:[
-          DrawerHeader(
-            decoration: BoxDecoration(
-              color: Color.fromARGB(255, 7, 205, 255),
-              image: DecorationImage(
-                image: AssetImage(
-                  "assets/images/Logo-Red-Green.png"
+      drawer: Drawer(
+        child: ListView(
+          addAutomaticKeepAlives: true,
+          children: [
+            const DrawerHeader(
+              decoration: BoxDecoration(
+                color: Color.fromARGB(255, 7, 205, 255),
+                image: DecorationImage(
+                  image: AssetImage("assets/images/Logo-Red-Green.png"),
+                  fit: BoxFit.cover,
                 ),
-                fit: BoxFit.cover,
-             ),
-              ), 
-              child: Center(
-
               ),
-          ),
-         Container(
-            color: Color.fromARGB(255, 243, 255, 78),
-            child: Column(
-              children: [
-                ListTile(
-                  title: Text(
-                    "خانه",
-                  style: TextStyle(
-                      fontFamily: "Vazirmatn"
+              child: Center(),
+            ),
+            Container(
+              color: const Color.fromARGB(255, 243, 255, 78),
+              child: Column(
+                children: [
+                  ListTile(
+                    title: const Text(
+                      "خانه",
+                      style: TextStyle(fontFamily: "Vazirmatn"),
+                    ),
+                    leading: const Icon(Icons.home),
+                    onTap: () {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(builder: (context) => const Store()),
+                      );
+                    },
+                  ),
+                  ListTile(
+                    title: const Text(
+                      "علاقه مندی ها",
+                      style: TextStyle(fontFamily: "Vazirmatn"),
+                    ),
+                    leading: const Icon(Icons.favorite),
+                    onTap: () {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                            builder: (context) => const favorite()),
+                      );
+                    },
+                  ),
+                  ListTile(
+                    title: const Text(
+                      "جست و جو",
+                      style: TextStyle(
+                        fontFamily: "Vazirmatn",
                       ),
                     ),
-              leading: Icon(
-                  Icons.home
+                    leading: const Icon(Icons.search),
+                    onTap: () {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (context) => const search(),
+                        ),
+                      );
+                    },
                   ),
-                onTap: (){
-                  Navigator.of(context).push(MaterialPageRoute(
-    builder: (context) => const Store()
-         ),
-         );
-                },
-                ),
-                ListTile(
-                  title: Text(
-                    "علاقه مندی ها",
-                    style: TextStyle(
-                      fontFamily: "Vazirmatn"
-                      ),
-                      ),  
-                leading: Icon(
-                  Icons.favorite
+                  ListTile(
+                    title: const Text(
+                      "پروفایل",
+                      style: TextStyle(fontFamily: "Vazirmatn"),
+                    ),
+                    leading: const Icon(Icons.person),
+                    onTap: () {
+                      Navigator.of(context).push(
+                          MaterialPageRoute(builder: (context) => Profile()));
+                    },
                   ),
-           onTap: (){
-                  Navigator.of(context).push(MaterialPageRoute(
-   builder: (context) => const favorite()
-         ),
-         );
-                },
-                ),
-                ListTile(
-                  title: Text(
-                    "جست و جو",
-                    style: TextStyle(
-                      fontFamily: "Vazirmatn",
+                  ListTile(
+                    title: const Text(
+                      "خروج",
+                      style: TextStyle(
+                        fontFamily: "Vazirmatn",
                       ),
-                      ), 
-                          leading: Icon(
-                            Icons.search
-                            ),
-           onTap: (){
-                  Navigator.of(context).push(MaterialPageRoute(
-      builder: (context) => const search(),
-                ),
-                  );
-                },
-                          ),
-                ListTile(
-                  title: Text(
-                    "پروفایل",
-                    style: TextStyle(
-                      fontFamily: "Vazirmatn"
-                      ),
-                      ),  
-               leading: Icon(
-                  Icons.person
+                    ),
+                    leading: const Icon(Icons.logout),
+                    onTap: () {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (context) => const LoginWidget(),
+                        ),
+                      );
+                    },
                   ),
-            onTap: (){
-                  Navigator.of(context).push(MaterialPageRoute(
-   builder: (context) => Profile()
-         ));
-                },
-                ),
-                ListTile(
-                  title: Text(
-                    "خروج",
-                    style: TextStyle(
-                      fontFamily: "Vazirmatn",
-                      ),
-                      ), 
-                          leading: Icon(
-                            Icons.logout
-                            ),
-       onTap: (){
-                  Navigator.of(context).push(MaterialPageRoute(
-         builder: (context) => const LoginWidget(),
-         
-                  ),
-                  );
-                },
-                          ),
-              ],
-     ),
-          ),
-        ],
-      ),
-      ),
-       appBar: AppBar(
-        
-         title: Image.asset(
-          "assets/images/Logo-Red-Green.png", 
-          height: 250,          
+                ],
+              ),
+            ),
+          ],
         ),
-        centerTitle:true,
+      ),
+      appBar: AppBar(
+        title: Image.asset(
+          "assets/images/Logo-Red-Green.png",
+          height: 250,
+        ),
+        centerTitle: true,
         backgroundColor: (const Color.fromARGB(255, 7, 205, 255)),
         elevation: 5,
-        
-      ),      
-       body: basketUI(),
+      ),
+      body: basketUI(),
     );
   }
 
@@ -166,7 +142,6 @@ class _favoriteState extends State<favorite> {
             },
           ),
         ),
-       
       ],
     );
   }
