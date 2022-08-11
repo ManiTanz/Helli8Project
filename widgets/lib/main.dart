@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:first_app/Profile.dart';
 import 'package:first_app/favoritepage.dart';
+import 'package:first_app/videoPlayer.dart';
 import 'package:flutter/material.dart';
 import 'dart:async';
 import 'descriptionpage.dart';
@@ -139,6 +140,22 @@ class _StoreState extends State<Store> {
                       Navigator.of(context).push(
                         MaterialPageRoute(
                           builder: (context) => const LoginWidget(),
+                        ),
+                      );
+                    },
+                  ),
+                  ListTile(
+                    title: Text(
+                      "خروج",
+                      style: TextStyle(
+                        fontFamily: "Vazirmatn",
+                      ),
+                    ),
+                    leading: Icon(Icons.logout),
+                    onTap: () {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (context) => const Store(),
                         ),
                       );
                     },

@@ -3,6 +3,8 @@ import 'package:file_picker/file_picker.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 import 'dart:html' as html;
+import 'dart:io';
+import 'package:http/http.dart' as http;
 
 // class Upload extends StatelessWidget {
 //   const Upload({Key? key, required this.title}) : super(key: key);
@@ -282,14 +284,6 @@ class _FilePickerDemoState extends State<FilePickerDemo> {
                           child: ElevatedButton(
                             onPressed: () => _selectFolder(),
                             child: const Text('Pick folder'),
-                          ),
-                        ),
-                        const SizedBox(height: 10),
-                        ButtonTheme(
-                          minWidth: 80,
-                          child: ElevatedButton(
-                            onPressed: () => _saveFile(),
-                            child: const Text('Save file'),
                           ),
                         ),
                         const SizedBox(height: 10),
