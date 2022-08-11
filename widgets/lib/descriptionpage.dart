@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'package:first_app/Podcast.dart';
 import 'package:first_app/videos.dart';
 import 'package:flutter/material.dart';
@@ -15,6 +16,13 @@ class DescriptionPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var productAuthorEncode = utf8.encode(product.author);
+    var productAuthorDecode = utf8.decode(productAuthorEncode);
+    var producNameEncode = utf8.encode(product.name);
+    var producNameDecode = utf8.decode(producNameEncode);
+    var producDescEncode = utf8.encode(product.desc);
+    var producDescDecode = utf8.decode(producDescEncode);
+
     return Scaffold(
       drawer: Drawer(
         child: ListView(
@@ -144,7 +152,7 @@ class DescriptionPage extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    product.author,
+                    productAuthorDecode,
                     style: TextStyle(
                       color: Colors.red[700],
                       fontFamily: "Vazirmatn",
@@ -152,7 +160,7 @@ class DescriptionPage extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    product.name,
+                    producNameDecode,
                     style: TextStyle(
                       color: Colors.grey[700],
                       fontFamily: "Vazirmatn",
@@ -162,7 +170,7 @@ class DescriptionPage extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.only(left: 45, right: 45),
                     child: Text(
-                      product.desc,
+                      producDescDecode,
                       style: const TextStyle(
                         fontSize: 16,
                         fontFamily: "Vazirmatn",

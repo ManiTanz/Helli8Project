@@ -8,6 +8,7 @@ import 'loginpage.dart';
 import 'Search.dart';
 import 'product.dart';
 import 'package:http/http.dart' as http;
+import 'dart:convert' show utf8;
 
 void main() => runApp(const MainMaterial());
 
@@ -206,6 +207,11 @@ class _StoreState extends State<Store> {
 }
 
 Card generateItem(Product product, context) {
+  var productAuthorEncode = utf8.encode(product.author);
+  var productAuthorDecode = utf8.decode(productAuthorEncode);
+  var producNameEncode = utf8.encode(product.name);
+  var producNameDecode = utf8.decode(producNameEncode);
+
   return Card(
     shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.all(Radius.circular(30))),
@@ -225,14 +231,14 @@ Card generateItem(Product product, context) {
               child: Image.network(product.img),
             ),
             Text(
-              product.author,
+              productAuthorDecode,
               style: TextStyle(
                   fontFamily: "Vazirmatn",
                   color: Colors.red[700],
                   fontSize: 16.0),
             ),
             Text(
-              product.name,
+              producNameDecode,
               style: const TextStyle(
                   fontFamily: "Vazirmatn",
                   color: Color(0xFF575E67),
