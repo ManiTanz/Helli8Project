@@ -1,33 +1,72 @@
+import 'dart:async';
+import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
 
-void main() {
-  runApp(const search());
+class Search extends StatefulWidget {
+  Search() : super();
+
+  @override
+  SearchState createState() => SearchState();
 }
 
-class search extends StatelessWidget {
-  const search({Key? key}) : super(key: key);
+class Debouncer {
+  int? milliseconds;
+  VoidCallback? action;
+  Timer? timer;
 
-// This is the root widget
-// of your application
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
-      theme: ThemeData(),
-      home: const GFG(),
+  run(VoidCallback action) {
+    if (null != timer) {
+      timer!.cancel();
+    }
+    timer = Timer(
+      const Duration(milliseconds: Duration.millisecondsPerSecond),
+      action,
     );
   }
 }
 
-class GFG extends StatefulWidget {
-  const GFG({Key? key}) : super(key: key);
+class SearchState extends State<Search> {
+  final _debouncer = Debouncer();
+
+  List<Subject> ulist = [];
+  List<Subject> userLists = [];
+  //API call for All Subject List
+
+  String url = 'https://type.fit/api/quotes';
+
+  Future<List<Subject>> getAllulistList() async {
+    try {
+      final response = await http.get(Uri.parse(url));
+      if (response.statusCode == 200) {
+        // print(response.body);
+        List<Subject> list = parseAgents(response.body);
+        return list;
+      } else {
+        throw Exception('Error');
+      }
+    } catch (e) {
+      throw Exception(e.toString());
+    }
+  }
+
+  static List<Subject> parseAgents(String responseBody) {
+    final parsed = json.decode(responseBody).cast<Map<String, dynamic>>();
+    return parsed.map<Subject>((json) => Subject.fromJson(json)).toList();
+  }
 
   @override
-  State<GFG> createState() => _GFGState();
-}
+  void initState() {
+    super.initState();
+    getAllulistList().then((subjectFromServer) {
+      setState(() {
+        ulist = subjectFromServer;
+        userLists = ulist;
+      });
+    });
+  }
 
-class _GFGState extends State<GFG> {
+  //Main Widget
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -38,133 +77,106 @@ class _GFGState extends State<GFG> {
         ),
         centerTitle: true,
         backgroundColor: (const Color.fromARGB(255, 7, 205, 255)),
-        actions: [
-          IconButton(
-            onPressed: () {
-              // method to show the search bar
-              showSearch(
-                  context: context,
-                  // delegate to customize the search bar
-                  delegate: CustomSearchDelegate());
-            },
-            icon: const Icon(Icons.search),
-          )
-        ],
+        elevation: 5,
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(24),
-        child: GridView.count(
-          crossAxisCount: 2,
-          crossAxisSpacing: 10,
-          mainAxisSpacing: 10,
-          children: [
-            Row(
-              children: [
-                Column(
-                  children: [
-                    Image.asset(
-                      'assets/images/Calculus.jpg',
-                      width: 100,
-                      height: 100,
-                    ),
-                  ],
-                ),
-                const SizedBox(
-                  width: 50,
-                ),
-                Card(
-                  child: Image.asset(
-                    'assets/images/Probability-and-Statistics.jpg',
-                    width: 50,
-                    height: 50,
+      body: Column(
+        children: <Widget>[
+          //Search Bar to List of typed Subject
+          Container(
+            padding: const EdgeInsets.all(15),
+            child: TextField(
+              textInputAction: TextInputAction.search,
+              decoration: InputDecoration(
+                enabledBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(25.0),
+                  borderSide: const BorderSide(
+                    color: Colors.grey,
                   ),
                 ),
-              ],
+                focusedBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(20.0),
+                  borderSide: const BorderSide(
+                    color: Colors.blue,
+                  ),
+                ),
+                suffixIcon: const InkWell(
+                  child: Icon(Icons.search),
+                ),
+                contentPadding: const EdgeInsets.all(15.0),
+                hintText: 'Search ',
+              ),
+              onChanged: (string) {
+                _debouncer.run(() {
+                  setState(() {
+                    userLists = ulist
+                        .where(
+                          (u) => (u.text.toLowerCase().contains(
+                                string.toLowerCase(),
+                              )),
+                        )
+                        .toList();
+                  });
+                });
+              },
             ),
-          ],
-        ),
+          ),
+          Expanded(
+            child: ListView.builder(
+              shrinkWrap: true,
+              physics: const ClampingScrollPhysics(),
+              padding: const EdgeInsets.all(5),
+              itemCount: userLists.length,
+              itemBuilder: (BuildContext context, int index) {
+                return Card(
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(20),
+                    side: BorderSide(
+                      color: Colors.grey.shade300,
+                    ),
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.all(5.0),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        ListTile(
+                          title: Text(
+                            userLists[index].text,
+                            style: const TextStyle(fontSize: 16),
+                          ),
+                          subtitle: Text(
+                            userLists[index].author ?? "null",
+                            style: const TextStyle(fontSize: 16),
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+                );
+              },
+            ),
+          ),
+        ],
       ),
     );
   }
 }
 
-class CustomSearchDelegate extends SearchDelegate {
-  List<String> searchTerms = [
-    "Apple",
-    "Banana",
-    "Mango",
-    "Pear",
-    "Watermelons",
-    "Blueberries",
-    "Pineapples",
-    "Strawberries",
-    "math",
-    "physics",
-    "biology",
-    "chamistry"
-  ];
+//Declare Subject class for json data or parameters of json string/data
+//Class For Subject
+class Subject {
+  var text;
+  var author;
+  Subject({
+    required this.text,
+    required this.author,
+  });
 
-  // first overwrite to
-  // clear the search text
-  @override
-  List<Widget>? buildActions(BuildContext context) {
-    return [
-      IconButton(
-        onPressed: () {},
-        icon: const Icon(Icons.clear),
-      ),
-    ];
-  }
-
-  // second overwrite to pop out of search menu
-  @override
-  Widget? buildLeading(BuildContext context) {
-    return IconButton(
-      onPressed: () {
-        close(context, null);
-      },
-      icon: const Icon(Icons.arrow_back),
-    );
-  }
-
-  // third overwrite to show query result
-  @override
-  Widget buildResults(BuildContext context) {
-    List<String> matchQuery = [];
-    for (var fruit in searchTerms) {
-      if (fruit.toLowerCase().contains(query.toLowerCase())) {
-        matchQuery.add(fruit);
-      }
-    }
-    return ListView.builder(
-      itemCount: matchQuery.length,
-      itemBuilder: (context, index) {
-        var result = matchQuery[index];
-        return ListTile(
-          title: Text(result),
-        );
-      },
-    );
-  }
-
-  // last overwrite to show the
-  // querying process at the runtime
-  @override
-  Widget buildSuggestions(BuildContext context) {
-    List<String> matchQuery = [];
-    for (var fruit in searchTerms) {
-      if (fruit.toLowerCase().contains(query.toLowerCase())) {
-        matchQuery.add(fruit);
-      }
-    }
-    return ListView.builder(
-      itemCount: matchQuery.length,
-      itemBuilder: (context, index) {
-        var result = matchQuery[index];
-        return ListTile(
-          title: Text(result),
-        );
-      },
+  factory Subject.fromJson(Map<dynamic, dynamic> json) {
+    return Subject(
+      text: json['text'],
+      author: json['author'],
     );
   }
 }

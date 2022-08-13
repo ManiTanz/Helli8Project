@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'main.dart';
 import 'favoritedata.dart';
 import 'favoriteitem.dart';
@@ -71,7 +72,7 @@ class _favoriteState extends State<favorite> {
                     onTap: () {
                       Navigator.of(context).push(
                         MaterialPageRoute(
-                          builder: (context) => const search(),
+                          builder: (context) => Search(),
                         ),
                       );
                     },
@@ -95,11 +96,23 @@ class _favoriteState extends State<favorite> {
                       ),
                     ),
                     leading: const Icon(Icons.logout),
-                    onTap: () {
-                      Navigator.of(context).push(
+                    onTap: () async {
+                      SharedPreferences prefs =
+                          await SharedPreferences.getInstance();
+                      await prefs.remove('userPreference');
+                      await Future.delayed(const Duration(seconds: 2));
+
+                      Navigator.of(context).pushAndRemoveUntil(
+                        // the new route
                         MaterialPageRoute(
-                          builder: (context) => const LoginWidget(),
+                          builder: (BuildContext context) =>
+                              const LoginWidget(),
                         ),
+
+                        // this function should return true when we're done removing routes
+                        // but because we want to remove all other screens, we make it
+                        // always return false
+                        (Route route) => false,
                       );
                     },
                   ),

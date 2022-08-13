@@ -3,6 +3,7 @@ import 'package:first_app/Profile.dart';
 import 'package:first_app/descriptionvideo.dart';
 import 'package:first_app/favoritepage.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'dart:async';
 import 'loginpage.dart';
 import 'Search.dart';
@@ -95,7 +96,7 @@ class _StoreState extends State<Store> {
                     onTap: () {
                       Navigator.of(context).push(
                         MaterialPageRoute(
-                          builder: (context) => const search(),
+                          builder: (context) => Search(),
                         ),
                       );
                     },
@@ -119,11 +120,23 @@ class _StoreState extends State<Store> {
                       ),
                     ),
                     leading: const Icon(Icons.logout),
-                    onTap: () {
-                      Navigator.of(context).push(
+                    onTap: () async {
+                      SharedPreferences prefs =
+                          await SharedPreferences.getInstance();
+                      await prefs.remove('userPreference');
+                      await Future.delayed(const Duration(seconds: 2));
+
+                      Navigator.of(context).pushAndRemoveUntil(
+                        // the new route
                         MaterialPageRoute(
-                          builder: (context) => const LoginWidget(),
+                          builder: (BuildContext context) =>
+                              const LoginWidget(),
                         ),
+
+                        // this function should return true when we're done removing routes
+                        // but because we want to remove all other screens, we make it
+                        // always return false
+                        (Route route) => false,
                       );
                     },
                   ),

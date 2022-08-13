@@ -1,4 +1,5 @@
 import 'package:first_app/favoritedata.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'Profile.dart';
 import 'Search.dart';
 import 'favoritepage.dart';
@@ -69,7 +70,7 @@ class Descriptionvideos extends StatelessWidget {
                       onTap: () {
                         Navigator.of(context).push(
                           MaterialPageRoute(
-                            builder: (context) => const search(),
+                            builder: (context) => Search(),
                           ),
                         );
                       },
@@ -81,8 +82,8 @@ class Descriptionvideos extends StatelessWidget {
                       ),
                       leading: const Icon(Icons.person),
                       onTap: () {
-                        Navigator.of(context).push(
-                            MaterialPageRoute(builder: (context) => Profile()));
+                        Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) => const Profile()));
                       },
                     ),
                     ListTile(
@@ -93,11 +94,23 @@ class Descriptionvideos extends StatelessWidget {
                         ),
                       ),
                       leading: const Icon(Icons.logout),
-                      onTap: () {
-                        Navigator.of(context).push(
+                      onTap: () async {
+                        SharedPreferences prefs =
+                            await SharedPreferences.getInstance();
+                        await prefs.remove('userPreference');
+                        await Future.delayed(const Duration(seconds: 2));
+
+                        Navigator.of(context).pushAndRemoveUntil(
+                          // the new route
                           MaterialPageRoute(
-                            builder: (context) => const LoginWidget(),
+                            builder: (BuildContext context) =>
+                                const LoginWidget(),
                           ),
+
+                          // this function should return true when we're done removing routes
+                          // but because we want to remove all other screens, we make it
+                          // always return false
+                          (Route route) => false,
                         );
                       },
                     ),
