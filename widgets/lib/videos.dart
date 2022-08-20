@@ -229,8 +229,8 @@ Card generateItem(Productapload productapload, context) {
     elevation: 4,
     child: InkWell(
       onTap: () {
-        Navigator.of(context).push(MaterialPageRoute(
-            builder: (context) => Descriptionvideos(productapload)));
+        Navigator.of(context)
+            .push(MaterialPageRoute(builder: (context) => VideoList()));
       },
       child: Center(
         child: Column(

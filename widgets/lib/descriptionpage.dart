@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:first_app/Podcast.dart';
+import 'package:first_app/descriptionvideo.dart';
 import 'package:first_app/videos.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -205,7 +206,7 @@ class DescriptionPage extends StatelessWidget {
                         child: InkWell(
                           onTap: () {
                             Navigator.of(context).push(MaterialPageRoute(
-                                builder: (context) => const videos()));
+                                builder: (context) => const VideoList()));
                           },
                           child: const SizedBox(
                             height: 60,
@@ -256,11 +257,6 @@ class DescriptionPage extends StatelessWidget {
                   const SizedBox(
                     height: 60,
                   ),
-                  // Image.network(
-                  //   "https://lenz-cdn.varzesh3.com/contents/varzesh3/2807631460455994640.jpg",
-                  //   width: 100,
-                  //   height: 100,
-                  // ),
                   Center(
                     child: Material(
                       elevation: 20,
