@@ -256,6 +256,11 @@ class DescriptionPage extends StatelessWidget {
                   const SizedBox(
                     height: 60,
                   ),
+                  // Image.network(
+                  //   "https://lenz-cdn.varzesh3.com/contents/varzesh3/2807631460455994640.jpg",
+                  //   width: 100,
+                  //   height: 100,
+                  // ),
                   Center(
                     child: Material(
                       elevation: 20,

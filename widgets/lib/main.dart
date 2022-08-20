@@ -193,27 +193,15 @@ class _StoreState extends State<Store> {
     var ProuductJson = jsonDecode(response.body);
     for (var i in ProuductJson) {
       setState(() {
-        if (i["img"] == null) {
-          var ProductItem = Product(
-            i['name'],
-            i['id'],
-            i['author'],
-            "",
-            i['categories'],
-            i['desc'],
-          );
-          _items.add(ProductItem);
-        } else {
-          var ProductItem = Product(
-            i['name'],
-            i['id'],
-            i['author'],
-            i["img"],
-            i['categories'],
-            i['desc'],
-          );
-          _items.add(ProductItem);
-        }
+        var ProductItem = Product(
+          i['name'],
+          i['id'],
+          i['author'],
+          i["img"],
+          i['categories'],
+          i['desc'],
+        );
+        _items.add(ProductItem);
       });
     }
   }
@@ -223,7 +211,8 @@ Card generateItem(Product product, context) {
   var productAuthorEncode = utf8.encode(product.author);
   var productAuthorDecode = utf8.decode(productAuthorEncode);
   var producNameEncode = utf8.encode(product.name);
-  var producNameDecode = utf8.decode(producNameEncode);
+  var productNameDecode = utf8.decode(producNameEncode);
+  print((product.img).split("\n"));
 
   return Card(
     shape: const RoundedRectangleBorder(
@@ -251,7 +240,7 @@ Card generateItem(Product product, context) {
                   fontSize: 16.0),
             ),
             Text(
-              producNameDecode,
+              productNameDecode,
               style: const TextStyle(
                   fontFamily: "Vazirmatn",
                   color: Color(0xFF575E67),
