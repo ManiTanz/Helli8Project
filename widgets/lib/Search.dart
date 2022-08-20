@@ -139,17 +139,24 @@ class SearchState extends State<Search> {
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.start,
-                      children: <Widget>[
-                        ListTile(
-                          title: Text(
-                            userLists[index].text,
-                            style: const TextStyle(fontSize: 16),
+                      children: [
+                        InkWell(
+                          child: Row(
+                            children: [
+                              ListTile(
+                                title: Text(
+                                  userLists[index].text,
+                                  style: const TextStyle(fontSize: 16),
+                                ),
+                                subtitle: Text(
+                                  userLists[index].author ?? "null",
+                                  style: const TextStyle(fontSize: 16),
+                                ),
+                              ),
+                              Image.network(userLists[index].img),
+                            ],
                           ),
-                          subtitle: Text(
-                            userLists[index].author ?? "null",
-                            style: const TextStyle(fontSize: 16),
-                          ),
-                        )
+                        ),
                       ],
                     ),
                   ),
@@ -168,15 +175,18 @@ class SearchState extends State<Search> {
 class Subject {
   var text;
   var author;
+  var img;
   Subject({
     required this.text,
     required this.author,
+    required this.img,
   });
 
   factory Subject.fromJson(Map<dynamic, dynamic> json) {
     return Subject(
       text: json['text'],
       author: json['author'],
+      img: json['img'],
     );
   }
 }
