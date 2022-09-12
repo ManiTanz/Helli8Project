@@ -70,72 +70,125 @@ class _UserDataState extends State<UserData> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Fetch Data Example',
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
       home: Scaffold(
         appBar: AppBar(
-          title: const Text('Fetch Data Example'),
+          title: const Text(
+            'پروفایل',
+            style: TextStyle(
+                fontFamily: 'Vazirmatn',
+                fontSize: 50,
+                fontWeight: FontWeight.bold),
+          ),
+          centerTitle: true,
         ),
-        body: Column(
-          children: [
-            Center(
-              child: FutureBuilder<User>(
-                future: futureUser,
-                builder: (context, snapshot) {
-                  if (snapshot.hasData) {
-                    return Text(snapshot.data!.name);
-                  } else if (snapshot.hasError) {
-                    return Text('${snapshot.error}');
-                  }
-
-                  // By default, show a loading spinner.
-                  return const CircularProgressIndicator();
-                },
+        body: DecoratedBox(
+        decoration: const BoxDecoration(
+            gradient: LinearGradient(colors: [Colors.red, Colors.cyan]),
+            ),          
+          child: Column(
+            children: [
+              const Text(
+                ":نام",
+                style: TextStyle(
+                  fontFamily: 'Vazirmatn',
+                  fontSize: 50,
+                  fontWeight: FontWeight.bold,
+                  color: Color.fromARGB(255, 0, 192, 48),
+                ),
               ),
-            ),
-            Center(
-              child: FutureBuilder<User>(
-                future: futureUser,
-                builder: (context, snapshot) {
-                  if (snapshot.hasData) {
-                    return Text(snapshot.data!.email);
-                  } else if (snapshot.hasError) {
-                    return Text('${snapshot.error}');
-                  }
-
-                  // By default, show a loading spinner.
-                  return const CircularProgressIndicator();
-                },
+              const SizedBox(
+                height: 10,
               ),
-            ),
-            Center(
-              child: FutureBuilder<User>(
-                future: futureUser,
-                builder: (context, snapshot) {
-                  if (snapshot.hasData) {
-                    return Column(
-                      children: [
-                        const Text(
-                          ":علاقه مندی ها",
-                          style: TextStyle(
-                            fontFamily: "Vazirmatn",
-                          ),
+              Center(
+                child: FutureBuilder<User>(
+                  future: futureUser,
+                  builder: (context, snapshot) {
+                    if (snapshot.hasData) {
+                      return Text(
+                        snapshot.data!.name,
+                        style: const TextStyle(
+                          fontSize: 40,
+                          fontWeight: FontWeight.bold,
+                          color: Color.fromARGB(255, 255, 192, 18),
                         ),
-                        Text(snapshot.data!.name),
-                      ],
-                    );
-                  } else if (snapshot.hasError) {
-                    return Text('${snapshot.error}');
-                  }
+                      );
+                    } else if (snapshot.hasError) {
+                      return Text('${snapshot.error}');
+                    }
 
-                  // By default, show a loading spinner.
-                  return const CircularProgressIndicator();
-                },
+                    // By default, show a loading spinner.
+                    return const CircularProgressIndicator();
+                  },
+                ),
               ),
-            ),
-          ],
+              const SizedBox(
+                height: 10,
+              ),
+              const Text(
+                ':ایمیل',
+                style: TextStyle(
+                  fontFamily: 'Vazirmatn',
+                  fontSize: 50,
+                  fontWeight: FontWeight.bold,
+                  color: Color.fromARGB(255, 0, 192, 48),
+                ),
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              Center(
+                child: FutureBuilder<User>(
+                  future: futureUser,
+                  builder: (context, snapshot) {
+                    if (snapshot.hasData) {
+                      return Text(
+                        snapshot.data!.email,
+                        style: const TextStyle(
+                          fontSize: 40,
+                          fontWeight: FontWeight.bold,
+                          color: Color.fromARGB(255, 255, 192, 18),
+                        ),
+                      );
+                    } else if (snapshot.hasError) {
+                      return Text('${snapshot.error}');
+                    }
+
+                    // By default, show a loading spinner.
+                    return const CircularProgressIndicator();
+                  },
+                ),
+              ),
+              // Center(
+              //   child: FutureBuilder<User>(
+              //     future: futureUser,
+              //     builder: (context, snapshot) {
+              //       if (snapshot.hasData) {
+              //         return Column(
+              //           children: [
+              //             const Text(
+              //               ":علاقه مندی ها",
+              //               style: TextStyle(
+              //                 fontFamily: "Vazirmatn",
+              //               ),
+              //             ),
+              //             Text(snapshot.data!.name),
+              //           ],
+              //         );
+              //       } else if (snapshot.hasError) {
+              //         return Text('${snapshot.error}');
+              //       }
+
+              //       // By default, show a loading spinner.
+              //       return const CircularProgressIndicator();
+              //     },
+              //   ),
+              // ),
+            ],
+          ),
         ),
       ),
     );

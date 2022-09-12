@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
+import 'package:http/http.dart' as http;
 
 // class Upload extends StatelessWidget {
 //   const Upload({Key? key, required this.title}) : super(key: key);
@@ -192,6 +193,17 @@ class _FilePickerDemoState extends State<FilePickerDemo> {
       _userAborted = false;
     });
   }
+   Future<void> Upload() async {
+     print("gav1");
+     var request = http.MultipartRequest(
+         'POST', Uri.parse('http://154.91.170.55:8900/admin/'));
+     request.files.add(await http.MultipartFile.fromBytes('imagelink' ,[]));
+     request.fields['name'] = 'name';
+     var res = await request.send();
+     final respStr = await res.stream.bytesToString();
+     print(res.statusCode);
+     print(respStr);
+     }
 
   @override
   Widget build(BuildContext context) {
@@ -295,7 +307,7 @@ class _FilePickerDemoState extends State<FilePickerDemo> {
                         ButtonTheme(
                           minWidth: 80,
                           child: ElevatedButton(
-                            onPressed: () => _clearCachedFiles(),
+                            onPressed: () => Upload(),
                             child: const Text('Upload'),
                           ),
                         ),

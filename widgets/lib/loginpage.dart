@@ -182,15 +182,80 @@ class _LoginWidgetState extends State<LoginWidget> {
       Response response = await http.post(
           Uri.parse('http://154.91.170.55:8900/api/login/'),
           body: {'username': username, 'password': password});
-      if (response.statusCode == 200 || (username == "1" && password == "1")) {
+      if (response.statusCode == 200) {
         var data = jsonDecode(response.body.toString());
         print(data['token']);
         print('Login successfully');
         Navigator.of(context)
             .push(MaterialPageRoute(builder: (context) => const Store()));
       } else {
-        print('failed');
-      }
+      print('failed');
+      // AlertDialog(
+      //   title: const Text('AlertDialog Title'),
+      //   content: SingleChildScrollView(
+      //     child: ListBody(
+      //       children: const <Widget>[
+      //         Text('This is a demo alert dialog.'),
+      //         Text('Would you like to approve of this message?'),
+      //       ],
+      //     ),
+      //   ),
+      //   actions: <Widget>[
+      //     TextButton(
+      //       child: const Text('Approve'),
+      //       onPressed: () {
+      //         Navigator.of(context).pop();
+      //       },
+      //     ),
+      //   ],
+      // );
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return Dialog(
+            shape: RoundedRectangleBorder(
+                borderRadius:
+                    BorderRadius.circular(20.0)), 
+            child: SizedBox(
+              height: 100,
+              width: 80,
+              child: Center(
+                child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      const TextField(
+                        decoration: InputDecoration(
+                            border: InputBorder.none,
+                            hintText: '!نام کاربری یا رمز عبور اشتباه است' , hintStyle: TextStyle(
+                              color: Colors.black,
+                              fontSize: 18,
+                              fontFamily: 'Vazirmatn',
+                            )),
+                      ),
+                      ElevatedButton(
+                          onPressed: () {
+                            Navigator.of(context).pop();
+                          },
+                          child: const Text(
+                            "بستن",
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 18,
+                              fontFamily: 'Vazirmatn',                             
+                              ),
+                          ),
+                          style: ElevatedButton.styleFrom(
+                            primary:const Color(0xFF1BC0C5),
+                          )
+                        ),
+                    ],
+                  ),
+              ),
+            ),
+          );
+        });
+       }
     } catch (e) {
       print(e.toString());
     }

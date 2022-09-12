@@ -213,15 +213,15 @@ class DescriptionPodcast extends StatelessWidget {
                                 .getInstance()
                                 ?.basketItems
                                 .add(productapload);
-                            print(
-                                favoritedata.getInstance()?.basketItems.length);
-                            Scaffold.of(context).showSnackBar(SnackBar(
-                              content: Text(
-                                  "${productapload.name} " +
-                                      "به علاقه مندی ها افزوده شد",
-                                  style: const TextStyle(
-                                      fontSize: 15, fontFamily: "Vazirmatn")),
-                            ));
+                            // print(
+                            //     favoritedata.getInstance()?.basketItems.length);
+                            // Scaffold.of(context).showSnackBar(SnackBar(
+                            //   content: Text(
+                            //       "${productapload.name} " +
+                            //           "به علاقه مندی ها افزوده شد",
+                            //       style: const TextStyle(
+                            //           fontSize: 15, fontFamily: "Vazirmatn")),
+                            // ));
                           },
                           child: Container(
                             decoration: const BoxDecoration(

@@ -1,7 +1,6 @@
 import 'dart:convert';
 import 'package:first_app/Podcast.dart';
 import 'package:first_app/descriptionvideo.dart';
-import 'package:first_app/videos.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'main.dart';
@@ -18,12 +17,10 @@ class DescriptionPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var productAuthorEncode = utf8.encode(product.author);
-    var productAuthorDecode = utf8.decode(productAuthorEncode);
-    var producNameEncode = utf8.encode(product.name);
-    var producNameDecode = utf8.decode(producNameEncode);
-    var producDescEncode = utf8.encode(product.desc);
-    var producDescDecode = utf8.decode(producDescEncode);
+    var productNameEncode = utf8.encode(product.name);
+    var productNameDecode = utf8.decode(productNameEncode);
+    var productDescEncode = utf8.encode(product.desc);
+    var productDescDecode = utf8.decode(productDescEncode);
 
     return Scaffold(
       drawer: Drawer(
@@ -166,7 +163,7 @@ class DescriptionPage extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    productAuthorDecode,
+                    product.author.toString(),
                     style: TextStyle(
                       color: Colors.red[700],
                       fontFamily: "Vazirmatn",
@@ -174,7 +171,7 @@ class DescriptionPage extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    producNameDecode,
+                    utf8.decode(productNameDecode.runes.toList()),
                     style: TextStyle(
                       color: Colors.grey[700],
                       fontFamily: "Vazirmatn",
@@ -184,7 +181,7 @@ class DescriptionPage extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.only(left: 45, right: 45),
                     child: Text(
-                      producDescDecode,
+                      utf8.decode(productDescDecode.runes.toList()),
                       style: const TextStyle(
                         fontSize: 16,
                         fontFamily: "Vazirmatn",

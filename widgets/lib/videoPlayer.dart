@@ -2,6 +2,9 @@ import 'package:chewie/chewie.dart';
 import 'package:first_app/videoPlayerTheme.dart';
 import 'package:flutter/material.dart';
 import 'package:video_player/video_player.dart';
+import 'descriptionvideo.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
 
 class ChewieDemo extends StatefulWidget {
   const ChewieDemo({
@@ -19,20 +22,38 @@ class ChewieDemo extends StatefulWidget {
 class _ChewieDemoState extends State<ChewieDemo> {
   TargetPlatform? _platform;
   late VideoPlayerController _videoPlayerController1;
-  late VideoPlayerController _videoPlayerController2;
   ChewieController? _chewieController;
   int? bufferDelay;
+  late Video videoVar;
 
+    Future<void> fetchVideos() async {
+    final response =
+        await http.get(Uri.parse("http://154.91.170.55:8900/api/videos/"));
+    print(response.statusCode);
+    var videoJson = jsonDecode(response.body);
+    for (var i in videoJson) {
+      setState(() {
+        videoVar = Video(
+          i['title'],
+          i['video'],
+          i['date_uploaded']
+        );
+      });
+    }
+  }
+  late final String source = videoVar.linkVideo;
   @override
   void initState() {
     super.initState();
+    fetchVideos();
     initializePlayer();
+    
   }
 
   @override
   void dispose() {
     _videoPlayerController1.dispose();
-    _videoPlayerController2.dispose();
+
     _chewieController?.dispose();
     super.dispose();
   }
@@ -41,17 +62,15 @@ class _ChewieDemoState extends State<ChewieDemo> {
     // "https://assets.mixkit.co/videos/preview/mixkit-spinning-around-the-earth-29351-large.mp4",
     // "https://assets.mixkit.co/videos/preview/mixkit-daytime-city-traffic-aerial-view-56-large.mp4",
     // "https://assets.mixkit.co/videos/preview/mixkit-a-girl-blowing-a-bubble-gum-at-an-amusement-park-1226-large.mp4"
-    "https://hajifirouz7.asset.aparat.com/aparat-video/7313c221adfdd3eb4116bdc378e3fd1b46849915-480p.mp4?wmsAuthSign=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbiI6IjZiNTBhZTBlMzllNTY2MzE4Nzk1MDQwYWY5NzYwYzMwIiwiZXhwIjoxNjYwMjE3MzY1LCJpc3MiOiJTYWJhIElkZWEgR1NJRyJ9.jPtKTWA1LlOarBmsxDTeuyLOtYPKBl9DID8MiCg99hI"
+    // "https://hajifirouz7.asset.aparat.com/aparat-video/7313c221adfdd3eb4116bdc378e3fd1b46849915-480p.mp4?wmsAuthSign=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbiI6IjZiNTBhZTBlMzllNTY2MzE4Nzk1MDQwYWY5NzYwYzMwIiwiZXhwIjoxNjYwMjE3MzY1LCJpc3MiOiJTYWJhIElkZWEgR1NJRyJ9.jPtKTWA1LlOarBmsxDTeuyLOtYPKBl9DID8MiCg99hI"
+    //videoVar.linkVideoGet
   ];
 
   Future<void> initializePlayer() async {
     _videoPlayerController1 =
-        VideoPlayerController.network(srcs[currPlayIndex]);
-    _videoPlayerController2 =
-        VideoPlayerController.network(srcs[currPlayIndex]);
+         VideoPlayerController.network(source);
     await Future.wait([
       _videoPlayerController1.initialize(),
-      _videoPlayerController2.initialize()
     ]);
     _createChewieController();
     setState(() {});
@@ -71,41 +90,41 @@ class _ChewieDemoState extends State<ChewieDemo> {
     //       end: const Duration(seconds: 20),
     //       text: 'Whats up? :)',
     //     ),
-    //   ];
+    //   ]; 
 
-    final subtitles = [
-      Subtitle(
-        index: 0,
-        start: Duration.zero,
-        end: const Duration(seconds: 10),
-        text: const TextSpan(
-          children: [
-            TextSpan(
-              text: 'Hello',
-              style: TextStyle(color: Colors.red, fontSize: 22),
-            ),
-            TextSpan(
-              text: ' from ',
-              style: TextStyle(color: Colors.green, fontSize: 20),
-            ),
-            TextSpan(
-              text: 'subtitles',
-              style: TextStyle(color: Colors.blue, fontSize: 18),
-            )
-          ],
-        ),
-      ),
-      Subtitle(
-        index: 0,
-        start: const Duration(seconds: 10),
-        end: const Duration(seconds: 20),
-        text: 'Whats up? :)',
+    // final subtitles = [
+    //   Subtitle(
+    //     index: 0,
+    //     start: Duration.zero,
+    //     end: const Duration(seconds: 10),
+    //     text: const TextSpan(
+    //       children: [
+    //         TextSpan(
+    //           text: 'Hello',
+    //           style: TextStyle(color: Colors.red, fontSize: 22),
+    //         ),
+    //         TextSpan(
+    //           text: ' from ',
+    //           style: TextStyle(color: Colors.green, fontSize: 20),
+    //         ),
+    //         TextSpan(
+    //           text: 'subtitles',
+    //           style: TextStyle(color: Colors.blue, fontSize: 18),
+    //         )
+    //       ],
+    //     ),
+    //   ),
+    //   Subtitle(
+    //     index: 0,
+    //     start: const Duration(seconds: 10),
+    //     end: const Duration(seconds: 20),
+    //     text: 'Whats up? :)',
         // text: const TextSpan(
         //   text: 'Whats up? :)',
         //   style: TextStyle(color: Colors.amber, fontSize: 22, fontStyle: FontStyle.italic),
         // ),
-      ),
-    ];
+      //),
+    //];
 
     _chewieController = ChewieController(
       videoPlayerController: _videoPlayerController1,
@@ -123,47 +142,47 @@ class _ChewieDemoState extends State<ChewieDemo> {
           ),
         ];
       },
-      subtitle: Subtitles(subtitles),
-      subtitleBuilder: (context, dynamic subtitle) => Container(
-        padding: const EdgeInsets.all(10.0),
-        child: subtitle is InlineSpan
-            ? RichText(
-                text: subtitle,
-              )
-            : Text(
-                subtitle.toString(),
-                style: const TextStyle(color: Colors.black),
-              ),
-      ),
+      // subtitle: Subtitles(subtitles),
+      // subtitleBuilder: (context, dynamic subtitle) => Container(
+      //   padding: const EdgeInsets.all(10.0),
+      //   child: subtitle is InlineSpan
+      //       ? RichText(
+      //           text: subtitle,
+      //         )
+      //       : Text(
+      //           subtitle.toString(),
+      //           style: const TextStyle(color: Colors.black),
+      //         ),
+      // ),
 
       hideControlsTimer: const Duration(seconds: 1),
 
       // Try playing around with some of these other options:
 
-      // showControls: false,
-      // materialProgressColors: ChewieProgressColors(
-      //   playedColor: Colors.red,
-      //   handleColor: Colors.blue,
-      //   backgroundColor: Colors.grey,
-      //   bufferedColor: Colors.lightGreen,
-      // ),
-      // placeholder: Container(
-      //   color: Colors.grey,
-      // ),
-      // autoInitialize: true,
+      showControls: false,
+      materialProgressColors: ChewieProgressColors(
+        playedColor: Colors.red,
+        handleColor: Colors.blue,
+        backgroundColor: Colors.grey,
+        bufferedColor: Colors.lightGreen,
+      ),
+      placeholder: Container(
+        color: Colors.grey,
+      ),
+      autoInitialize: true,
     );
   }
 
-  int currPlayIndex = 0;
+  //int currPlayIndex = 0;
 
-  Future<void> toggleVideo() async {
-    await _videoPlayerController1.pause();
-    currPlayIndex += 1;
-    if (currPlayIndex >= srcs.length) {
-      currPlayIndex = 0;
-    }
-    await initializePlayer();
-  }
+   Future<void> toggleVideo() async {
+     await _videoPlayerController1.pause();
+  //   currPlayIndex += 1;
+  //   if (currPlayIndex >= srcs.length) {
+  //     currPlayIndex = 0;
+  //   }
+     await initializePlayer();
+   }
 
   @override
   Widget build(BuildContext context) {
@@ -223,10 +242,10 @@ class _ChewieDemoState extends State<ChewieDemo> {
                   child: TextButton(
                     onPressed: () {
                       setState(() {
-                        _videoPlayerController2.pause();
-                        _videoPlayerController2.seekTo(Duration.zero);
+                        //_videoPlayerController2.pause();
+                       // _videoPlayerController2.seekTo(Duration.zero);
                         _chewieController = _chewieController!.copyWith(
-                          videoPlayerController: _videoPlayerController2,
+                          //videoPlayerController: _videoPlayerController2,
                           autoPlay: true,
                           looping: true,
                           /* subtitle: Subtitles([
@@ -275,39 +294,39 @@ class _ChewieDemoState extends State<ChewieDemo> {
                       child: Text("Android controls"),
                     ),
                   ),
-                ),
-                Expanded(
-                  child: TextButton(
-                    onPressed: () {
-                      setState(() {
-                        _platform = TargetPlatform.iOS;
-                      });
-                    },
-                    child: const Padding(
-                      padding: EdgeInsets.symmetric(vertical: 16.0),
-                      child: Text("iOS controls"),
-                    ),
-                  ),
-                )
+                 ),
+            //     Expanded(
+            //       child: TextButton(
+            //         onPressed: () {
+            //           setState(() {
+            //             _platform = TargetPlatform.iOS;
+            //           });
+            //         },
+            //         child: const Padding(
+            //           padding: EdgeInsets.symmetric(vertical: 16.0),
+            //           child: Text("iOS controls"),
+            //         ),
+            //       ),
+            //     )
+            //   ],
+            // ),
+            // Row(
+            //   children: <Widget>[
+            //     Expanded(
+            //       child: TextButton(
+            //         onPressed: () {
+            //           setState(() {
+            //             _platform = TargetPlatform.windows;
+            //           });
+            //         },
+            //         child: const Padding(
+            //           padding: EdgeInsets.symmetric(vertical: 16.0),
+            //           child: Text("Desktop controls"),
+            //         ),
+            //       ),
+            //     ),
               ],
-            ),
-            Row(
-              children: <Widget>[
-                Expanded(
-                  child: TextButton(
-                    onPressed: () {
-                      setState(() {
-                        _platform = TargetPlatform.windows;
-                      });
-                    },
-                    child: const Padding(
-                      padding: EdgeInsets.symmetric(vertical: 16.0),
-                      child: Text("Desktop controls"),
-                    ),
-                  ),
-                ),
-              ],
-            ),
+            // ),
             // if (Platform.isAndroid)
             //   ListTile(
             //     title: const Text("Delay"),
@@ -321,7 +340,7 @@ class _ChewieDemoState extends State<ChewieDemo> {
             //         }
             //       },
             //     ),
-            //   )
+              )
           ],
         ),
       ),

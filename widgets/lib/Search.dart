@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
 class Search extends StatefulWidget {
-  Search() : super();
+  const Search() : super();
 
   @override
   SearchState createState() => SearchState();
@@ -143,17 +143,21 @@ class SearchState extends State<Search> {
                         InkWell(
                           child: Row(
                             children: [
-                              ListTile(
-                                title: Text(
-                                  userLists[index].text,
-                                  style: const TextStyle(fontSize: 16),
-                                ),
-                                subtitle: Text(
-                                  userLists[index].author ?? "null",
-                                  style: const TextStyle(fontSize: 16),
+                              Expanded(
+                                child: ListTile(
+                                  title: Text(
+                                    userLists[index].text,
+                                    style: const TextStyle(fontSize: 16),
+                                  ),
+                                  subtitle: Expanded(
+                                    child: Text(
+                                      userLists[index].author ?? "null",
+                                      style: const TextStyle(fontSize: 16),
+                                    ),
+                                  ),
                                 ),
                               ),
-                              Image.network(userLists[index].img),
+                              //Image.network(userLists[index].img),
                             ],
                           ),
                         ),
@@ -175,18 +179,18 @@ class SearchState extends State<Search> {
 class Subject {
   var text;
   var author;
-  var img;
+  //var img;
   Subject({
     required this.text,
     required this.author,
-    required this.img,
+    //required this.img,
   });
 
   factory Subject.fromJson(Map<dynamic, dynamic> json) {
     return Subject(
       text: json['text'],
       author: json['author'],
-      img: json['img'],
+      //img: json['img'],
     );
   }
 }

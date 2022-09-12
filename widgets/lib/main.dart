@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:first_app/Profile.dart';
+import 'package:first_app/descriptionvideo.dart';
 import 'package:first_app/favoritepage.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -22,7 +23,7 @@ class MainMaterial extends StatelessWidget {
     return const MaterialApp(
       title: appTitle,
       debugShowCheckedModeBanner: false,
-      home: LoginWidget(),
+      home: VideoList(),
     );
   }
 }
@@ -48,6 +49,8 @@ class Store extends StatefulWidget {
 }
 
 class _StoreState extends State<Store> {
+  int idFuture = 0;
+
   List<Product> _items = [];
   @override
   void initState() {
@@ -63,15 +66,20 @@ class _StoreState extends State<Store> {
         child: ListView(
           addAutomaticKeepAlives: true,
           children: [
-            const DrawerHeader(
-              decoration: BoxDecoration(
-                color: Color.fromARGB(255, 7, 205, 255),
-                image: DecorationImage(
-                  image: AssetImage("assets/images/Logo-Red-Green.png"),
-                  fit: BoxFit.cover,
+            GestureDetector(
+              onTap: () {
+              Navigator.of(context).push(MaterialPageRoute(builder: (context) => const Store()));
+              },
+              child: const DrawerHeader(
+                decoration: BoxDecoration(
+                  color: Color.fromARGB(255, 7, 205, 255),
+                  image: DecorationImage(
+                    image: AssetImage("assets/images/Logo-Red-Green.png"),
+                    fit: BoxFit.cover,
+                  ),
                 ),
+                child: Center(),
               ),
-              child: Center(),
             ),
             Container(
               color: const Color.fromARGB(255, 243, 255, 78),
@@ -164,9 +172,15 @@ class _StoreState extends State<Store> {
         ),
       ),
       appBar: AppBar(
-        title: Image.asset(
-          "assets/images/Logo-Red-Green.png",
-          height: 250,
+        title: GestureDetector(
+          onTap: () {
+            Navigator.of(context)
+                .push(MaterialPageRoute(builder: (context) => const Store()));
+          },
+          child: Image.asset(
+            "assets/images/Logo-Red-Green.png",
+            height: 250,
+          ),
         ),
         centerTitle: true,
         backgroundColor: (const Color.fromARGB(255, 7, 205, 255)),
@@ -186,6 +200,17 @@ class _StoreState extends State<Store> {
     );
   }
 
+
+Future<void> fetchAutor(int id) async {
+    final response =
+        await http.post((Uri.parse("http://154.91.170.55:8900/api/lili/")),
+    body: {'id': id,});
+    if (response.statusCode == 200) {
+        var data = jsonDecode(response.body.toString());
+          var idFuture = id;
+      }
+    }
+    
   Future<void> fetchItems() async {
     final response =
         await http.get(Uri.parse("http://154.91.170.55:8900/api/product/"));
@@ -200,19 +225,17 @@ class _StoreState extends State<Store> {
           i["img"],
           i['categories'],
           i['desc'],
+          i['topic'],
         );
         _items.add(ProductItem);
       });
     }
+    print(_items[0].img);
   }
-}
-
-Card generateItem(Product product, context) {
-  var productAuthorEncode = utf8.encode(product.author);
-  var productAuthorDecode = utf8.decode(productAuthorEncode);
-  var producNameEncode = utf8.encode(product.name);
-  var productNameDecode = utf8.decode(producNameEncode);
-  print((product.img).split("\n"));
+  Card generateItem(Product product, context) {
+  var productTopicEncode = utf8.encode(product.topic);
+  var productTopicDecode = utf8.decode(productTopicEncode);
+  var stringId = idFuture;
 
   return Card(
     shape: const RoundedRectangleBorder(
@@ -228,27 +251,30 @@ Card generateItem(Product product, context) {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             SizedBox(
-              width: 130,
-              height: 130,
-              child: Image.network(product.img),
+              width: 180,
+              height: 180,
+              child: Image.network(
+                "https://flutter.github.io/assets-for-api-docs/assets/widgets/owl.jpg",
+              ),
             ),
             Text(
-              productAuthorDecode,
+              stringId.toString(),
               style: TextStyle(
                   fontFamily: "Vazirmatn",
                   color: Colors.red[700],
-                  fontSize: 16.0),
+                  fontSize: 40.0),
             ),
             Text(
-              productNameDecode,
+              utf8.decode(productTopicDecode.runes.toList()),
               style: const TextStyle(
                   fontFamily: "Vazirmatn",
                   color: Color(0xFF575E67),
-                  fontSize: 14.0),
+                  fontSize: 38.0),
             )
           ],
         ),
       ),
     ),
   );
+}
 }
