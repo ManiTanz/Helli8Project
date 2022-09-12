@@ -23,7 +23,7 @@ class MainMaterial extends StatelessWidget {
     return const MaterialApp(
       title: appTitle,
       debugShowCheckedModeBanner: false,
-      home: VideoList(),
+      home: MyApp(),
     );
   }
 }
