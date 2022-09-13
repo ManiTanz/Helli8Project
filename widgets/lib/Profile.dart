@@ -26,7 +26,7 @@ class _ProfileState extends State<Profile> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: UserData(),
+      body: const UserData(),
       drawer: Drawer(
         child: ListView(
           addAutomaticKeepAlives: true,
@@ -86,7 +86,7 @@ class _ProfileState extends State<Profile> {
                     onTap: () {
                       Navigator.of(context).push(
                         MaterialPageRoute(
-                          builder: (context) => Search(),
+                          builder: (context) => const Search(),
                         ),
                       );
                     },

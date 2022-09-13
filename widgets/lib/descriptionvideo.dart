@@ -70,7 +70,7 @@ Widget showVideo(BuildContext context, Video video) {
     child: InkWell(
       
        onTap: () {
-         Navigator.of(context).push(MaterialPageRoute(builder: (context) => ChewieDemo()));
+         Navigator.of(context).push(MaterialPageRoute(builder: (context) => const ChewieDemo()));
          },
         child: Center(
           child: Column(

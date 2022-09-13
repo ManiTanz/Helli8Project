@@ -1,5 +1,4 @@
 import 'dart:ui';
-
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 
@@ -12,7 +11,7 @@ class player extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
       debugShowCheckedModeBanner: false,
       home: HomePage(),
     );
@@ -56,10 +55,10 @@ class _HomePageState extends State<HomePage> {
       body: Stack(
         children: [
           Container(
-            constraints: BoxConstraints.expand(),
+            constraints: const BoxConstraints.expand(),
             height: 300.0,
             width: 300.0,
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
               image: DecorationImage(
                 image: AssetImage("assets/images/Sample.jpg"),
                 fit: BoxFit.cover,
@@ -84,16 +83,16 @@ class _HomePageState extends State<HomePage> {
                   width: 250.0,
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 10.0,
               ),
-              Text(
+              const Text(
                 "Summer",
                 style: TextStyle(
                     color: Colors.white, fontSize: 36, letterSpacing: 6),
               ),
               //Setting the seekbar
-              SizedBox(
+              const SizedBox(
                 height: 50.0,
               ),
               Row(
@@ -101,9 +100,9 @@ class _HomePageState extends State<HomePage> {
                 children: [
                   Text(
                     "${(value / 60).floor()}: ${(value % 60).floor()}",
-                    style: TextStyle(color: Colors.white),
+                    style: const TextStyle(color: Colors.white),
                   ),
-                  Container(
+                  SizedBox(
                     width: 260.0,
                     child: Slider.adaptive(
                       onChangeEnd: (new_value) async {
@@ -127,7 +126,7 @@ class _HomePageState extends State<HomePage> {
                 ],
               ),
               //setting the player controller
-              SizedBox(
+              const SizedBox(
                 height: 60.0,
               ),
               Row(
@@ -148,7 +147,7 @@ class _HomePageState extends State<HomePage> {
                       onTapUp: (details) {
                         player.setPlaybackRate(1);
                       },
-                      child: Center(
+                      child: const Center(
                         child: Icon(
                           Icons.fast_rewind_rounded,
                           color: Colors.white,
@@ -157,7 +156,7 @@ class _HomePageState extends State<HomePage> {
                     ),
                   ),
                   Container(
-                    margin: EdgeInsets.symmetric(horizontal: 20.0),
+                    margin: const EdgeInsets.symmetric(horizontal: 20.0),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(60.0),
                       color: Colors.black87,
@@ -180,7 +179,7 @@ class _HomePageState extends State<HomePage> {
                         );
                         print(duration);
                       },
-                      child: Center(
+                      child: const Center(
                         child: Icon(
                           Icons.play_arrow,
                           color: Colors.white,
@@ -203,7 +202,7 @@ class _HomePageState extends State<HomePage> {
                       onTapUp: (details) {
                         player.setPlaybackRate(1);
                       },
-                      child: Center(
+                      child: const Center(
                         child: Icon(
                           Icons.fast_forward_rounded,
                           color: Colors.white,

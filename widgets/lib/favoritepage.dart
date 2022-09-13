@@ -72,7 +72,7 @@ class _favoriteState extends State<favorite> {
                     onTap: () {
                       Navigator.of(context).push(
                         MaterialPageRoute(
-                          builder: (context) => Search(),
+                          builder: (context) => const Search(),
                         ),
                       );
                     },
@@ -85,7 +85,7 @@ class _favoriteState extends State<favorite> {
                     leading: const Icon(Icons.person),
                     onTap: () {
                       Navigator.of(context).push(
-                          MaterialPageRoute(builder: (context) => Profile()));
+                          MaterialPageRoute(builder: (context) => const Profile()));
                     },
                   ),
                   ListTile(

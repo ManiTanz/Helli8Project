@@ -1,7 +1,5 @@
 import 'dart:convert';
 import 'package:first_app/Profile.dart';
-import 'package:first_app/descriptionvideo.dart';
-import 'package:first_app/favoritepage.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'dart:async';
@@ -10,7 +8,6 @@ import 'loginpage.dart';
 import 'Search.dart';
 import 'product.dart';
 import 'package:http/http.dart' as http;
-import 'dart:convert' show utf8;
 
 void main() => runApp(const MainMaterial());
 
@@ -23,7 +20,7 @@ class MainMaterial extends StatelessWidget {
     return const MaterialApp(
       title: appTitle,
       debugShowCheckedModeBanner: false,
-      home: Search(),
+      home: MyApp(),
     );
   }
 }

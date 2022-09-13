@@ -2,7 +2,6 @@ import 'package:first_app/favoritedata.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'Profile.dart';
 import 'Search.dart';
-import 'favoritepage.dart';
 import 'loginpage.dart';
 import 'main.dart';
 import 'productapload.dart';
@@ -70,7 +69,7 @@ class DescriptionPodcast extends StatelessWidget {
                       onTap: () {
                         Navigator.of(context).push(
                           MaterialPageRoute(
-                            builder: (context) => Search(),
+                            builder: (context) => const Search(),
                           ),
                         );
                       },

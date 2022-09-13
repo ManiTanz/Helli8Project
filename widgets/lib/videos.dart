@@ -96,7 +96,7 @@ class _StoreState extends State<Store> {
                     onTap: () {
                       Navigator.of(context).push(
                         MaterialPageRoute(
-                          builder: (context) => Search(),
+                          builder: (context) => const Search(),
                         ),
                       );
                     },
@@ -230,7 +230,7 @@ Card generateItem(Productapload productapload, context) {
     child: InkWell(
       onTap: () {
         Navigator.of(context)
-            .push(MaterialPageRoute(builder: (context) => VideoList()));
+            .push(MaterialPageRoute(builder: (context) => const VideoList()));
       },
       child: Center(
         child: Column(

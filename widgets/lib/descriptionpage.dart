@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'main.dart';
 import 'package:first_app/Profile.dart';
-import 'package:first_app/favoritepage.dart';
 import 'loginpage.dart';
 import 'Search.dart';
 import 'product.dart';
@@ -77,7 +76,7 @@ class DescriptionPage extends StatelessWidget {
                     onTap: () {
                       Navigator.of(context).push(
                         MaterialPageRoute(
-                          builder: (context) => Search(),
+                          builder: (context) => const Search(),
                         ),
                       );
                     },
