@@ -196,7 +196,7 @@ class _FilePickerDemoState extends State<FilePickerDemo> {
    Future<void> Upload() async {
      print("gav1");
      var request = http.MultipartRequest(
-         'POST', Uri.parse('http://154.91.170.55:8900/admin/'));
+         'POST', Uri.parse('http://154.91.170.55:8900/videos/'));
      request.files.add(await http.MultipartFile.fromBytes('imagelink' ,[]));
      request.fields['name'] = 'name';
      var res = await request.send();

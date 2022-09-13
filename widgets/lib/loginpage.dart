@@ -246,7 +246,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                               ),
                           ),
                           style: ElevatedButton.styleFrom(
-                            primary:const Color(0xFF1BC0C5),
+                            backgroundColor: const Color(0xFF1BC0C5),
                           )
                         ),
                     ],

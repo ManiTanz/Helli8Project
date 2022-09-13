@@ -20,7 +20,7 @@ class MainMaterial extends StatelessWidget {
     return const MaterialApp(
       title: appTitle,
       debugShowCheckedModeBanner: false,
-      home: MyApp(),
+      home: LoginWidget(),
     );
   }
 }
