@@ -153,7 +153,7 @@ class SearchState extends State<Search> {
                                   ),
                                   subtitle: Expanded(
                                     child: Text(
-                                      userLists[index].author ?? "null",
+                                      userLists[index].author,
                                       style: const TextStyle(fontSize: 16),
                                     ),
                                   ),
