@@ -46,19 +46,19 @@ class DescriptionPodcast extends StatelessWidget {
                         );
                       },
                     ),
-                    ListTile(
-                      title: const Text(
-                        "علاقه مندی ها",
-                        style: TextStyle(fontFamily: "Vazirmatn"),
-                      ),
-                      leading: const Icon(Icons.favorite),
-                      onTap: () {
-                        Navigator.of(context).push(
-                          MaterialPageRoute(
-                              builder: (context) => const favorite()),
-                        );
-                      },
-                    ),
+                    // ListTile(
+                    //   title: const Text(
+                    //     "علاقه مندی ها",
+                    //     style: TextStyle(fontFamily: "Vazirmatn"),
+                    //   ),
+                    //   leading: const Icon(Icons.favorite),
+                    //   onTap: () {
+                    //     Navigator.of(context).push(
+                    //       MaterialPageRoute(
+                    //           builder: (context) => const favorite()),
+                    //     );
+                    //   },
+                    // ),
                     ListTile(
                       title: const Text(
                         "جست و جو",

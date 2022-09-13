@@ -1,10 +1,11 @@
 import 'dart:async';
 import 'dart:convert';
+import 'package:first_app/Podcast.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
 class Search extends StatefulWidget {
-  const Search() : super();
+  const Search({super.key});
 
   @override
   SearchState createState() => SearchState();
@@ -33,11 +34,12 @@ class SearchState extends State<Search> {
   List<Subject> userLists = [];
   //API call for All Subject List
 
-  String url = 'https://type.fit/api/quotes';
+  String url = 'http://154.91.170.55:8900/api/product/search?q=';
 
   Future<List<Subject>> getAllulistList() async {
     try {
       final response = await http.get(Uri.parse(url));
+      print(response.statusCode);
       if (response.statusCode == 200) {
         // print(response.body);
         List<Subject> list = parseAgents(response.body);
@@ -110,7 +112,7 @@ class SearchState extends State<Search> {
                   setState(() {
                     userLists = ulist
                         .where(
-                          (u) => (u.text.toLowerCase().contains(
+                          (u) => (u.name.toLowerCase().contains(
                                 string.toLowerCase(),
                               )),
                         )
@@ -146,7 +148,7 @@ class SearchState extends State<Search> {
                               Expanded(
                                 child: ListTile(
                                   title: Text(
-                                    userLists[index].text,
+                                    userLists[index].topic,
                                     style: const TextStyle(fontSize: 16),
                                   ),
                                   subtitle: Expanded(
@@ -177,20 +179,35 @@ class SearchState extends State<Search> {
 //Declare Subject class for json data or parameters of json string/data
 //Class For Subject
 class Subject {
-  var text;
-  var author;
-  //var img;
+  var id;
+  var videos;
+  var podcasts;
+  var topic;
+  String name;
+  String desc;
+  String img;
+  String author;
   Subject({
-    required this.text,
+    required this.id,
+    required this.videos,
+    required this.podcasts,
+    required this.topic,
+    required this.name,
+    required this.desc,
+    required this.img,
     required this.author,
-    //required this.img,
   });
 
   factory Subject.fromJson(Map<dynamic, dynamic> json) {
     return Subject(
-      text: json['text'],
+      id: json['id'],
+      videos: json['videos'],
+      podcasts: json['podcasts'],
+      topic: json['topic'],
+      name: json['name'],
+      desc: json['desc'],
+      img: json['img'],
       author: json['author'],
-      //img: json['img'],
     );
   }
 }
